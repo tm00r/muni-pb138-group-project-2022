@@ -205,6 +205,9 @@ yarn-error.log
 ##### PRISMA ######
 .env/
 
+### Create react app ###
+build/
+
 # User-specific stuff
 .idea/
 .idea/**/workspace.xml
