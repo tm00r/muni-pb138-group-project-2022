@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Run `npm install` to install all the dependencies
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -47,6 +49,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Start docker images
 Before running `docker-compose` create file `db_password.txt` inside folder `secrets` and add there your desired password to the database.
+
+Replace `%DATABASE_PASSWORD%` in `.env` by your desired password.
 
 To start services run `docker-compose -f compose.yml up -d`
 
