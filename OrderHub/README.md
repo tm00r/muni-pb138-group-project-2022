@@ -59,3 +59,5 @@ To stop services run `docker-compose -f compose.yml stop`
 To down services run `docker-compose -f compose.yml down`
 
 Connect to Adminer go to `127.0.0.1:8080` and fill up `server: database` `Username: admin` `Password: your desired password` and click `Login`
+
+To create a new database migration run `npx prisma migrate dev --name %NAME%`
