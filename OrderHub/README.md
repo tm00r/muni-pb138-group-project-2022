@@ -44,3 +44,14 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Start docker images
+Before running `docker-compose` create file `db_password.txt` inside folder `secrets` and add there your desired password to the database.
+
+To start services run `docker-compose -f compose.yml up -d`
+
+To stop services run `docker-compose -f compose.yml stop`
+
+To down services run `docker-compose -f compose.yml down`
+
+Connect to Adminer go to `127.0.0.1:8080` and fill up `server: database` `Username: admin` `Password: your desired password` and click `Login`
