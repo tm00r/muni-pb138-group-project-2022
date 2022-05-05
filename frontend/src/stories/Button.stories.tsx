@@ -19,25 +19,25 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Main = Template.bind({});
 Main.args = {
   type: 'main',
-  label: 'That fucking burger again...',
+  label: 'Button',
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
   type: 'dark',
-  label: 'That fucking burger again...',
+  label: 'Button',
 };
 
 export const Orange = Template.bind({});
 Orange.args = {
   type: 'orange',
-  label: 'That fucking burger again...',
+  label: 'Button',
 };
 
 export const Wide = Template.bind({});
 Wide.args = {
   size: 'wide',
-  label: 'That fucking burger again...',
+  label: 'Button',
 };
 
 export const Small = Template.bind({});
