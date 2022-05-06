@@ -1,11 +1,22 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Button } from './Button';
+import { Button } from '../components/Button';
 
 export default {
   title: 'Example/Button',
   component: Button,
+  argTypes: {
+    color: {
+      control: {  type: 'select', options: ['gray', 'dark', 'orange'] },
+    },
+    size: {
+      control: { type: 'select', options: ['primary', 'small', 'wide'] },
+    },
+    label: {
+      control: { type: 'text' },
+    },
+  },
 
 } as ComponentMeta<typeof Button>;
 
@@ -32,12 +43,14 @@ Orange.args = {
 
 export const Wide = Template.bind({});
 Wide.args = {
+  color: 'gray',
   size: 'wide',
   label: 'Button',
 };
 
 export const Small = Template.bind({});
 Small.args = {
+  color: 'gray',
   size: 'small',
   label: '+',
 };

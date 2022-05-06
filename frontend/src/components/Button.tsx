@@ -1,23 +1,19 @@
 import React from 'react';
-import '../index.css';
-import './button.css';
 
+import '../styles/button.css';
+import '../styles/variables.css';
 
 interface ButtonProps {
   color: 'gray' | 'dark' | 'orange';
-  size?: 'primary' | 'small'| 'wide';
+  size: 'primary' | 'small'| 'wide';
   label: string;
-  onClick?: () => void;
 }
 
-export const Button = ({
-  color = 'gray',
-  size,
-  label,
-  ...props
-}: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = (props) => {
 
-  const mode = `button--${color} button--${size}`;
+  const { color, size, label } = props;
+
+  const mode = `button--${color} button--${size || 'primary'}`;
 
   const handleMouseDown = (e) => {
     e.target.style.boxShadow = `var(--shadow-${color})`;
@@ -31,7 +27,6 @@ export const Button = ({
     <button
       type="button"
       className={['button', mode].join(' ')}
-      {...props}
       onMouseDown={(e) => handleMouseDown(e)}
       onMouseUp={(e) => handleMouseUp(e)}
     >

@@ -1,0 +1,34 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  padding-left: 3rem;
+  height: 3.5rem;
+  border: var(--border-main);
+  border-radius: var(--border-radius-main);
+  outline: 1px solid var(--color-pill-outline);
+  box-shadow: var(--shadow-background);
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
+.list-item--left {
+  border-radius: var(--border-radius-left)
+}
+
+.list-item--right {
+  border-radius: var(--border-radius-right)
+}
+
+.link {
+  padding: 1.25rem 0;
+  width: 100%;
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  color: var(--color-dark-100);
+}
+
+.link:visited {
+  color: var(--color-black);
+}

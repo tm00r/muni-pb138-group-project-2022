@@ -1,13 +1,14 @@
 import React from 'react';
-import '../index.css';
-import './listitem.css';
+
+import '../styles/listitem.css';
+import '../styles/variables.css';
 
 interface ListItemProps {
-  crop?: string;
-  text?: string;
+  crop: string;
+  text: string;
 }
 
-export const ListItem: React.FC = (props: ListItemProps) => {
+export const ListItem: React.FC <ListItemProps> = (props) => {
 
   const { crop, text } = props;
 
