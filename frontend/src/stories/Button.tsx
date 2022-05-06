@@ -2,30 +2,36 @@ import React from 'react';
 import './button.css';
 
 interface ButtonProps {
-  type?: string;
-  backgroundColor?: string;
-  size?: 'small' | 'main' | 'wide';
+  color: 'gray' | 'dark' | 'orange';
+  size?: 'primary' | 'small'| 'wide';
   label: string;
   onClick?: () => void;
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const Button = ({
-  type = 'main',
-  size = 'main',
-  backgroundColor,
+  color = 'gray',
+  size,
   label,
   ...props
 }: ButtonProps) => {
-  const mode = `storybook-button--${type}`;
+
+  const mode = `storybook-button--${color} storybook-button--${size}`;
+
+  const handleMouseDown = (e) => {
+    e.target.style.boxShadow = `var(--shadow-${color})`;
+  }
+
+  const handleMouseUp = (e) => {
+    e.target.style.boxShadow = 'var(--shadow-background)';
+  }
+
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
+      className={['storybook-button', mode].join(' ')}
       {...props}
+      onMouseDown={(e) => handleMouseDown(e)}
+      onMouseUp={(e) => handleMouseUp(e)}
     >
       {label}
     </button>

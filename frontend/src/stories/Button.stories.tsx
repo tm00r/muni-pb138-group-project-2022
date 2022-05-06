@@ -7,30 +7,26 @@ export default {
   title: 'Example/Button',
   component: Button,
 
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-
 } as ComponentMeta<typeof Button>;
 
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-export const Main = Template.bind({});
-Main.args = {
-  type: 'main',
+export const Gray = Template.bind({});
+Gray.args = {
+  color: 'gray',
   label: 'Button',
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
-  type: 'dark',
+  color: 'dark',
   label: 'Button',
 };
 
 export const Orange = Template.bind({});
 Orange.args = {
-  type: 'orange',
+  color: 'orange',
   label: 'Button',
 };
 
