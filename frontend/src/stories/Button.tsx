@@ -1,5 +1,7 @@
 import React from 'react';
+import '../index.css';
 import './button.css';
+
 
 interface ButtonProps {
   color: 'gray' | 'dark' | 'orange';
@@ -15,7 +17,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
 
-  const mode = `storybook-button--${color} storybook-button--${size}`;
+  const mode = `button--${color} button--${size}`;
 
   const handleMouseDown = (e) => {
     e.target.style.boxShadow = `var(--shadow-${color})`;
@@ -28,7 +30,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={['storybook-button', mode].join(' ')}
+      className={['button', mode].join(' ')}
       {...props}
       onMouseDown={(e) => handleMouseDown(e)}
       onMouseUp={(e) => handleMouseUp(e)}

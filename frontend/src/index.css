@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+/* FONT PARAMS */
+:root {
+  --font-family: "Inter", sans-serif;
+  --font-size: 16px;
+  --font-weight: 700;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* COLOR PARAMS */
+:root {
+  /* Color White */
+  --color-white: #fff;
+  /* Color Black */
+  --color-black: #000;
+  /* Color Dark */
+  --color-dark-100: #333333;
+  --color-dark-30: #3333333d;
+  /* Color Gray */
+  --bg-color-gray: #bdbdbd;
+  /* Color Silver */
+  --color-silver: #f2f2f2;
+  /* Color Orange */
+  --color-orange: #ff9900;
+  /* Other Colors */
+  --color-pill-outline: #e7ebf1;
+}
+
+/* SHADOW PARAMS */
+:root {
+  --shadow-background: -4px -4px 15px #ffffff, 4px 4px 15px #b4c1d5;
+  --shadow-gray: -4px -4px 15px #ffffff, 4px 4px 15px #b4c1d5,
+    -6px 6px 12px #8a8a8a33 inset, 6px -6px 12px #8a8a8a33 inset,
+    -6px -6px 12px #f0f0f0e6 inset, 6px 6px 15px #8a8a8ae6 inset;
+  --shadow-orange: -4px -4px 15px #ffffff, 4px 4px 15px #b4c1d5,
+    inset -6px 6px 12px #b4700033, inset 6px -6px 12px #b4700033,
+    inset -6px -6px 12px #ffc200e6, inset 6px 6px 15px #b47000e6;
+  --shadow-dark: -4px -4px 15px #ffffff, 4px 4px 15px #b4c1d5,
+    inset -6px 6px 12px #25252533, inset 6px -6px 12px #25252533,
+    inset -6px -6px 12px #414141e6, inset 6px 6px 15px #252525e6;
+}
+
+:root {
+  --border-main: 0.5px solid var(--color-dark-30);
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+}
+
+.link {
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  color: var(--color-dark-100);
+}
+
+.link:visited {
+  color: var(--color-black);
 }

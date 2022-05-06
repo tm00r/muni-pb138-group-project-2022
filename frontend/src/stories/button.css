@@ -1,77 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
-  /* FONT PARAMS */
-:root {
-  --font-family: 'Inter', sans-serif;
-  --font-size: 16px;
-  --font-weight: 700;
-}
-
-  /* COLOR PARAMS */
-:root {
-  /* Color White */
-  --color-white: #fff;
-
-  /* Color Black */
-  --color-black: #000;
-
-  /* Color Dark */
-  --color-dark-100:  #333333;
-  --color-dark-30: #3333333d;
-
-  /* Color Gray */
-  --bg-color-gray: #BDBDBD;
-
-  /* Color Silver */
-  --color-silver:  #F2F2F2;
-
-  /* Color Orange */
-  --color-orange:  #FF9900;
-
-  /* Other Colors */
-  --color-pill-outline: #E7EBF1;
-
-}
-
- /* SHADOW PARAMS */
-:root {
-  --shadow-background:
-    -4px -4px 15px #FFFFFF,
-    4px 4px 15px #B4C1D5;
-
-  --shadow-gray:
-    -4px -4px 15px #FFFFFF,
-    4px 4px 15px #B4C1D5,
-    -6px 6px 12px #8a8a8a33 inset,
-    6px -6px 12px #8a8a8a33 inset,
-    -6px -6px 12px #f0f0f0e6 inset,
-    6px 6px 15px #8a8a8ae6 inset;
-
-  --shadow-orange:
-    -4px -4px 15px #FFFFFF,
-    4px 4px 15px #B4C1D5,
-    inset -6px 6px 12px #b4700033,
-    inset 6px -6px 12px #b4700033,
-    inset -6px -6px 12px #ffc200e6,
-    inset 6px 6px 15px #b47000e6;
-
-  --shadow-dark:
-    -4px -4px 15px #FFFFFF,
-    4px 4px 15px #B4C1D5,
-    inset -6px 6px 12px #25252533,
-    inset 6px -6px 12px #25252533,
-    inset -6px -6px 12px #414141e6,
-    inset 6px 6px 15px #252525e6;
-}
-
-.storybook-button {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 2.5rem;
   width: 6rem;
   line-height: 1;
-  border: 0.5px solid var(--color-dark-30);
+  border: var(--border-main);
   outline: 1px solid var(--color-pill-outline);
   box-shadow: var(--shadow-background);
   border-radius: 2em;
@@ -82,34 +16,34 @@
   cursor: pointer;
 }
 
-.storybook-button:hover {
+.button:hover {
   opacity: 0.9;
 }
 
-.storybook-button:active {
+.button:active {
   font-size: 15px;
 }
 
-.storybook-button--gray {
+.button--gray {
   background-color: var(--bg-color-gray);
 }
 
-.storybook-button--dark {
+.button--dark {
   color: var(--color-white);
   background-color: var(--color-dark-100);
 }
 
-.storybook-button--orange {
+.button--orange {
   color: var(--color-black);
   background-color: var(--color-orange);
 }
 
-.storybook-button--wide {
+.button--wide {
   width: 19rem;
   padding: inherit 2rem;
 }
 
-.storybook-button--small {
+.button--small {
   height: 2rem;
   width: 3rem;
   font-size: 1.5rem;
