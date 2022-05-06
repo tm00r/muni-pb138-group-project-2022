@@ -1,33 +1,26 @@
 import React from 'react';
+import '../index.css';
 import './listitem.css';
 
 interface ListItemProps {
-  type?: string;
-  backgroundColor?: string;
-  size?: 'small' | 'main' | 'wide';
-  label: string;
-  onClick?: () => void;
+  crop?: string;
+  text?: string;
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const ListItem = ({
-  type = 'main',
-  size = 'main',
-  backgroundColor,
-  label,
-  ...props
-}: ListItemProps) => {
-  const mode = `storybook-button--${type}`;
+export const ListItem: React.FC = (props: ListItemProps) => {
+
+  const { crop, text } = props;
+
+  const mode = [`list-item--${''}`, (crop ? `list-item--${crop}` : '')].join(' ');
+
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
+    <li className={['list-item', mode].join(' ')}>
+      <a
+        className='list-item__link link'
+        href='#'
+      >
+        {text}
+      </a>
+    </li >
   );
 };

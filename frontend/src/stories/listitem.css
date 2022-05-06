@@ -1,70 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
-:root {
-  --font-family: 'Inter', sans-serif;
-  --font-size: 16px;
-  --font-weight: 700;
-
-  /* Color White */
-  --color-white: #fff;
-
-  /* Color Black */
-  --color-black: #000;
-
-  /* Color Dark */
-  --color-dark-100:  #333333;
-  --color-dark-30: #3333333d;
-
-  /* Color Silver */
-  --color-silver:  #F2F2F2;
-
-   /* Color Orange */
-   --color-orange:  #FF9900;
-
-  --color-pill-outline: #E7EBF1;
-  --bg-color-primary: #BDBDBD;
-}
-
-.storybook-button {
+.list-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  width: 6rem;
-  line-height: 1;
-  border: 0.5px solid;
-  border-color: var(--color-dark-30);
+  padding-left: 3rem;
+  height: 3.5rem;
+  border: var(--border-main);
   outline: 1px solid var(--color-pill-outline);
-  box-shadow: -4px -4px 15px #FFFFFF, 4px 4px 15px #B4C1D5;
+  box-shadow: var(--shadow-background);
   border-radius: 2em;
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  font-weight: var(--font-weight);
-  color: var(--color-dark-100);
   cursor: pointer;
 }
 
-.storybook-button--main {
-  background-color: var(--bg-color-primary);
+.list-item--left {
+  border-radius: 0 2rem 2rem 0;
 }
 
-.storybook-button--dark {
-  color: var(--color-white);
-  background-color: var(--color-dark-100);
+.list-item--right {
+  border-radius: 2rem 0 0 2rem ;
 }
 
-.storybook-button--orange {
-  color: var(--color-black);
-  background-color: var(--color-orange);
-}
-
-.storybook-button--wide {
-  width: 19rem;
-  padding: inherit 2rem;
-}
-
-.storybook-button--small {
-  height: 2rem;
-  width: 3rem;
-  font-size: 1.5rem;
-}
