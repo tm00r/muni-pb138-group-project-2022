@@ -12,22 +12,26 @@ export const Header: React.FC<HeaderProps> = ({
   title,
   orders,
 }: HeaderProps) => {
+
+  const templateMode = !templates ? "template--invisible" : "";
+  const ordersMode = !orders ? "order--invisible" : "";
+
   return (
     <ul className="header">
-      <li
-        className={`header-item header-template ${
-          !templates ? "header-template--invisible" : ""
-        }`}
-      >
-        Templates
+      <li className={`header__item template ${templateMode}`}>
+        <h2 className="template__title">
+          Templates
+        </h2>
       </li>
-      <li className="header-item header-main-title">{title}</li>
-      <li
-        className={`header-item header-order ${
-          !orders ? "header-order--invisible" : ""
-        }`}
-      >
-        Orders
+      <li className="header__item main">
+        <h1 className="main__title">
+          {title}
+        </h1>
+      </li>
+      <li className={`header__item order ${ordersMode}`}>
+        <h2 className="order__title">
+          Orders
+        </h2>
       </li>
     </ul>
   );
