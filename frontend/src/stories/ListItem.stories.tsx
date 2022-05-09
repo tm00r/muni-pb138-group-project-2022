@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof ListItem> = (args) => < ListItem {...args}
 export const MainItem = Template.bind({});
 MainItem.args = {
   crop: 'none',
-  text: 'That fucking burgar again...'
+  text: 'That fucking burger again...'
 };
 
 export const LeftItem = Template.bind({});

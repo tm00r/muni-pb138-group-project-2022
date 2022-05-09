@@ -1,8 +1,13 @@
 /* FONT PARAMS */
 :root {
+  /* Font Family and Weight */
   --font-family: "Inter", sans-serif;
-  --font-size: 16px;
   --font-weight: 700;
+
+  /* Font Sizes */
+  --font-size: 16px;
+  --font-size-32: 2rem;
+  --font-size-40: 2.5rem;
 }
 
 /* COLOR PARAMS */

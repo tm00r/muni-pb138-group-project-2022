@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import logo from './logo.svg'
+
+import 'normalize.css';
 import './styles/App.css'
 
 function App() {
