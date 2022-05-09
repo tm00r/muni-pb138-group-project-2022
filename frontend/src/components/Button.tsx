@@ -5,7 +5,7 @@ import '../styles/variables.css';
 
 interface ButtonProps {
   color: 'gray' | 'dark' | 'orange';
-  size: 'primary' | 'small'| 'wide';
+  size: 'primary' | 'small'| 'wide' | 'middle';
   label: string;
 }
 

@@ -54,3 +54,10 @@ Small.args = {
   size: 'small',
   label: '+',
 };
+
+export const Middle = Template.bind({});
+Middle.args = {
+  color: 'gray',
+  size: 'middle',
+  label: 'Dark Theme',
+};
