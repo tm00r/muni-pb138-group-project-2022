@@ -16,3 +16,11 @@
 .list--right{
     border-radius: var(--border-radius-right);
 }
+
+.list--left > * {
+    border-radius: var(--border-radius-left)
+  }
+
+.list--right > * {
+    border-radius: var(--border-radius-right)
+}

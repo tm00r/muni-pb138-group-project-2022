@@ -11,20 +11,14 @@ export default {
 
 const Template: ComponentStory<typeof ListItem> = (args) => < ListItem {...args} />;
 
-export const MainItem = Template.bind({});
-MainItem.args = {
-  crop: 'none',
-  text: 'That fucking burger again...'
+export const WithReducer = Template.bind({});
+WithReducer.args = {
+  text: 'That fucking burger again...',
+  withReducer: true,
 };
 
-export const LeftItem = Template.bind({});
-LeftItem.args = {
-  crop: 'left',
-  text: 'Shrimp Roll...mmmmmm....'
-};
-
-export const RightItem = Template.bind({});
-RightItem.args = {
-  crop: 'right',
-  text:'Shytty cheese...'
+export const WithoutReducer = Template.bind({});
+WithoutReducer.args = {
+  text: 'Shrimp Roll...mmmmmm....',
+  withReducer: false,
 };
