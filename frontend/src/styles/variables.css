@@ -6,6 +6,7 @@
 
   /* Font Sizes */
   --font-size: 16px;
+  --font-size-18: 1.125rem;
   --font-size-32: 2rem;
   --font-size-40: 2.5rem;
 }
@@ -77,11 +78,14 @@
 /* BORDERS PARAMS */
 :root {
   --border-main: 0.5px solid var(--color-dark-30);
+  --border-popup: 2px solid var(--bg-color-gray);
   --border-radius-main: 2rem;
   --border-radius-left: 0 2rem 2rem 0;
   --border-radius-right: 2rem 0 0  2rem;
+  --border-radius-popup: 1rem;
 }
 
 :root {
   --gap-main: 1.5rem;
+  --gap-smaller: 1rem;
 }
