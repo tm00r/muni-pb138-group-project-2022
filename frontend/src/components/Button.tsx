@@ -12,7 +12,7 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = (props) => {
 
-  const { color, size, label, event } = props;
+  const { color, size, label, eventProp } = props;
 
   const mode = `button--${color} button--${size || 'primary'}`;
 
@@ -28,7 +28,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     <button
       type="button"
       className={['button', mode].join(' ')}
-      onClick = {event}
+      onClick = {eventProp}
       onMouseDown={(e) => handleMouseDown(e)}
       onMouseUp={(e) => handleMouseUp(e)}
     >
