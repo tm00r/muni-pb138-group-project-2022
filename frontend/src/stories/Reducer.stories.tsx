@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Reducer } from '../components/Reducer';
 
 export default {
-  title: 'Example/Reducer',
+  title: 'Design System/Molecules/Reducer',
   component: Reducer,
   argTypes: {
     initialCount: {
