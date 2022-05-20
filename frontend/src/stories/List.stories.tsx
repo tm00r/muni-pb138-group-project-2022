@@ -6,6 +6,11 @@ import { List } from '../components/List';
 export default {
   title: 'Example/List',
   component: List,
+  argTypes: {
+    cropPosition: {
+      control: {  type: 'select', options: ['left', 'right', 'none'] },
+    },
+  }
 } as ComponentMeta<typeof List>;
 
 
