@@ -11,7 +11,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = ( {type}: PopUpWindowProp
   const templateMode = type === "order" ? "template--invisible" : "";
   const orderMode = type === "template" ? "order--invisible" : "";
 
-  function handleCancel(e: React.MouseEvent<HTMLInputElement>) {
+  function handleCancel(e: any) {
     e.preventDefault();
 }
   
@@ -19,7 +19,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = ( {type}: PopUpWindowProp
     <div className="popup-window">
       <div className="popup__heading">
         <span className="popup__heading--text">Do you want to save this {type}?</span>
-        <input className="cross-button" type="button" src="../images/cross.png" onClick={handleCancel}/>
+        <button className="cross-button" type="submit" onClick={handleCancel}>&#x2715;</button>
       </div>
       <span className="popup__subheading">
         Your changes will be lost
