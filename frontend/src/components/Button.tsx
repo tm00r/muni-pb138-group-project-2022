@@ -5,9 +5,9 @@ import '../styles/variables.css';
 
 interface ButtonProps {
   color: 'gray' | 'dark' | 'orange';
-  size: 'primary' | 'small'| 'wide' | 'middle';
+  size: 'primary' | 'small' | 'wide' | 'middle';
   label: string;
-  eventProp?: any;   // disgusting approach but it works...
+  eventProp?: any;
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
@@ -16,11 +16,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   const mode = `button--${color} button--${size || 'primary'}`;
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: any) => {
     e.target.style.boxShadow = `var(--shadow-${color})`;
   }
 
-  const handleMouseUp = (e) => {
+  const handleMouseUp = (e: any) => {
     e.target.style = '';
   }
 
@@ -28,7 +28,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     <button
       type="button"
       className={['button', mode].join(' ')}
-      onClick = {eventProp}
+      onClick={eventProp}
       onMouseDown={(e) => handleMouseDown(e)}
       onMouseUp={(e) => handleMouseUp(e)}
     >
