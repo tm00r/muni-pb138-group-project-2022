@@ -31,7 +31,6 @@ export const Button: React.FC<ButtonProps> = (props) => {
       onClick={eventProp}
       onMouseDown={(e) => handleMouseDown(e)}
       onMouseUp={(e) => handleMouseUp(e)}
-      onClick={eventProp}
     >
       {label}
     </button>
