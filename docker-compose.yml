@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+  admin:
+    container_name: adminer
+    restart: always
+    ports:
+      - 127.0.0.1:8080:8080
+    image: adminer:4.8.1-standalone
+    networks:
+      - adminer-postgress
+
+  backend:
+    container_name: backend
+    restart: always
+    build: backend
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - database
+    networks:
+      - express-postgress
+      - react-express
+    ports:
+      - 127.0.0.1:4000:4000
+
+  database:
+    container_name: database
+    volumes:
+      - database-storage:/pgdata
+    restart: always
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+      POSTGRES_USER: admin
+      POSTGRES_DB: OrderHub
+    networks:
+      - express-postgress
+      - adminer-postgress
+    ports:
+      - 5432:5432
+    secrets:
+      - db_password
+volumes:
+  database-storage:
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+networks:
+  express-postgress :
+  adminer-postgress:
+  react-express:
