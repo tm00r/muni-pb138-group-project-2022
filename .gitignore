@@ -205,9 +205,6 @@ yarn-error.log
 #### DOCKER COMPOSE SECRETS ####
 secrets/
 
-##### PRISMA ######
-.env/
-
 ### Create react app ###
 build/
 
