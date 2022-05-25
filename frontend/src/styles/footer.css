@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 10px;
+  padding: 0;
+}
+
+.footer-item {
+  list-style-type: none;
+}
+
+.footer-middle-button {
+  margin: auto;
+}
