@@ -6,18 +6,20 @@ import '../styles/list.css';
 import '../styles/variables.css';
 
 export interface ListProps {
-    cropPosition: string;
+    editable: boolean;
+    cropPosition?: string;
 }
 
 export const List: React.FC<ListProps> = (props) => {
 
-    const { cropPosition } = props;
-    const mode = cropPosition ? `list--${cropPosition}` : '';
+    const { cropPosition, editable } = props;
+    const mode = cropPosition ? `list--${cropPosition}` : 'list--main';
 
 
     // we need to change that with API
     const [items, setItems] = React.useState(TemplateData);
 
+    const withReducer = editable ? true : false;
 
     return (
         <ul className={['list', mode].join(' ')}>
@@ -25,8 +27,8 @@ export const List: React.FC<ListProps> = (props) => {
                 return (
                     <ListItem
                         key={item.id}
-                        crop={cropPosition}
                         text={item.name}
+                        withReducer = {withReducer}
                     />
                 );
             })}

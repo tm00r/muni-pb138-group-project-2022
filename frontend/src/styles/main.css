@@ -1,0 +1,51 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  /* Place it to <body> tag, remove from here */
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  color: var(--color-dark-100);
+}
+
+.heading__time {
+  width: 6rem;
+}
+
+.heading__title {
+  margin: 0;
+  font-size: var(--font-size-32);
+  text-align: center;
+}
+
+.main__tab {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tab__label {
+  padding: 0 1rem;
+
+  /* Place it to <body> tag, remove from here */
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  color: var(--color-dark-100);
+}
+
+.tab__button {
+  display: flex;
+  justify-content: flex-end;
+}
