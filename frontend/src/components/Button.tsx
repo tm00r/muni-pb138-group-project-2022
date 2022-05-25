@@ -7,19 +7,20 @@ interface ButtonProps {
   color: 'gray' | 'dark' | 'orange';
   size: 'primary' | 'small'| 'wide' | 'middle';
   label: string;
+  eventProp?: any;
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
 
-  const { color, size, label } = props;
+  const { color, size, label, eventProp } = props;
 
   const mode = `button--${color} button--${size || 'primary'}`;
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: any) => {
     e.target.style.boxShadow = `var(--shadow-${color})`;
   }
 
-  const handleMouseUp = (e) => {
+  const handleMouseUp = (e: any) => {
     e.target.style.boxShadow = 'var(--shadow-background)';
   }
 
@@ -29,6 +30,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       className={['button', mode].join(' ')}
       onMouseDown={(e) => handleMouseDown(e)}
       onMouseUp={(e) => handleMouseUp(e)}
+      onClick={eventProp}
     >
       {label}
     </button>
