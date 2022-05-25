@@ -1,27 +1,27 @@
 import React from 'react';
+import { Reducer } from './Reducer';
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
 
 interface ListItemProps {
-  crop: string;
   text: string;
+  withReducer: boolean;
 }
 
 export const ListItem: React.FC <ListItemProps> = (props) => {
 
-  const { crop, text } = props;
-
-  const mode = [`list-item--${''}`, (crop ? `list-item--${crop}` : '')].join(' ');
+  const { text, withReducer } = props;
 
   return (
-    <li className={['list-item', mode].join(' ')}>
+    <li className={'list-item'}>
       <a
         className='list-item__link link'
         href='#'
       >
         {text}
       </a>
+      { withReducer && ( <Reducer initialCount={16} /> ) }
     </li >
   );
 };

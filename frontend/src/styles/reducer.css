@@ -1,0 +1,16 @@
+.list-item__reducer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 10rem;
+    padding: 0 0.75rem;
+
+
+
+    /* Place it to <body> tag, remove from here */
+    font-family: var(--font-family);
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight);
+    color: var(--color-dark-100);
+}

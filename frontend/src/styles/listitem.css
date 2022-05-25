@@ -1,7 +1,7 @@
 .list-item {
   display: flex;
   align-items: center;
-  padding-left: 3rem;
+  justify-content: space-between;
   height: 3.5rem;
   border: var(--border-main);
   border-radius: var(--border-radius-main);
@@ -11,18 +11,18 @@
   cursor: pointer;
 }
 
-.list-item--left {
-  border-radius: var(--border-radius-left)
-}
-
-.list-item--right {
-  border-radius: var(--border-radius-right)
+.list--main > .list-item {
+  width: 100%;
+  max-width: 42rem;
 }
 
 .link {
   padding: 1.25rem 0;
-  width: 100%;
+  padding-left: 3rem;
   text-decoration: none;
+  flex-grow: 1;
+
+  /* Place it to <body> tag, remove from here */
   font-family: var(--font-family);
   font-size: var(--font-size);
   font-weight: var(--font-weight);

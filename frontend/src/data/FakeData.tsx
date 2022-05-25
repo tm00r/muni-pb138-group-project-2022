@@ -7,13 +7,13 @@ export const TemplateData = [
     },
     {
         id: "2",
-        name: "Job interview",
+        name: "Dude, that's a burger too",
         // shopingItems: ShopingItemsData[1],
         // steps: StepsData[1],
     },
     {
         id: "3",
-        name: "Prepare homework",
+        name: "OMG, that's a burger again",
         // shopingItems: ShopingItemsData[2],
         // steps: StepsData[2],
     }
