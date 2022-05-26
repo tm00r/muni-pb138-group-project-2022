@@ -23,22 +23,16 @@ export const get = async (req: Request, res: Response) => {
  * Create order
  */
 export const store = async (req: Request, res: Response) => {
+    const {orderBy, shoppingList, steps, createdAt} = req.body
     const order = await prisma.order.create({
         data: {
-            orderBy: req.body.orderBy,
+            orderBy: orderBy,
             shoppingList: {
                 create: {
                     products: {
                         createMany: {
                             data: [
-                                {
-                                    name: "Testing shopping item 1",
-                                    count: 69,
-                                },
-                                {
-                                    name: "Testing shopping item 2",
-                                    count: 69,
-                                }
+                                ...shoppingList
                             ]
                         }
                     }
@@ -47,22 +41,11 @@ export const store = async (req: Request, res: Response) => {
             Steps: {
                 createMany: {
                     data: [
-                        {
-                            description: "testing step 1",
-                            deadline: new Date(),
-                            isFinished: false,
-                            orderSequenceNumber: 1,
-                        },
-                        {
-                            description: "testing step 2",
-                            deadline: new Date(),
-                            isFinished: false,
-                            orderSequenceNumber: 2,
-                        }
+                        ...steps
                     ]
                 }
             },
-            createdAt: new Date()
+            createdAt: req.body.createdAt
         }
     })
     return res.send({
