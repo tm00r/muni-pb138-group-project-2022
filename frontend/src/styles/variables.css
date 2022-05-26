@@ -1,0 +1,91 @@
+/* FONT PARAMS */
+:root {
+  /* Font Family and Weight */
+  --font-family: "Inter", sans-serif;
+  --font-weight: 700;
+
+  /* Font Sizes */
+  --font-size: 16px;
+  --font-size-18: 1.125rem;
+  --font-size-24: 1.5rem;
+  --font-size-32: 2rem;
+  --font-size-40: 2.5rem;
+}
+
+/* COLOR PARAMS */
+:root {
+  /* Color White */
+  --color-white: #fff;
+  /* Color Black */
+  --color-black: #000;
+  /* Color Dark */
+  --color-dark-100: #333333;
+  --color-dark-30: #3333333d;
+  /* Color Gray */
+  --bg-color-gray: #bdbdbd;
+  /* Color Silver */
+  --color-silver: #f2f2f2;
+  /* Color Orange */
+  --color-orange: #ff9900;
+  /* Other Colors */
+  --color-pill-outline: #e7ebf1;
+}
+
+/* SHADOW PARAMS */
+:root {
+  --shadow-background:
+    -4px -4px 15px #ffffff,
+    4px 4px 15px #b4c1d5;
+
+  --shadow-gray:
+    -4px -4px 15px #ffffff,
+    4px 4px 15px #b4c1d5,
+    -6px 6px 12px #8a8a8a33 inset,
+    6px -6px 12px #8a8a8a33 inset,
+    -6px -6px 12px #f0f0f0e6 inset,
+    6px 6px 15px #8a8a8ae6 inset;
+
+  --shadow-orange:
+    -4px -4px 15px #ffffff,
+    4px 4px 15px #b4c1d5,
+    inset -6px 6px 12px #b4700033,
+    inset 6px -6px 12px #b4700033,
+    inset -6px -6px 12px #ffc200e6,
+    inset 6px 6px 15px #b47000e6;
+
+  --shadow-dark:
+    -4px -4px 15px #ffffff,
+    4px 4px 15px #b4c1d5,
+    inset -6px 6px 12px #25252533,
+    inset 6px -6px 12px #25252533,
+    inset -6px -6px 12px #414141e6,
+    inset 6px 6px 15px #252525e6;
+
+  --shadow-left-field:
+    -1px 1px 2px #ffffff4d,
+    1px -1px 2px #d1d1d180,
+    inset 10px 10px 20px #d1d1d133,
+    inset -10px -10px 20px #d1d1d133,
+    inset -10px 10px 25px #d1d1d1e6;
+
+  --shadow-right-field:
+    1px 1px 2px #ffffff4d,
+    -1px -1px 2px #cecece80,
+    inset -10px 10px 20px #cecece33,
+    inset 10px -10px 20px #cecece33,
+    inset 10px 10px 25px #cececee6;
+}
+
+/* BORDERS PARAMS */
+:root {
+  --border-main: 0.5px solid var(--color-dark-30);
+  --border-radius-main: 2rem;
+  --border-radius-left: 0 2rem 2rem 0;
+  --border-radius-right: 2rem 0 0  2rem;
+  --border-radius-popup: 1rem;
+}
+
+:root {
+  --gap-main: 1.5rem;
+  --gap-smaller: 1rem;
+}
