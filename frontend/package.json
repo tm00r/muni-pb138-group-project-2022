@@ -14,7 +14,11 @@
     "normalize.css": "^8.0.1",
     "react": "^18.0.0",
     "react-bootstrap": "^2.4.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-hook-form": "^7.31.3",
+    "react-router-dom": "^6.3.0",
+    "react-utils": "^1.0.0",
+    "recoil": "^0.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",

@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
-  margin: 0 1.5rem;;
+  margin: 0 2.5rem;
   padding: 0;
   gap: var(--gap-main);
   font-family: var(--font-family);
