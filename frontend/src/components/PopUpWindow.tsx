@@ -6,24 +6,17 @@ import "../styles/popUpWindow.css";
 interface PopUpWindowProps {
   type: "order" | "template";
   show: boolean;
-  handleClose: any;
+  setShow: any;
 }
 
-export const PopUpWindow: React.FC<PopUpWindowProps> = (props: PopUpWindowProps) => {
-
-  const { type, show, handleClose } = props;
+export const PopUpWindow: React.FC<PopUpWindowProps> = (
+  props: PopUpWindowProps
+) => {
+  const { type, show, setShow } = props;
+  const handleClose = () => setShow(false);
 
   return (
     <>
-      {/*
-      <Button
-        size="wide"
-        color="gray"
-        label="Launch demo modal"
-        eventProp={handleShow}
-      />{" "}
-      */}
-      {/* call somewhere upper */}
       <Modal className="popup-window" show={show} onHide={handleClose}>
         <Modal.Header className="popup__heading">
           <Modal.Title className="popup__heading--text">

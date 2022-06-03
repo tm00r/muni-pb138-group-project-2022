@@ -5,7 +5,9 @@ import { Modal } from "react-bootstrap";
 import "../styles/popUpWindow.css";
 
 interface PopUpFormProps {
-  type: "item" | "step";
+  type: "Items" | "Steps";
+  show: boolean;
+  setShow: any;
 }
 
 export interface NewStepItemProps {
@@ -16,19 +18,19 @@ export interface NewStepItemProps {
 
 export const PopUpForm: React.FC<PopUpFormProps> = ({
   type,
+  show,
+  setShow,
 }: PopUpFormProps) => {
-  const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
-    reset({ name: '', count: 1, deadline: '' });
-  }
-  const handleShow = () => setShow(true);
+    reset({ name: "", count: 1, deadline: "" });
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<NewStepItemProps>();
 
   const onSubmit: SubmitHandler<NewStepItemProps> = (data) => {
@@ -38,16 +40,11 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
 
   return (
     <>
-      <Button
-        size="wide"
-        color="gray"
-        label="Launch demo modal form"
-        eventProp={handleShow}
-      />{" "}
-      {/* call somewhere upper */}
       <Modal className="popup-window" show={show} onHide={handleClose}>
         <Modal.Header className="popup__heading">
-          <Modal.Title className="popup-form__heading--text">New {type}</Modal.Title>
+          <Modal.Title className="popup-form__heading--text">
+            New {type}
+          </Modal.Title>
           <button
             type="button"
             className="btn-close"
@@ -77,7 +74,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                 </span>
               )}
 
-              {type === "item" && (
+              {type === "Items" && (
                 <>
                   <label className="label__count" htmlFor="count">
                     Count:
@@ -104,7 +101,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                 </>
               )}
 
-              {type === "step" && (
+              {type === "Steps" && (
                 <>
                   <label className="label__deadline" htmlFor="deadline">
                     Deadline:
@@ -143,6 +140,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
           />
         </Modal.Footer>
       </Modal>
+      {show && <div className="popup-backdrop" />}
     </>
   );
 };
