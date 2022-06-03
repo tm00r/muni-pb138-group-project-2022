@@ -1,4 +1,6 @@
 import React from 'react';
+import useSWR from "swr";
+
 import { ListItem } from './ListItem';
 import { TemplateData } from '../data/FakeData';
 
@@ -10,14 +12,23 @@ export interface ListProps {
     cropPosition?: string;
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export const List: React.FC<ListProps> = (props) => {
+
+    const { items, error } = useSWR(
+        "https://api.github.com/repos/vercel/swr",
+        fetcher
+      );
+
+    if (error) return (<div>An error has occurred.</div>)
+    if (!items) return (<div>Loading...</div>)
+
 
     const { cropPosition, editable } = props;
     const mode = cropPosition ? `list--${cropPosition}` : 'list--main';
 
 
-    // we need to change that with API
-    const [items, setItems] = React.useState(TemplateData);
 
     const withReducer = editable ? true : false;
 
