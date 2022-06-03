@@ -27,7 +27,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     reset
   } = useForm<NewStepItemProps>();
 
@@ -35,12 +35,6 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
     console.log(data);
     handleClose();
   };
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset({ name: '', count: 1, deadline: ''});
-    }
-  }, [isSubmitSuccessful, reset]);
 
   return (
     <>
