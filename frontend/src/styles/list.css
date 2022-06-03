@@ -1,8 +1,8 @@
 .list {
     display: flex;
-    height: 100%;
     gap: var(--gap-main);
     flex-direction: column;
+
     padding: 2rem;
     border-radius: var(--border-radius-main);
     background-color: var(--color-silver);
@@ -14,10 +14,12 @@
 }
 
 .list--left{
+    padding-left: 0;
     border-radius: var(--border-radius-left);
 }
 
 .list--right{
+    padding-right: 0;
     border-radius: var(--border-radius-right);
 }
 

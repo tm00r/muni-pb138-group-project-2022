@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { RecoilRoot, useRecoilState } from 'recoil';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Main } from './components/Main';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { Layout } from './pages/Layout';
 import logo from './logo.svg';
 
 import 'normalize.css';
@@ -14,7 +12,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Main_Page />} />
+          <Route path="/" element={<Layout />} />
           <Route path="/order" element={<div>vypis objednavok</div>} />
           <Route path="/order/:id" element={<div>vypis detail objednavky</div>} />
           <Route path="/create-order" element={<div>formular na objednakov</div>} />
