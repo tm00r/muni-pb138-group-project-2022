@@ -1,0 +1,11 @@
+.main-page__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.main-page__list {
+  width: 50%;
+  height: fit-content;
+  margin: 1rem;
+}

@@ -48,18 +48,14 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
                 color="gray"
                 label="-"
                 eventProp={() => setCount({ type: 'decrement' })}
-            >
-                <span>-</span>
-            </Button>
+            />
             <span className=''>{state.count}</span>
             <Button
                 size="small"
                 color="gray"
                 label="+"
                 eventProp={() => setCount({ type: 'increment' })}
-            >
-                <span>+</span>
-            </Button>
+            />
         </div>
     );
 };

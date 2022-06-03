@@ -1,15 +1,13 @@
 .footer {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0 10px;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin: 1rem 1rem;
   padding: 0;
 }
 
 .footer-item {
-  list-style-type: none;
-}
-
-.footer-middle-button {
   margin: auto;
 }
