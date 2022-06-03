@@ -9,6 +9,10 @@
     box-shadow: var(--shadow-left-field);
 }
 
+.list--main {
+    align-items: center;
+}
+
 .list--left{
     border-radius: var(--border-radius-left);
 }

@@ -13,8 +13,6 @@ export const ListItem: React.FC <ListItemProps> = (props) => {
 
   const { text, withReducer } = props;
 
-
-
   return (
     <li className={'list-item'}>
       <a

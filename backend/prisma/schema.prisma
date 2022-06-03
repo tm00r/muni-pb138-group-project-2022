@@ -10,34 +10,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model ShopingItem {
+model ShoppingItem {
   id            String  @id @default(uuid())
   name          String
   count         Int
-  shopingListId String
-  shopingList   ShopingList @relation(fields: [shopingListId], references: [id])
+  shoppingListId String
+  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id])
 }
 
-model ShopingList {
+model ShoppingList {
   id        String  @id @default(uuid())
-  products  ShopingItem[]
+  products  ShoppingItem[]
   orderId   String
   order     Order?   @relation(fields: [orderId], references: [id])
 }
 
 model Step {
-  id            String  @id @default(uuid())
-  description   String
-  deadline      DateTime
-  isFinished    Boolean
-  orderId       String
-  order         Order   @relation(fields: [orderId], references: [id])
+  id                    String  @id @default(uuid())
+  orderSequenceNumber   Int
+  description           String
+  deadline              DateTime
+  isFinished            Boolean
+  orderId               String
+  order                 Order   @relation(fields: [orderId], references: [id])
 }
 
 model Order {
   id            String  @id @default(uuid())
   orderBy       String
-  shopingList   ShopingList?
+  shoppingList   ShoppingList?
   Steps         Step[]
   createdAt     DateTime
 }

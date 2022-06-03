@@ -4,11 +4,11 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { List } from '../components/List';
 
 export default {
-  title: 'Example/List',
+  title: 'Design System/Molecules/List',
   component: List,
   argTypes: {
     cropPosition: {
-      control: {  type: 'select', options: ['left', 'right', 'none'] },
+      control: {  type: 'select', options: ['left', 'right'] },
     },
   }
 } as ComponentMeta<typeof List>;

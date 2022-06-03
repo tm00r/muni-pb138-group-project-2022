@@ -11,11 +11,17 @@
   cursor: pointer;
 }
 
+.list--main > .list-item {
+  width: 100%;
+  max-width: 42rem;
+}
+
 .link {
   padding: 1.25rem 0;
   padding-left: 3rem;
   text-decoration: none;
   flex-grow: 1;
+
   /* Place it to <body> tag, remove from here */
   font-family: var(--font-family);
   font-size: var(--font-size);

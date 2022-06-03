@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "./Button";
 import "../styles/footer.css";
+import { Link } from "react-router-dom";
 
 interface FooterProps {
   main_page: boolean;
@@ -12,18 +13,34 @@ export const Footer: React.FC<FooterProps> = ({
   main_page,
 }: FooterProps) => {
   return (
-    <ul className="footer">
-      <li
-        className={`footer-item ${
-          !main_page ? "footer-middle-button" : "footer-left-button"
-        }`}
-      >
-        <Button size="middle" color="dark" label={main_button} />
-      </li>
-      <li className="footer-item footer-theme-button">
-        {" "}
-        <Button size="middle" color="gray" label="Dark Theme" />{" "}
-      </li>
-    </ul>
+    <div className="footer">
+      <nav className="footer-item footer__main">
+        {main_page === true && (
+
+          <Link to="/create-order">
+            <Button
+              size="wide"
+              color="dark"
+              label={main_button}
+            />
+          </Link>
+        )}
+      </nav>
+    
+      <nav className="footer-item footer__additional">
+        {main_page === false && (
+
+
+        <Link to="/create-order">
+          
+          <Button
+            size="middle"
+            color="dark"
+            label={main_button}
+          />
+      </Link>
+        )}
+      </nav>
+    </div>
   );
 };

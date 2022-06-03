@@ -1,47 +1,36 @@
-import { useState } from 'react'
-import logo from './logo.svg'
+import { useState } from 'react';
+import { RecoilRoot, useRecoilState } from 'recoil';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Main } from './components/Main';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import logo from './logo.svg';
 
 import 'normalize.css';
 import './styles/App.css'
+import { Main_Page } from './stories/MainPage.stories';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Router() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Main_Page />} />
+          <Route path="/order" element={<div>vypis objednavok</div>} />
+          <Route path="/order/:id" element={<div>vypis detail objednavky</div>} />
+          <Route path="/create-order" element={<div>formular na objednakov</div>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <RecoilRoot>
+      <div id="main">
+        <Router />
+      </div>
+    </RecoilRoot>
+  );
+}
+
+export default App;
