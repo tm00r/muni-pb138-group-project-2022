@@ -14,9 +14,8 @@ export const Footer: React.FC<FooterProps> = ({
 }: FooterProps) => {
   return (
     <div className="footer">
-      <nav className="footer-item footer__main">
-        {main_page === true && (
-
+      {main_page === true && (
+        <nav className="footer-item footer__main">
           <Link to="/create-order">
             <Button
               size="wide"
@@ -24,23 +23,20 @@ export const Footer: React.FC<FooterProps> = ({
               label={main_button}
             />
           </Link>
-        )}
-      </nav>
-    
-      <nav className="footer-item footer__additional">
-        {main_page === false && (
+        </nav>
+      )}
+      {main_page === false && (
+        <nav className="footer-item footer__additional">
+          <Link to="/create-order">
 
-
-        <Link to="/create-order">
-          
-          <Button
-            size="middle"
-            color="dark"
-            label={main_button}
-          />
-      </Link>
-        )}
-      </nav>
+            <Button
+              size="middle"
+              color="dark"
+              label={main_button}
+            />
+          </Link>
+        </nav>
+      )}
     </div>
   );
 };

@@ -6,6 +6,9 @@
   margin: 0 2.5rem;
   padding: 0;
   gap: var(--gap-main);
+
+
+  /* Place it to <body> tag, remove from here */
   font-family: var(--font-family);
   font-weight: var(--font-weight);
 }

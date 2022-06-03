@@ -11,13 +11,15 @@ export const Layout: React.FC = () => {
     return (
         <div>
             <Header templates={true} title="Order Hub" orders={true} />
-            <aside>
-                <List editable={false} />
-            </aside>
-            <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" />
-            <aside>
-                <List editable={false} />
-            </aside>
+            <main className="main-page__body">
+                <aside className="main-page__aside">
+                    <List editable={false} cropPosition="left"/>
+                </aside>
+                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" />
+                <aside className="main-page__aside">
+                    <List editable={false} cropPosition="right"/>
+                </aside>
+            </main>
             <Footer main_page={true} main_button="Add order" />
         </div>
     );

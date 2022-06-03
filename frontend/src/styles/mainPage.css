@@ -1,11 +1,16 @@
 .main-page__body {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1.6fr auto;
+  gap: 0px 2rem;
+  grid-template-areas:
+    ". . .";
   flex-direction: row;
   justify-content: space-between;
+  gap: 1rem;
 }
 
-.main-page__list {
-  width: 50%;
-  height: fit-content;
-  margin: 1rem;
+.main-page__aside {
+  display: flex;
+  flex-grow: 1;
+  align-items: stretch;
 }

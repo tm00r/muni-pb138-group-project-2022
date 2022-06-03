@@ -1,10 +1,7 @@
 .footer {
   display: flex;
-  flex-direction: column;
-  position: absolute;
   width: 100%;
-  bottom: 0;
-  margin: 1rem 1rem;
+  margin: 1rem 0;
   padding: 0;
 }
 
