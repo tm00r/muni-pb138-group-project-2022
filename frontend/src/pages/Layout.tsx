@@ -1,27 +1,37 @@
-import React from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Main } from "../components/Main";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import "./../styles/mainPage.css";
-import { Link } from "react-router-dom";
+import "./../styles/layout.css";
 import { List } from "../components/List";
 
 export const Layout: React.FC = () => {
+  const [done, setDone] = useState(false);
+  useLayoutEffect(() => {
+    console.log(done)
+  }, [done]);
 
-    return (
-        <div>
-            <Header templates={true} title="Order Hub" orders={true} />
-            <main className="main-page__body">
-                <aside className="main-page__aside">
-                    <List editable={false} cropPosition="left"/>
-                </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order"  />
-                <aside className="main-page__aside">
-                    <List editable={false} cropPosition="right"/>
-                </aside>
-            </main>
-            <Footer main_page={true} main_button="Add order" />
-        </div>
-    );
-
+  return (
+    <div>
+      <Header templates={true} title="New Template" orders={true} />
+      <main className="layout__body">
+        <aside className="layout__aside">
+          <List editable={false} cropPosition="left" />
+        </aside>
+        <Main
+          headingTitle="Heading Title"
+          datetimeText="Date Time"
+          type="order"
+          contentId="1"
+          done={done}
+          setDone={setDone}
+        />
+        <aside className="layout__aside">
+          <List editable={false} cropPosition="right" />
+        </aside>
+      </main>
+      { !done && <Footer main_page={true} main_button="Add order" />}
+      { done && <Footer main_page={false} main_button="Submit" />}
+    </div>
+  );
 };

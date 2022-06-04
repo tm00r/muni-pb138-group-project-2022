@@ -29,7 +29,7 @@ export const NewOrder: React.FC = () => {
                 <aside className="main-page__aside">
                     <List editable={false} cropPosition="left" endPoint="order" />
                 </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="82152f32-3453-40d2-b235-8dcfe9b926cd"/>
+                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="397bb9cc-44e5-4c1d-9444-9e8cccbfd8d0"/>
                 <aside className="main-page__aside">
                     <List editable={false} cropPosition="right" endPoint="order" />
                 </aside>

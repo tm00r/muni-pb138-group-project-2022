@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { List } from "./List";
 import { Button } from "./Button";
 import { PopUpForm } from "./PopUpForm";
@@ -9,12 +9,15 @@ import "../styles/main.css";
 export interface MainTabProps {
   contentType: "Items" | "Steps";
   contentId: string;
+  done?: boolean;
+  setDone?: any;
 }
 
 export const MainTab: React.FC<MainTabProps> = (props) => {
-  const { contentType, contentId } = props;
+  const { contentType, contentId, done, setDone } = props;
 
   const editable = contentType === "Items" ? true : false;
+  const step = contentType === "Steps" ? true : false;
 
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
@@ -24,7 +27,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
       <div className="tab__label">
         <span className="">{contentType}</span>
       </div>
-      <List editable={editable} endPoint={`steps/${contentId}`}/>
+      <List editable={editable} endPoint={`steps/${contentId}`} step={step} done={done} setDone={setDone}/>
       <div className="tab__button">
         <Button
           size="primary"

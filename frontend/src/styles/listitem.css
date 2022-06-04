@@ -9,6 +9,7 @@
   box-shadow: var(--shadow-background);
   background-color: var(--color-white);
   cursor: pointer;
+  padding-right: 1rem;
 }
 
 .list--main > .list-item {
@@ -33,4 +34,16 @@
 
 .link:visited {
   color: var(--color-black);
+}
+
+.form-check-input {
+  width: 2rem;
+  height:2rem;
+}
+
+input[type=checkbox]::before {
+  background: green;
+  content: '✓';
+  color: white;
+  /* more style */
 }

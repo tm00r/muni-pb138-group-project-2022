@@ -4,20 +4,32 @@ import { RecoilRoot, useRecoilState } from 'recoil';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './pages/Layout';
 import { NewOrder } from './pages/NewOrder';
-
-
 import 'normalize.css';
 import './styles/App.css'
+import { useState } from "react";
+import { MainPage } from "./components/MainPage";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/new-template"
+          element={
+            <>
+              <Layout />
+            </>
+          }
+        />
+        <Route
+          path="/create"
+          element={<MainPage />}
+        />
+        <Route path="/template/:id" element={<Layout />} />
         <Route path="/new-order" element={<NewOrder />} />
-        <Route path="/order" element={<div>vypis objednavok</div>} />
-        <Route path="/order/:id" element={<div>vypis detail objednavky</div>} />
-        <Route path="/create-order" element={<div>formular na objednakov</div>} />
       </Routes>
     </BrowserRouter>
   );

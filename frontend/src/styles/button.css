@@ -41,6 +41,11 @@
   background-color: var(--color-orange);
 }
 
+.button--green {
+  color: var(--color-white);
+  background-color: var(--color-green);
+}
+
 .button--wide {
   width: 19rem;
   padding: inherit 2rem;
