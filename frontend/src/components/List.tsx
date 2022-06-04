@@ -1,8 +1,9 @@
 import React from 'react';
 import useSWR from "swr";
+import fetch from 'unfetch'
+import axios from "axios";
 
 import { ListItem } from './ListItem';
-import { TemplateData } from '../data/FakeData';
 
 import '../styles/list.css';
 import '../styles/variables.css';
@@ -10,39 +11,56 @@ import '../styles/variables.css';
 export interface ListProps {
     editable: boolean;
     cropPosition?: string;
+    endPoint: string;
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+type ListProp = {
+    id: string,
+	orderSequenceNumber: number,
+    name: string,
+	description: string,
+	deadline: string,
+	isFinished: false,
+    orderId: string
+}
+
+const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
 
 export const List: React.FC<ListProps> = (props) => {
 
-    const { items, error } = useSWR(
-        "https://api.github.com/repos/vercel/swr",
-        fetcher
-      );
+    const { cropPosition, editable, endPoint} = props;
 
-    if (error) return (<div>An error has occurred.</div>)
-    if (!items) return (<div>Loading...</div>)
-
-
-    const { cropPosition, editable } = props;
     const mode = cropPosition ? `list--${cropPosition}` : 'list--main';
-
-
 
     const withReducer = editable ? true : false;
 
+    const URL = `${apiKey}${endPoint}`;
+
+    const fetcher = async (url: string) => await (
+        axios
+            .get(url)
+            .then((response) => response.data)
+            .catch((error) => console.log(error))
+    )
+
+    const { data: orders, error } = useSWR(URL, fetcher, {
+        revalidateOnFocus: true,    // auto revalidate when the window is focused
+    });
+
+    if (error) return(<p>Failed...</p>);
+    if (!orders) return(<h1>Loading...</h1>);
+
     return (
         <ul className={['list', mode].join(' ')}>
-            {items.map((item) => {
+            {orders.data.map((item) => {
                 return (
                     <ListItem
-                        key={item.id}
+                        key={item.shoppingListId}
                         text={item.name}
                         withReducer = {withReducer}
                     />
                 );
             })}
-        </ul>
+        </ul >
     );
 };

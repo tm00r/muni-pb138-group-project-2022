@@ -15,7 +15,7 @@ export const Layout: React.FC = () => {
                 <aside className="main-page__aside">
                     <List editable={false} cropPosition="left"/>
                 </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" />
+                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order"  />
                 <aside className="main-page__aside">
                     <List editable={false} cropPosition="right"/>
                 </aside>

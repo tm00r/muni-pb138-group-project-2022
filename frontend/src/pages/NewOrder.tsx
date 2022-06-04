@@ -27,11 +27,11 @@ export const NewOrder: React.FC = () => {
             <Header templates={true} title={headerMiddleTitle} orders={true} />
             <main className="main-page__body">
                 <aside className="main-page__aside">
-                    <List editable={false} cropPosition="left"/>
+                    <List editable={false} cropPosition="left" endPoint="order"/>
                 </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" />
+                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="88901666-b3c1-4598-ba56-d95307df8004"/>
                 <aside className="main-page__aside">
-                    <List editable={false} cropPosition="right"/>
+                    <List editable={false} cropPosition="right" endPoint="order"/>
                 </aside>
             </main>
             <Footer main_page={true} main_button="Add order" />

@@ -5,12 +5,13 @@ import {Request, Response} from 'express';
  * Return list of all orders
  */
 export const get = async (req: Request, res: Response) => {
-    let users;
+    let order;
     try {
-        users = await prisma.order.findMany({
+        order = await prisma.order.findMany({
             select: {
                 id: true,
                 orderBy: true,
+                name: true,
                 createdAt: true,
                 shoppingList: true,
             },
@@ -22,7 +23,7 @@ export const get = async (req: Request, res: Response) => {
     }
     return res.send({
         status: 'success',
-        data: users,
+        data: order,
     });
 };
 
@@ -30,12 +31,13 @@ export const get = async (req: Request, res: Response) => {
  * Create order
  */
 export const store = async (req: Request, res: Response) => {
-    const {orderBy, shoppingList, steps, createdAt} = req.body
+    const {orderBy, name,  shoppingList, steps, createdAt} = req.body
     let order;
     try {
         order = await prisma.order.create({
             data: {
                 orderBy: orderBy,
+                name: name,
                 shoppingList: {
                     create: {
                         products: {

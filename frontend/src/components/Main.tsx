@@ -8,11 +8,12 @@ interface FormProps {
     headingTitle: string;
     datetimeText: string;
     type:  "order" | "template";
+    contentId: string;
 }
 
 export const Main: React.FC<FormProps> = (props) => {
 
-    const { headingTitle, datetimeText, type } = props
+    const { headingTitle, datetimeText, type, contentId } = props
 
     return (
         <main className="main">
@@ -21,8 +22,8 @@ export const Main: React.FC<FormProps> = (props) => {
                 datetimeText={datetimeText}
                 type={type}
             />
-            <MainTab contentType="Items"  />
-            <MainTab contentType="Steps" />
+            <MainTab contentType="Items" contentId={contentId} />
+            <MainTab contentType="Steps" contentId={contentId} />
         </main>
     );
 };
