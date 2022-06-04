@@ -52,11 +52,11 @@ Before running `docker-compose` create file `db_password.txt` inside folder `sec
 
 Replace `%DATABASE_PASSWORD%` in `.env` by your desired password.
 
-To start services run `docker-compose -f compose.yml up -d`
+To start services run `docker-compose -f docker-compose.yml up -d`
 
-To stop services run `docker-compose -f compose.yml stop`
+To stop services run `docker-compose -f docker-compose.yml stop`
 
-To down services run `docker-compose -f compose.yml down`
+To down services run `docker-compose -f docker-compose.yml down`
 
 Connect to Adminer go to `127.0.0.1:8080` select PostgresSQL and fill up `server: database` `Username: admin` `Password: your desired password` `Database: OrderHub` and click `Login`
 
