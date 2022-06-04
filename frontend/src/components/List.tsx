@@ -14,16 +14,6 @@ export interface ListProps {
     endPoint: string;
 }
 
-type ListProp = {
-    id: string,
-	orderSequenceNumber: number,
-    name: string,
-	description: string,
-	deadline: string,
-	isFinished: false,
-    orderId: string
-}
-
 const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
 
 export const List: React.FC<ListProps> = (props) => {
@@ -55,7 +45,7 @@ export const List: React.FC<ListProps> = (props) => {
             {orders.data.map((item) => {
                 return (
                     <ListItem
-                        key={item.shoppingListId}
+                        key={item.id}
                         text={item.name}
                         withReducer = {withReducer}
                     />
