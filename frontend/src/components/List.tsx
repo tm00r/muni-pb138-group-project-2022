@@ -11,31 +11,14 @@ export interface ListProps {
     editable: boolean;
     cropPosition?: string;
     endPoint?: string;
-    step?: boolean;
+    listType?: "Items" | "Steps" | "Orders";
     done?: boolean;
     setDone?: any;
 }
 
 const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
 
-export const List: React.FC<ListProps> = (props) => {
-    const { cropPosition, editable, endPoint, step, done, setDone } = props;
-
-    const mode = cropPosition ? `list--${cropPosition}` : 'list--main';
-    const withReducer = editable ? true : false;
-
-    const [count, setCount] = useState(1);
-    useLayoutEffect(() => {
-        if (count === 3 && !done) {
-            setDone(true);
-        }
-        if (done && count !== 3) {
-            setDone(false);
-        }
-    },[count]);
-
-    const URL = `${apiKey}${endPoint}`;
-    const StepsURL = `${apiKey}/order/items/${endPoint}`;
+export const getData = async (endPoint: string)  => {
 
     const fetcher = async (url: string) => await (
         axios
@@ -44,39 +27,117 @@ export const List: React.FC<ListProps> = (props) => {
             .catch((error) => console.log(error))
     )
 
-    const { data: orders, error:any } = useSWR(URL, fetcher, {
-        revalidateOnFocus: true,    // auto revalidate when the window is focused
-    });
+    const { data: data, error } = useSWR(URL, fetcher);
 
-    const { data: steps, error } = useSWR(StepsURL, fetcher, {
-        revalidateOnFocus: true,    // auto revalidate when the window is focused
-    });
+    return { data, error };
+}
+
+export const List: React.FC<ListProps> = (props) => {
+
+    const { cropPosition, editable, endPoint, listType, done, setDone } = props;
+
+    const URL = `${apiKey}${endPoint}`;
+
+    const [ data, setData ] = useState();
+
+    useEffect (() => {
+        getData(URL).then(({ data }) => {
+            setData(data);
+        })
+    }, [])
 
 
-    if (error) return(<p>Failed...</p>);
-    if (!orders) return(<h1>Loading...</h1>);
+    switch (listType) {
 
-    return (
-        <ul className={['list', mode].join(' ')}>
-            {orders.data.map((item: any) => {
-                return (
-                    <>
-                    {!step &&
+        case "Orders":
+            return (
+
+                <ul className={['list ', cropPosition ? `list--${cropPosition}` : 'list--main'].join(' ')}>
+                    {getData.map((order) => (
+                        <ListItem
+                            key={order.id}
+                            text={order.name}
+                            withReducer={false}
+                        />
+                    ))}
+                </ul>
+            )
+
+        case "Items":
+            const URL = `${apiKey}/order/item/${endPoint}`;
+            return (
+                <ul className="list list--main">
+                    {data && data.map((item: any) => (
+                        <ListItem
+                            key={data.id}
+                            text={data.text}
+                            withReducer={editable ? true : false}
+                        />
+                    ))}
+                </ul>
+            )
+
+        case "Steps":
+            const [count, setCount] = useState(1);
+            useLayoutEffect(() => {
+                if (count === 3 && !done) {
+                    setDone(true);
+                }
+                if (done && count !== 3) {
+                    setDone(false);
+                }
+            }, [count]);
+            return (
+                <ul className="list list--main">
                     <ListItem
                         key={item.id}
                         text={item.name}
-                        withReducer = {withReducer}
-                    />}
-                    {step && <ListItem
-                        key={item.id}
-                        text={item.name}
-                        withReducer = {withReducer}
+                        withReducer={withReducer}
                         step={step}
                         count={count}
-                        setCount={setCount}/>}
-                    </>
-                );
-            })}
-        </ul >
+                        setCount={setCount}
+                    />
+                </ul>
+            )
+
+        default:
+            if (error) return (<p>Failed...</p>);
+            if (!data) return (<h1>Loading...</h1>);
+    }
+
+    // return (
+
+    //     {
+    //         orders.data.map((item: any) => {
+    //             return (
+    //                 <>
+    //                     {
+
+    //                     }
+
+    //                     {
+    //                         !step &&
+    //                         <ListItem
+    //                             key={item.id}
+    //                             text={item.name}
+    //                             withReducer={withReducer}
+    //                         />
+    //                     }
+
+    //                     {
+    //                         step && <ListItem
+    //                             key={item.id}
+    //                             text={item.name}
+    //                             withReducer={withReducer}
+    //                             step={step}
+    //                             count={count}
+    //                             setCount={setCount} />
+    //                     }
+
+    //                 </>
+    //             );
+    //         })
+    //     }
+    //     </ul >
     );
 };
