@@ -19,6 +19,7 @@
 
 .list--main {
     align-items: center;
+    overflow: auto;
 }
 
 .list--left{

@@ -15,27 +15,27 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <div className="footer">
       {main_page === true && (
-        <nav className="footer-item footer__main">
-          <Link to="/create-order">
+      <nav className="footer-item footer__main">
+          <Link to="/new-template">
             <Button
               size="wide"
               color="dark"
               label={main_button}
             />
           </Link>
-        </nav>
+      </nav>
       )}
-      {main_page === false && (
-        <nav className="footer-item footer__additional">
-          <Link to="/create-order">
 
-            <Button
-              size="middle"
-              color="dark"
-              label={main_button}
-            />
-          </Link>
-        </nav>
+      {main_page === false && (
+      <nav className="footer-item footer__additional">
+        <Link to="/create">
+          <Button
+            size="wide"
+            color="green"
+            label={main_button}
+          />
+      </Link>
+      </nav>
       )}
     </div>
   );

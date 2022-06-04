@@ -4,7 +4,7 @@ import '../styles/button.css';
 import '../styles/variables.css';
 
 interface ButtonProps {
-  color: 'gray' | 'dark' | 'orange';
+  color: 'gray' | 'dark' | 'orange' | 'green';
   size: 'primary' | 'small' | 'wide' | 'middle';
   label: string;
   eventProp?: any;

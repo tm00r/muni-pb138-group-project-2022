@@ -1,4 +1,25 @@
 .main-page__body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  height: 75vh;
+  justify-content: space-between;
+}
+
+.main-page__list {
+  display: flex;
+  flex-flow: column;
+  width: 50%;
+  height: 100%;
+  margin: 1rem;
+}
+
+.list--main {
+  overflow: auto;
+  height: 100%;
+}
+
+.main-page__body {
   display: grid;
   grid-template-columns: 1 2fr 1;
   gap: 0px 2rem;
