@@ -14,15 +14,8 @@ model ShoppingItem {
   id            String  @id @default(uuid())
   name          String
   count         Int
-  shoppingListId String
-  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id])
-}
-
-model ShoppingList {
-  id        String  @id @default(uuid())
-  products  ShoppingItem[]
-  orderId   String
-  order     Order?   @relation(fields: [orderId], references: [id])
+  orderId       String
+  order         Order   @relation(fields: [orderId], references: [id])
 }
 
 model Step {
@@ -40,7 +33,7 @@ model Order {
   id            String  @id @default(uuid())
   orderBy       String
   name          String
-  shoppingList   ShoppingList?
   Steps         Step[]
+  Items         ShoppingItem[]
   createdAt     DateTime
 }

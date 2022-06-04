@@ -13,7 +13,6 @@ export const get = async (req: Request, res: Response) => {
                 orderBy: true,
                 name: true,
                 createdAt: true,
-                shoppingList: true,
             },
         });
     } catch (e) {
@@ -31,22 +30,18 @@ export const get = async (req: Request, res: Response) => {
  * Create order
  */
 export const store = async (req: Request, res: Response) => {
-    const {orderBy, name,  shoppingList, steps, createdAt} = req.body
+    const {orderBy, name,  shoppingList, steps, createdAt, items} = req.body
     let order;
     try {
         order = await prisma.order.create({
             data: {
                 orderBy: orderBy,
                 name: name,
-                shoppingList: {
-                    create: {
-                        products: {
-                            createMany: {
-                                data: [
-                                    ...shoppingList
-                                ]
-                            }
-                        }
+                Items: {
+                    createMany: {
+                        data: [
+                            ...items
+                        ]
                     }
                 },
                 Steps: {
