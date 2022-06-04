@@ -2,11 +2,19 @@
     display: flex;
     gap: var(--gap-main);
     flex-direction: column;
-
     padding: 2rem;
+    max-height: 75vh;
     border-radius: var(--border-radius-main);
     background-color: var(--color-silver);
     box-shadow: var(--shadow-left-field);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-margin-top: 1rem;
+}
+
+.list:hover::-webkit-scrollbar-thumb {
+    background-color: #ff9900;
 }
 
 .list--main {
@@ -19,6 +27,7 @@
 }
 
 .list--right{
+    direction: rtl;
     padding-right: 0;
     border-radius: var(--border-radius-right);
 }
@@ -28,5 +37,11 @@
   }
 
 .list--right > * {
+    direction: rtl;
     border-radius: var(--border-radius-right)
 }
+
+.list--right > * > .link {
+    justify-content: flex-end;
+}
+

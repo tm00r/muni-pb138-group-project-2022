@@ -28,6 +28,7 @@ model ShoppingList {
 model Step {
   id                    String  @id @default(uuid())
   orderSequenceNumber   Int
+  name                  String
   description           String
   deadline              DateTime
   isFinished            Boolean
@@ -38,6 +39,7 @@ model Step {
 model Order {
   id            String  @id @default(uuid())
   orderBy       String
+  name          String
   shoppingList   ShoppingList?
   Steps         Step[]
   createdAt     DateTime

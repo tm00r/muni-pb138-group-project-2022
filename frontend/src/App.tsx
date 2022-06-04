@@ -1,21 +1,23 @@
-import { useState } from 'react';
+import React from 'react';
+import useSWR, { SWRConfig } from 'swr'
 import { RecoilRoot, useRecoilState } from 'recoil';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './pages/Layout';
-import logo from './logo.svg';
+import { NewOrder } from './pages/NewOrder';
+
 
 import 'normalize.css';
 import './styles/App.css'
-import { Main_Page } from './stories/MainPage.stories';
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Layout />} />
-          <Route path="/order" element={<div>vypis objednavok</div>} />
-          <Route path="/order/:id" element={<div>vypis detail objednavky</div>} />
-          <Route path="/create-order" element={<div>formular na objednakov</div>} />
+        <Route path="/" element={<Layout />} />
+        <Route path="/new-order" element={<NewOrder />} />
+        <Route path="/order" element={<div>vypis objednavok</div>} />
+        <Route path="/order/:id" element={<div>vypis detail objednavky</div>} />
+        <Route path="/create-order" element={<div>formular na objednakov</div>} />
       </Routes>
     </BrowserRouter>
   );
@@ -26,8 +28,8 @@ function App() {
     <RecoilRoot>
       <div id="main">
         <Router />
-      </div>
-    </RecoilRoot>
+    </div>
+    </RecoilRoot >
   );
 }
 

@@ -8,10 +8,11 @@ import "../styles/main.css";
 
 export interface MainTabProps {
   contentType: "Items" | "Steps";
+  contentId: string;
 }
 
 export const MainTab: React.FC<MainTabProps> = (props) => {
-  const { contentType } = props;
+  const { contentType, contentId } = props;
 
   const editable = contentType === "Items" ? true : false;
 
@@ -23,7 +24,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
       <div className="tab__label">
         <span className="">{contentType}</span>
       </div>
-      <List editable={editable} />
+      <List editable={editable} endPoint={`steps/${contentId}`}/>
       <div className="tab__button">
         <Button
           size="primary"

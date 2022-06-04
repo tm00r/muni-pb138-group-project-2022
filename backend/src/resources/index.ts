@@ -1,5 +1,9 @@
 import * as order from './order';
+import * as shoppingList from './shoppingList';
+import * as steps from './steps';
 
 export {
-  order
+    shoppingList,
+    order,
+    steps,
 }
