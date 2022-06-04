@@ -11,9 +11,9 @@ api.use(cors());
 api.get("/order", order.get)
 api.post("/order", order.store)
 
-api.get("/shoppingList/:id", shoppingList.get)
+api.get("/order/items/:id", shoppingList.get)
 
-api.get("/steps/:id", steps.get)
+api.get("/order/steps/:id", steps.get)
 
 
 api.listen(port, () => console.log(`OrderHub app listening on port ${port}`));

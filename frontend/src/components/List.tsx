@@ -55,7 +55,7 @@ export const List: React.FC<ListProps> = (props) => {
             {orders.data.map((item) => {
                 return (
                     <ListItem
-                        key={item.shoppingListId}
+                        key={item.id}
                         text={item.name}
                         withReducer = {withReducer}
                     />
