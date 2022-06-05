@@ -1,67 +1,11 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import useSWR from "swr";
-import fetch from 'unfetch'
 import axios from "axios";
 import { ListItem } from './ListItem';
 
 import '../styles/list.css';
 import '../styles/variables.css';
 
-// using union type
-type GeneralListType = OrdersType | ItemsType | StepsType;
-
-type OrdersType = {
-    id: string;
-    name: number;
-    isActive: boolean;
-    isDone?: boolean;
-    isTemplate: boolean;
-};
-
-type ItemsType = {
-    id: string;
-    name: number;
-    count: number;
-    isEditable: boolean;
-};
-
-type StepsType = {
-    id: string;
-    name: string;
-    isDone?: boolean;
-    isEditable: boolean;
-};
-
-
-export interface ListProps {
-    listType?: "Items" | "Steps" | "Orders";
-    listProps: GeneralListType;
-
-    // cropPosition?: string;
-    // editable: boolean;
-    endPoint?: string;
-
-    // done?: boolean;
-    setDone?: any;
-}
-
-
-
-
-
-// // using type guards
-// const isComponentA = (props: GeneralType): props is ComponentAType => {
-//     // check if the specified property is in the given object
-//     return "item1" in props;
-// };
-
-// const GeneralComponent = (props: GeneralType) => {
-//     if (isComponentA(props)) {
-//         return <ComponentA {...props} />;
-//     } else {
-//         return <ComponentB {...props} />;
-//     }
-// };
 
 
 const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
@@ -80,9 +24,57 @@ export const getData = async (endPoint: string) => {
     return { data, error };
 }
 
+
+
+
+// using union type
+type GeneralListType = OrdersType | ItemsType | StepsType;
+
+type OrdersType = {
+    id: string;
+    name: number;
+    isActive: boolean;
+    isFinished?: boolean;
+    isTemplate: boolean;
+};
+
+type ItemsType = {
+    id: string;
+    name: number;
+    count: number;
+    isEditable: boolean;
+};
+
+type StepsType = {
+    id: string;
+    name: string;
+    description: string;
+    sequenceNumber: number;
+    deadline: string;
+    isFinished?: boolean;
+    isEditable: boolean;
+};
+
+
+export interface ListProps {
+    listType?: "Items" | "Steps" | "Orders";
+    listProps: GeneralListType;
+    endPointId?: string;
+
+    // cropPosition?: string;
+    // editable: boolean;
+    // done?: boolean;
+    // setDone?: any;
+}
+
+
 export const List: React.FC<ListProps> = (props) => {
 
-    const { cropPosition, editable, endPoint, listType, done, setDone } = props;
+    const {
+        listType,
+        listProps,
+        endPointId
+     } = props;
 
     const URL = `${apiKey}${endPoint}`;
 
