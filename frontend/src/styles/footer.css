@@ -2,13 +2,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-  margin: 1rem 0;
-  padding: 0;
+  padding: 2rem;
 }
 
 .footer-item {
-  margin: 1rem;
+
 }
