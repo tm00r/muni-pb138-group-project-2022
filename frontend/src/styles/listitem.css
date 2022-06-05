@@ -40,10 +40,3 @@
   width: 2rem;
   height:2rem;
 }
-
-input[type=checkbox]::before {
-  background: green;
-  content: '✓';
-  color: white;
-  /* more style */
-}

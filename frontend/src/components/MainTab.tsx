@@ -9,12 +9,13 @@ import "../styles/main.css";
 export interface MainTabProps {
   contentType: "Items" | "Steps";
   contentId: string;
+  finishedOrder: boolean;  // means order can be edited no more
   done?: boolean;
   setDone?: any;
 }
 
 export const MainTab: React.FC<MainTabProps> = (props) => {
-  const { contentType, contentId, done, setDone } = props;
+  const { contentType, contentId, finishedOrder, done, setDone } = props;
 
   const editable = contentType === "Items" ? true : false;
   const step = contentType === "Steps" ? true : false;
@@ -28,15 +29,17 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
         <span className="">{contentType}</span>
       </div>
       <List editable={editable} endPoint={`steps/${contentId}`} step={step} done={done} setDone={setDone}/>
-      <div className="tab__button">
-        <Button
-          size="primary"
-          color="gray"
-          label={`Add ${contentType}`.slice(0, -1)}
-          eventProp={handleShow}
-        />
-        <PopUpForm type={contentType} show={show} setShow={setShow} />
-      </div>
+      {!finishedOrder &&
+        <div className="tab__button">
+          <Button
+            size="primary"
+            color="gray"
+            label={`Add ${contentType}`.slice(0, -1)}
+            eventProp={handleShow}
+          />
+          <PopUpForm type={contentType} show={show} setShow={setShow} />
+        </div>
+      }
     </div>
   );
 };

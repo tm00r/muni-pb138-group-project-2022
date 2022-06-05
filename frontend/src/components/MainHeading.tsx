@@ -7,7 +7,7 @@ import "../styles/main.css";
 interface HeadingProps {
   headingTitle: string;
   datetimeText: string;
-  type: "order" | "template";
+  type: "order" | "template" | "finishedOrder";
 }
 
 export const Heading: React.FC<HeadingProps> = (props) => {
@@ -29,7 +29,9 @@ export const Heading: React.FC<HeadingProps> = (props) => {
           label="Cancel"
           eventProp={handleShow}
         />
-        <PopUpWindow type={type} show={show} setShow={setShow} />
+        { type !== "finishedOrder" &&
+          <PopUpWindow type={type} show={show} setShow={setShow} />
+        }
       </div>
     </>
   );
