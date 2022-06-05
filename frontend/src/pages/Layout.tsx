@@ -5,8 +5,10 @@ import { Header } from "../components/Header";
 import "./../styles/layout.css";
 import { List } from "../components/List";
 import { NewOrder } from "./NewOrder";
+
+
 export interface LayoutProps {
-  type: "NewOrder" | "NewTemplate" | "Order";
+  type: "order" | "template" | "finishedOrder";
 }
 
 export const Layout: React.FC<LayoutProps> = (props) => {
@@ -19,18 +21,18 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   const [orders, setOrders] = useState(true);
 
   useEffect(() => {
-    if (type === "NewOrder") {
+    if (type === "order") {
       setHeaderTitle("New Order");
       setFooterTitle("Add new order");
     }
 
-    if (type === "NewTemplate") {
+    if (type === "template") {
       setHeaderTitle("New Template");
       setFooterTitle("Add new template");
       setOrders(false);
     }
 
-    if (type === "Order") {
+    if (type === "finishedOrder") {
       setHeaderTitle("Order");
       setFooterTitle("Close");
       setTemplates(false);
@@ -53,7 +55,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
         <Main
           headingTitle="Heading Title"
           datetimeText="Date Time"
-          type="order"
+          type={type}
           contentId="1"
           done={done}
           setDone={setDone}
