@@ -28,7 +28,12 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
       <div className="tab__label">
         <span className="">{contentType}</span>
       </div>
-      <List editable={editable} endPoint={`steps/${contentId}`} step={step} done={done} setDone={setDone}/>
+      <List
+        isEditable={editable}
+        endPoint={`order/${contentType.toLowerCase()}/${contentId}`}
+        listType={contentType}
+        //step={step} done={done} setDone={setDone}
+        />
       {!finishedOrder &&
         <div className="tab__button">
           <Button

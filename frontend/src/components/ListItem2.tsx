@@ -5,19 +5,6 @@ import { Reducer } from './Reducer';
 import '../styles/listitem.css';
 import '../styles/variables.css';
 
-
-// using union type
-
-
-
-// interface ListItemProps {
-//   text: string;
-//   withReducer: boolean;
-//   step?: boolean;
-//   count?: number;
-//   setCount?: any;
-// }
-
 interface ListItemProps {
   listProps: GeneralListItemType;
   listType: "Items" | "Steps" | "Orders";
@@ -25,28 +12,10 @@ interface ListItemProps {
 
 export const ListItem2: React.FC<ListItemProps> = (props) => {
 
-  // const { text, withReducer, step, count, setCount } = props;
-
   const { listProps, listType } = props;
-
-
-
-
 
   const [checked, setChecked] = useState(false)
   const handleClick = () => { setChecked(!checked) }
-
-  // useLayoutEffect(() => {
-  //   if (count !== undefined && checked === true) {
-  //     setCount(() => count + 1);
-  //   }
-  //   if (count !== undefined && checked === false) {
-  //     setCount(() => count - 1);
-  //   }
-  // }, [checked]);
-
-
-
 
   switch (listType) {
     case 'Orders':
@@ -55,7 +24,7 @@ export const ListItem2: React.FC<ListItemProps> = (props) => {
         <li className={'list-item'}>
           <a
             className='list-item__link link'
-            href="/template/1"
+            href={`/order/${propOrders.id}`}
           >
             {propOrders.name}
           </a>
@@ -86,29 +55,11 @@ export const ListItem2: React.FC<ListItemProps> = (props) => {
           </a>
           <form>
             <input type="datetime-local" value={propSteps.deadline} readOnly />
-            <input className="checkbox" onClick={handleClick} checked={propSteps.isFinished} type="checkbox" />
+            <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished} type="checkbox" />
           </form>
         </li >
       )
   }
 
-
-
-
-
-  // return (
-  //   <li className={'list-item'}>
-  //     <a
-  //       className='list-item__link link'
-  //       href="/template/1"
-  //     >
-  //       {text}
-  //     </a>
-  //     {withReducer && (<Reducer initialCount={16} />)}
-  //     {step && (
-  //       <input className="checkbox" onClick={handleClick} checked={checked} type="checkbox" />
-  //     )}
-  //   </li >
-  // );
 };
 

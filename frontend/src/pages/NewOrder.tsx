@@ -23,19 +23,19 @@ export const NewOrder: React.FC = () => {
     const [headerMiddleTitle, setText] = useRecoilState(headerMiddleTitleState);
 
     return (
-        <div>
+        <>
             <Header templates={true} title={headerMiddleTitle} orders={true} />
             <main className="main-page_body">
-                <aside className="main-page__aside">
-                    <List editable={false} cropPosition="left" endPoint="order" />
+                <aside className="main-page__aside templates">
+                    <List listType="Orders" isEditable={false} endPoint="order" />
                 </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="397bb9cc-44e5-4c1d-9444-9e8cccbfd8d0"/>
-                <aside className="main-page__aside">
-                    <List editable={false} cropPosition="right" endPoint="order" />
+                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="0d4e391f-25b0-412c-9c26-964b65f276c1" />
+                <aside className="main-page__aside orders">
+                    <List listType="Orders" isEditable={false} endPoint="order" />
                 </aside>
             </main>
             <Footer main_page={true} main_button="Add order" />
-        </div>
+        </>
     );
 
 };

@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({
   main_page,
 }: FooterProps) => {
   return (
-    <div className="footer">
+    <footer className="footer">
       {main_page === true && (
       <nav className="footer-item footer__main">
           <Link to="/new-template">
@@ -37,6 +37,6 @@ export const Footer: React.FC<FooterProps> = ({
       </Link>
       </nav>
       )}
-    </div>
+    </footer>
   );
 };
