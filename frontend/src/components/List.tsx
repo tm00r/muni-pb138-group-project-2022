@@ -7,18 +7,66 @@ import { ListItem } from './ListItem';
 import '../styles/list.css';
 import '../styles/variables.css';
 
+// using union type
+type GeneralListType = OrdersType | ItemsType | StepsType;
+
+type OrdersType = {
+    id: string;
+    name: number;
+    isActive: boolean;
+    isDone?: boolean;
+    isTemplate: boolean;
+};
+
+type ItemsType = {
+    id: string;
+    name: number;
+    count: number;
+    isEditable: boolean;
+};
+
+type StepsType = {
+    id: string;
+    name: string;
+    isDone?: boolean;
+    isEditable: boolean;
+};
+
+
 export interface ListProps {
-    editable: boolean;
-    cropPosition?: string;
-    endPoint?: string;
     listType?: "Items" | "Steps" | "Orders";
-    done?: boolean;
+    listProps: GeneralListType;
+
+    // cropPosition?: string;
+    // editable: boolean;
+    endPoint?: string;
+
+    // done?: boolean;
     setDone?: any;
 }
 
+
+
+
+
+// // using type guards
+// const isComponentA = (props: GeneralType): props is ComponentAType => {
+//     // check if the specified property is in the given object
+//     return "item1" in props;
+// };
+
+// const GeneralComponent = (props: GeneralType) => {
+//     if (isComponentA(props)) {
+//         return <ComponentA {...props} />;
+//     } else {
+//         return <ComponentB {...props} />;
+//     }
+// };
+
+
 const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
 
-export const getData = async (endPoint: string)  => {
+export const getData = async (endPoint: string) => {
 
     const fetcher = async (url: string) => await (
         axios
@@ -38,9 +86,9 @@ export const List: React.FC<ListProps> = (props) => {
 
     const URL = `${apiKey}${endPoint}`;
 
-    const [ data, setData ] = useState();
+    const [data, setData] = useState();
 
-    useEffect (() => {
+    useEffect(() => {
         getData(URL).then(({ data }) => {
             setData(data);
         })
