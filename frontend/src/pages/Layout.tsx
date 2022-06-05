@@ -1,11 +1,43 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Main } from "../components/Main";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import "./../styles/layout.css";
 import { List } from "../components/List";
+import { NewOrder } from "./NewOrder";
+export interface LayoutProps {
+  type: "NewOrder" | "NewTemplate" | "Order";
+}
 
-export const Layout: React.FC = () => {
+export const Layout: React.FC<LayoutProps> = (props) => {
+
+  const {type} = props;
+
+  const [headerTitle, setHeaderTitle] = useState("");
+  const [footerTitle, setFooterTitle] = useState("");
+  const [templates, setTemplates] = useState(true);
+  const [orders, setOrders] = useState(true);
+
+  useEffect(() => {
+    if (type === "NewOrder") {
+      setHeaderTitle("New Order");
+      setFooterTitle("Add new order");
+    }
+
+    if (type === "NewTemplate") {
+      setHeaderTitle("New Template");
+      setFooterTitle("Add new template");
+      setOrders(false);
+    }
+
+    if (type === "Order") {
+      setHeaderTitle("Order");
+      setFooterTitle("Close");
+      setTemplates(false);
+    }
+  }, []
+  );
+
   const [done, setDone] = useState(false);
   useLayoutEffect(() => {
     console.log(done)
@@ -13,10 +45,10 @@ export const Layout: React.FC = () => {
 
   return (
     <div>
-      <Header templates={true} title="New Template" orders={true} />
+      <Header templates={templates} title={headerTitle} orders={orders} />
       <main className="layout__body">
         <aside className="layout__aside">
-          <List editable={false} cropPosition="left" />
+          {templates &&<List editable={false} cropPosition="left" />}
         </aside>
         <Main
           headingTitle="Heading Title"
@@ -27,10 +59,10 @@ export const Layout: React.FC = () => {
           setDone={setDone}
         />
         <aside className="layout__aside">
-          <List editable={false} cropPosition="right" />
+          {orders && <List editable={false} cropPosition="right" />}
         </aside>
       </main>
-      { !done && <Footer main_page={true} main_button="Add order" />}
+      { !done && <Footer main_page={true} main_button={footerTitle} />}
       { done && <Footer main_page={false} main_button="Submit" />}
     </div>
   );

@@ -31,6 +31,15 @@
   text-align: center;
 }
 
+.template__title {
+  width: 18rem;
+}
+
+.order__title {
+  width: 18rem;
+  text-align: end;
+}
+
 .template--invisible {
   display: none;
 }

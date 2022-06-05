@@ -25,7 +25,7 @@ export const NewOrder: React.FC = () => {
     return (
         <div>
             <Header templates={true} title={headerMiddleTitle} orders={true} />
-            <main className="main-page__body">
+            <main className="main-page_body">
                 <aside className="main-page__aside">
                     <List editable={false} cropPosition="left" endPoint="order" />
                 </aside>
