@@ -12,6 +12,7 @@ export interface MainTabProps {
   finishedOrder: boolean;  // means order can be edited no more
   done?: boolean;
   setDone?: any;
+  list: StepsType[] | ItemsType[]
 }
 
 export const MainTab: React.FC<MainTabProps> = (props) => {

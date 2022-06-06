@@ -3,6 +3,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "./Button";
 import { Modal } from "react-bootstrap";
 import "../styles/popUpWindow.css";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {itemsListAtom, stepsListAtom} from "../state/atom";
+import uuid4 from "uuid4";
 
 interface PopUpFormProps {
   type: "Items" | "Steps";
@@ -12,8 +15,8 @@ interface PopUpFormProps {
 
 export interface NewStepItemProps {
   name: string;
-  count?: number;
-  deadline?: string;
+  count: number;
+  deadline: string;
 }
 
 export const PopUpForm: React.FC<PopUpFormProps> = ({
@@ -26,6 +29,9 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
     reset({ name: "", count: 1, deadline: "" });
   };
 
+  const setStepsList = useSetRecoilState(stepsListAtom)
+  const setItemsList = useSetRecoilState(itemsListAtom)
+
   const {
     register,
     handleSubmit,
@@ -34,7 +40,14 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
   } = useForm<NewStepItemProps>();
 
   const onSubmit: SubmitHandler<NewStepItemProps> = (data) => {
-    console.log(data);
+    const defaultDeadline = new Date()
+
+    if (type === "Items"){
+      setItemsList(itemsList => [...itemsList, {id: uuid4(), name: data.name, count: data.count, isEditable: true}])
+    }
+    else if (type === "Steps"){
+      setStepsList(stepList => [...stepList, {id: uuid4(), name: data.name, description: "", isEditable: true, sequenceNumber: 0, isFinished: false, deadline: data.deadline}])
+    }
     handleClose();
   };
 
