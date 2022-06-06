@@ -11,6 +11,7 @@
   cursor: pointer;
   padding-right: 1rem;
   overflow-x: hidden;
+  padding-left: 1rem;
 }
 
 .list--main > .list-item {
@@ -44,6 +45,7 @@
   padding: 12px 16px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 1.5rem;
 }
 
 .btn:hover {
