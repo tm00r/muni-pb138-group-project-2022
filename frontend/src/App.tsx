@@ -37,7 +37,7 @@ function Router() {
 
 function App() {
   return (
-    <div class="container">
+    <div className="container">
       <Router />
     </div>
   );
