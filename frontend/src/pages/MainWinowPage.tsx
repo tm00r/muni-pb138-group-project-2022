@@ -1,5 +1,5 @@
 import React from "react";
-import { Main } from "../components/Main";
+import { Main } from "../components/Middle";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { List } from "../components/List";
@@ -18,7 +18,7 @@ const headerMiddleTitleState = atom({
     default: 'Order Hub', // default value (aka initial value)
 });
 
-export const NewOrder: React.FC = () => {
+export const MainWinowPage: React.FC = () => {
 
     const [headerMiddleTitle, setText] = useRecoilState(headerMiddleTitleState);
 

@@ -1,26 +1,26 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import useSWR from "swr";
 import axios from "axios";
+import { ListItemOld } from './ListItem-old';
 import { ListItem } from './ListItem';
-import { ListItem2 } from './ListItem2';
 
 import '../styles/list.css';
 import '../styles/variables.css';
+import {domain} from "../types/swrDomain";
 
 export interface ListProps {
     listType: "Items" | "Steps" | "Orders";
     isEditable: boolean;
     endPoint: string;
+    list?: ItemsType[] | StepsType[]
 }
 
 
 export const List: React.FC<ListProps> = (props) => {
 
-    const { listType, endPoint}  = props;
+    const { listType, endPoint, list}  = props;
 
-
-    const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
-    const URL = `${apiKey}${endPoint}`;
+    const URL = `${domain}${endPoint}`;
     const fetcher = async (url: string) => await (
         axios
             .get(url)
@@ -38,9 +38,17 @@ export const List: React.FC<ListProps> = (props) => {
             {
                 data.data.map((arg) => (
 
-                    <ListItem2 key={arg.id}
-                        listType={listType}
-                        listProps={arg}
+                    <ListItem key={arg.id}
+                              listType={listType}
+                              listProps={arg}
+                    />
+                ))
+            }
+            {list &&
+                list.map((arg) => (
+                    <ListItem key={arg.id}
+                              listType={listType}
+                              listProps={arg}
                     />
                 ))
             }

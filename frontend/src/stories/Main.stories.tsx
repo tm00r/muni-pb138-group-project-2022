@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { Main } from "../components/Main";
+import { Main } from "../components/Middle";
 
 export default {
   title: "Design System/Organisms/Main",

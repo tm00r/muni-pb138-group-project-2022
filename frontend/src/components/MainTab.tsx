@@ -15,7 +15,7 @@ export interface MainTabProps {
 }
 
 export const MainTab: React.FC<MainTabProps> = (props) => {
-  const { contentType, contentId, finishedOrder, done, setDone } = props;
+  const { contentType, contentId, finishedOrder, done, setDone , list} = props;
 
   const editable = contentType === "Items" ? true : false;
   const step = contentType === "Steps" ? true : false;
@@ -32,6 +32,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
         isEditable={editable}
         endPoint={`order/${contentType.toLowerCase()}/${contentId}`}
         listType={contentType}
+        list={list}
         //step={step} done={done} setDone={setDone}
         />
       {!finishedOrder &&

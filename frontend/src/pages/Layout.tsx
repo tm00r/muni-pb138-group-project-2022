@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Main } from "../components/Main";
+import { Main } from "../components/Middle";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import "./../styles/layout.css";
 import { List } from "../components/List";
-import { NewOrder } from "./NewOrder";
+import { MainWinowPage } from "./MainWinowPage";
 
 
 export interface LayoutProps {
