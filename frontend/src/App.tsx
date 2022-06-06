@@ -16,18 +16,9 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/new-template"
-          element={
-            <>
-              <Layout />
-            </>
-          }
-        />
-        <Route
           path="/create"
           element={<MainPage />}
         />
-        <Route path="/order/:id" element={<Layout />} />
         <Route path="/" element={<MainWinowPage />} />
       </Routes>
     </BrowserRouter>

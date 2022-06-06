@@ -58,7 +58,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'}>
                     {propSteps.name}
                     <form>
-                        <input type="datetime-local" value={propSteps.deadline} readOnly/>
+                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly/>
                         <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
                                type="checkbox"/>
                     </form>

@@ -1,5 +1,4 @@
 /* Atoms go here */
-import {Song} from "../types";
 import {atom} from "recoil";
 
 export const orderIdAtom = atom<String>({
@@ -14,5 +13,15 @@ export const itemsListAtom = atom<ItemsType[]>({
 
 export const stepsListAtom = atom<StepsType[]>({
   key: "stepsList",
+  default: []
+})
+
+export const allItemsListAtom = atom<ItemsType[]>({
+  key: "allItemsList",
+  default: []
+})
+
+export const allStepsListAtom = atom<StepsType[]>({
+  key: "allStepsList",
   default: []
 })
