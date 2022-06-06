@@ -20,21 +20,29 @@ type SubmitOrder = {
   createdAt: Date
 }
 
-type SubmitStep = {}
-type SubmitItem= {}
+type SubmitStep = {
+  orderSequenceNumber: number,
+  name: string,
+  description: string,
+  deadline: Date,
+  isFinished: boolean
+}
+type SubmitItem= {
+  name: string,
+  count: number
+}
 
 type ItemsType = {
   id: string;
   name: string;
   count: number;
-  isEditable: boolean;
 };
 
 type StepsType = {
   id: string;
   name: string;
   description: string;
-  sequenceNumber: number;
+  orderSequenceNumber: number;
   deadline: string;
   isFinished?: boolean;
   isEditable: boolean;

@@ -43,10 +43,10 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
     const defaultDeadline = new Date()
 
     if (type === "Items"){
-      setItemsList(itemsList => [...itemsList, {id: uuid4(), name: data.name, count: data.count, isEditable: true}])
+      setItemsList(itemsList => [...itemsList, {id: uuid4(), name: data.name, count: parseInt(data.count.toString())}])
     }
     else if (type === "Steps"){
-      setStepsList(stepList => [...stepList, {id: uuid4(), name: data.name, description: "", isEditable: true, sequenceNumber: 0, isFinished: false, deadline: data.deadline}])
+      setStepsList(stepList => [...stepList, {id: uuid4(), name: data.name, description: "", isEditable: true, orderSequenceNumber: 0, isFinished: false, deadline: data.deadline}])
     }
     handleClose();
   };
