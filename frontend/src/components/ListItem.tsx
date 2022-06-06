@@ -42,6 +42,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'} onClick={() => onOrderCLick(propOrders.id)}>
                     <span className='list-item__text'>{propOrders.name}</span>
+                    <button className="btn"><i className="fa fa-close"></i></button>
                 </li>
             )
         case 'Items':
@@ -50,6 +51,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
                     <Reducer initialCount={propItems.count}/>
+                    <button className="btn"><i className="fa fa-close"></i></button>
                 </li>
             )
         case 'Steps':
@@ -62,6 +64,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                         <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
                                type="checkbox"/>
                     </form>
+                    <button className="btn"><i className="fa fa-close"></i></button>
                 </li>
             )
         case 'Templates':
@@ -72,6 +75,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'} onClick={() => onOrderCLick(propTemplates.id)}>
                     <span className='list-item__text'>{propTemplates.name}</span>
+                    <button className="btn"><i className="fa fa-close"></i></button>
                 </li>
             )
     }
