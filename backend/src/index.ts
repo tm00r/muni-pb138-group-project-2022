@@ -10,6 +10,7 @@ api.use(cors());
 
 api.get("/order", order.get)
 api.post("/order", order.store)
+api.delete("/order/:id", order.remove)
 
 api.get("/order/items/:id", shoppingList.get)
 
