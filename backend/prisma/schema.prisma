@@ -38,4 +38,5 @@ model Order {
   isFinished    Boolean
   isTemplate    Boolean
   createdAt     DateTime
+  deletedAt     DateTime?
 }
