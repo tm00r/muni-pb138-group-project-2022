@@ -13,6 +13,8 @@ export const get = async (req: Request, res: Response) => {
                 orderBy: true,
                 name: true,
                 createdAt: true,
+                isFinished: true,
+                isTemplate: true,
             },
         });
     } catch (e) {
@@ -30,7 +32,7 @@ export const get = async (req: Request, res: Response) => {
  * Create order
  */
 export const store = async (req: Request, res: Response) => {
-    const {orderBy, name,  shoppingList, steps, createdAt, items} = req.body
+    const {orderBy, name,  shoppingList, steps, createdAt, items, isFinished, isTemplate} = req.body
     let order;
     try {
         order = await prisma.order.create({
@@ -51,7 +53,9 @@ export const store = async (req: Request, res: Response) => {
                         ]
                     }
                 },
-                createdAt: req.body.createdAt
+                createdAt: req.body.createdAt,
+                isFinished: isFinished,
+                isTemplate: isTemplate,
             }
         })
     } catch (e) {

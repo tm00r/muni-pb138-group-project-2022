@@ -35,5 +35,7 @@ model Order {
   name          String
   Steps         Step[]
   Items         ShoppingItem[]
+  isFinished    Boolean
+  isTemplate    Boolean
   createdAt     DateTime
 }
