@@ -10,6 +10,7 @@
   background-color: var(--color-white);
   cursor: pointer;
   padding-right: 1rem;
+  overflow-x: hidden;
 }
 
 .list--main > .list-item {
@@ -18,7 +19,7 @@
   max-height: 3rem;
 }
 
-.link {
+.list-item__text {
   display: flex;
   padding: 1.25rem 0;
   padding-left: 3rem;
@@ -30,10 +31,6 @@
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   color: var(--color-dark-100);
-}
-
-.link:visited {
-  color: var(--color-black);
 }
 
 .form-check-input {

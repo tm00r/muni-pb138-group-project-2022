@@ -12,7 +12,7 @@ import {allItemsListAtom, allStepsListAtom} from "../state/atom";
 import {allStepsListSelector} from "../state/selectors";
 
 export interface ListProps {
-    listType: "Items" | "Steps" | "Orders";
+    listType: "Templates" |"Items" | "Steps" | "Orders";
     isEditable: boolean;
     endPoint: string;
     list: ItemsType[] | StepsType[]

@@ -41,14 +41,14 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             }
             return (
                 <li className={'list-item'} onClick={() => onOrderCLick(propOrders.id)}>
-                    {propOrders.name}
+                    <span className='list-item__text'>{propOrders.name}</span>
                 </li>
             )
         case 'Items':
             const propItems = listProps as ItemsType;
             return (
                 <li className={'list-item'}>
-                    {propItems.name}
+                    <span className='list-item__text'>{propItems.name}</span>
                     <Reducer initialCount={propItems.count}/>
                 </li>
             )
@@ -56,7 +56,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             const propSteps = listProps as StepsType;
             return (
                 <li className={'list-item'}>
-                    {propSteps.name}
+                    <span className='list-item__text'>{propSteps.name}</span>
                     <form>
                         <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly/>
                         <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
@@ -71,7 +71,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             }
             return (
                 <li className={'list-item'} onClick={() => onOrderCLick(propTemplates.id)}>
-                    {propTemplates.name}
+                    <span className='list-item__text'>{propTemplates.name}</span>
                 </li>
             )
     }
