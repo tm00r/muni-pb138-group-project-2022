@@ -15,7 +15,6 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />} />
         <Route
           path="/new-template"
           element={
@@ -29,7 +28,7 @@ function Router() {
           element={<MainPage />}
         />
         <Route path="/order/:id" element={<Layout />} />
-        <Route path="/new-order" element={<NewOrder />} />
+        <Route path="/" element={<NewOrder />} />
       </Routes>
     </BrowserRouter>
   );

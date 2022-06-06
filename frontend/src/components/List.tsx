@@ -16,7 +16,7 @@ export interface ListProps {
 
 export const List: React.FC<ListProps> = (props) => {
 
-    const { listType, endPoint } = props;
+    const { listType, endPoint}  = props;
 
 
     const apiKey = 'http://127.0.0.1:4000/'   // TODO: change to production
@@ -37,6 +37,7 @@ export const List: React.FC<ListProps> = (props) => {
         <ul className={[listType ? `${listType.toLowerCase()}__list` : 'template__list', 'list '].join(' ')}>
             {
                 data.data.map((arg) => (
+
                     <ListItem2 key={arg.id}
                         listType={listType}
                         listProps={arg}

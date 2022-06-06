@@ -27,9 +27,9 @@ export const NewOrder: React.FC = () => {
             <Header templates={true} title={headerMiddleTitle} orders={true} />
             <main className="main-page_body">
                 <aside className="main-page__aside templates">
-                    <List listType="Orders" isEditable={false} endPoint="order" />
+                    <List listType="Templates" isEditable={false} endPoint="order" />
                 </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="3cb0d53e-587c-4a8f-90d6-fe4b241155b0" />
+                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="b491e09d-5354-466c-980b-b8385f106cd8" />
                 <aside className="main-page__aside orders">
                     <List listType="Orders" isEditable={false} endPoint="order" />
                 </aside>
