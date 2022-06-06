@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button } from "./Button";
 import { Modal } from "react-bootstrap";
 import "../styles/popUpWindow.css";
+import {useSetRecoilState} from "recoil";
+import {orderIdAtom} from "../state/atom";
 
 interface PopUpWindowProps {
   type: "order" | "template";
@@ -14,6 +16,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
 ) => {
   const { type, show, setShow } = props;
   const handleClose = () => setShow(false);
+  const setOrderId = useSetRecoilState(orderIdAtom)
 
   return (
     <>
@@ -63,7 +66,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
             size="primary"
             color="orange"
             label="Delete"
-            eventProp={handleClose}
+            eventProp={() => setOrderId("")}
           />
         </Modal.Footer>
       </Modal>
