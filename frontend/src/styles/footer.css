@@ -1,12 +1,10 @@
 .footer {
   display: flex;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  margin: 1rem 1rem;
-  padding: 0;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2rem;
 }
 
 .footer-item {
-  margin: auto;
+
 }

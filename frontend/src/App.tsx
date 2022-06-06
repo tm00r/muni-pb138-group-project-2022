@@ -28,7 +28,7 @@ function Router() {
           path="/create"
           element={<MainPage />}
         />
-        <Route path="/template/:id" element={<Layout />} />
+        <Route path="/order/:id" element={<Layout />} />
         <Route path="/new-order" element={<NewOrder />} />
       </Routes>
     </BrowserRouter>
@@ -37,11 +37,9 @@ function Router() {
 
 function App() {
   return (
-    <RecoilRoot>
-      <div id="main">
-        <Router />
+    <div class="container">
+      <Router />
     </div>
-    </RecoilRoot >
   );
 }
 

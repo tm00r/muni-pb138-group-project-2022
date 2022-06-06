@@ -21,11 +21,10 @@
 
 .main-page_body {
   display: grid;
-  grid-template-columns: 1 2fr 1;
-  gap: 0px 2rem;
-  grid-template-areas:
-    ". . .";
-  gap: 1rem;
+  grid-template-areas: ". . .";
+  align-items: flex-start;
+  gap: 2rem;
+  height: 100%;
 }
 
 .main-page__aside {

@@ -17,32 +17,33 @@
     background-color: #ff9900;
 }
 
-.list--main {
-    align-items: center;
+.steps__list {
     overflow: auto;
+    height: 100%;
+    max-height: 15vh;
 }
 
-.list--left{
+.templates > ul {
     padding-left: 0;
     border-radius: var(--border-radius-left);
 }
 
-.list--right{
+.orders > ul {
     direction: rtl;
     padding-right: 0;
     border-radius: var(--border-radius-right);
 }
 
-.list--left > * {
+.templates > ul > li {
     border-radius: var(--border-radius-left)
   }
 
-.list--right > * {
+.orders > ul > li {
     direction: rtl;
     border-radius: var(--border-radius-right)
 }
 
-.list--right > * > .link {
+.orders > ul > li  > .link {
     justify-content: flex-end;
 }
 
