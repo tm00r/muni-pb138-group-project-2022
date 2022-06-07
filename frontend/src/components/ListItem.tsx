@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import { domain } from "../types/swrDomain";
 import { mutate } from "swr";
-<<<<<<< HEAD
 import { useRecoilValue, useSetRecoilState } from "recoil";
-=======
-import {useRecoilValue, useSetRecoilState} from "recoil";
->>>>>>> 8da9f73cd7112c769a500f3a223d383857541c11
 
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
 
-<<<<<<< HEAD
 import { isTemplateAtom, itemIdAtom, itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
-=======
-import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
->>>>>>> 8da9f73cd7112c769a500f3a223d383857541c11
 import axios from "axios";
 
 import '../styles/listitem.css';
