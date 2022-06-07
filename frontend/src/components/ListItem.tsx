@@ -8,6 +8,7 @@ import {domain} from "../types/swrDomain";
 import {mutate} from "swr";
 import {useSetRecoilState} from "recoil";
 import {itemsListAtom, orderIdAtom, stepsListAtom} from "../state/atom";
+import { DeletePopUp } from './DeletePopUp';
 
 interface ListItemProps {
     listProps: GeneralListItemType;
@@ -33,6 +34,9 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
         setChecked(!checked)
     }
 
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+
     switch (listType) {
         case 'Orders':
             const propOrders = listProps as OrdersType;
@@ -42,7 +46,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'} onClick={() => onOrderCLick(propOrders.id)}>
                     <span className='list-item__text'>{propOrders.name}</span>
-                    <button className="btn"><i className="fa fa-trash"></i></button>
+                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <DeletePopUp type="order" show={show} setShow={setShow} />
                 </li>
             )
         case 'Items':
@@ -51,7 +56,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
                     <Reducer initialCount={propItems.count}/>
-                    <button className="btn"><i className="fa fa-trash"></i></button>
+                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <DeletePopUp type="item" show={show} setShow={setShow} />
                 </li>
             )
         case 'Steps':
@@ -64,7 +70,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                         <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
                                type="checkbox"/>
                     </form>
-                    <button className="btn"><i className="fa fa-trash"></i></button>
+                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <DeletePopUp type="step" show={show} setShow={setShow} />
                 </li>
             )
         case 'Templates':
@@ -75,7 +82,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'} onClick={() => onOrderCLick(propTemplates.id)}>
                     <span className='list-item__text'>{propTemplates.name}</span>
-                    <button className="btn"><i className="fa fa-trash"></i></button>
+                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <DeletePopUp type="template" show={show} setShow={setShow} />
                 </li>
             )
     }
