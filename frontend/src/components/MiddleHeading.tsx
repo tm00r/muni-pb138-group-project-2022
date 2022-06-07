@@ -18,12 +18,10 @@ export const Heading: React.FC<HeadingProps> = (props) => {
 
   const orderRecoilName = useRecoilValue(orderNameAtom);
   const setSubmitOrderName = useSetRecoilState(orderSubmitNameAtom)
-  const [orderName, setOrderName] = useState("");
 
   const headinRef = React.useRef(null);
 
   useEffect(() => {
-    setOrderName(orderRecoilName as string)
     const input = headinRef.current;
     input.value = input.defaultValue;
   }, [orderRecoilName])
@@ -41,7 +39,7 @@ export const Heading: React.FC<HeadingProps> = (props) => {
           className="heading__title"
           type="text"
           placeholder="New order name"
-          defaultValue={orderName as string}
+          defaultValue={orderRecoilName as string}
           ref = {headinRef}
           onChange = {(e) => setSubmitOrderName(e.target.value)}
         />

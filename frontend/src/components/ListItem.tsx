@@ -26,6 +26,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
         setStepsList([])
         setItemsList([])
         await mutate(domain + "order/items/" + id)
+        await mutate(domain + "order/steps/" + id)
     }
 
     const { listProps, listType } = props;
