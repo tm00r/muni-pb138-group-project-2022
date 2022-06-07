@@ -28,6 +28,7 @@ export const Footer: React.FC<FooterProps> = ({
     const setOrderId = useSetRecoilState(orderIdAtom)
 
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
+    const setOrderName = useSetRecoilState(orderNameAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -58,6 +59,7 @@ export const Footer: React.FC<FooterProps> = ({
         await axios.post(domain + 'order', messageData, { headers })
         await mutate(domain + "order")
         await setOrderSubmitName("")
+        await setOrderName("")
         await setOrderId(defaultOrderTemplateId)
     }
     return (
