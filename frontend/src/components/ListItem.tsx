@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { domain } from "../types/swrDomain";
 import { mutate } from "swr";
+<<<<<<< HEAD
 import { useRecoilValue, useSetRecoilState } from "recoil";
+=======
+import {useRecoilValue, useSetRecoilState} from "recoil";
+>>>>>>> 8da9f73cd7112c769a500f3a223d383857541c11
 
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
 
+<<<<<<< HEAD
 import { isTemplateAtom, itemIdAtom, itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+=======
+import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+>>>>>>> 8da9f73cd7112c769a500f3a223d383857541c11
 import axios from "axios";
 
 import '../styles/listitem.css';
@@ -17,6 +25,7 @@ import '../styles/variables.css';
 interface ListItemProps {
     listProps: GeneralListItemType;
     listType: "Items" | "Steps" | "Orders" | "Templates";
+    isTemplate: boolean;
 }
 
 // @ts-ignore
@@ -41,6 +50,11 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
         await mutate(domain + "order/items/" + id)
         await mutate(domain + "order/steps/" + id)
     }
+    const onStepDone = async (id: string) => {
+        await axios.put(domain + "order/steps/" + id, {})
+        await mutate(domain + "order")
+        await mutate(domain + "order/steps/" + orderId)
+    }
 
     const { listProps, listType } = props;
 
@@ -51,8 +65,6 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
-
-    const [isStepDone, setStepDone] = useState(false);
 
     switch (listType) {
         case 'Orders':
@@ -83,17 +95,19 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
+                    {!props.isTemplate &&
                     <form>
                         <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
-                        <button className="step__done" disabled={isStepDone} onClick={ () => setStepDone(true)} >
-                            {isStepDone &&
+                        <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={ () => onStepDone(propSteps.id)} >
+                            {propSteps.isFinished &&
                                 <img className="step__done--button" src="src/images/check.png" />
                             }
-                            {!isStepDone &&
+                            {!propSteps.isFinished &&
                                 <img className="step__done--button" src="src/images/verified.png" />
                             }
                         </button>
                     </form>
+                    }
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id} />
                 </li>

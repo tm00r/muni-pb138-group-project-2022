@@ -4,11 +4,12 @@ import { mutate } from "swr";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { domain } from "../types/swrDomain";
-import { allItemsListAtom, allStepsListAtom, isTemplateAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
+import { allItemsListAtom, allStepsListAtom, isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
 
 import { Button } from "./Button";
 
 import "../styles/footer.css";
+import {defaultOrderTemplateId} from "../trash/defaultOrderTemplate";
 
 interface FooterProps {
     main_button: string;
@@ -24,8 +25,10 @@ export const Footer: React.FC<FooterProps> = ({
     const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
     const orderName = useRecoilValue(orderNameAtom)
     const isTemp = useRecoilValue(isTemplateAtom)
+    const setOrderId = useSetRecoilState(orderIdAtom)
 
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
+    const setOrderName = useSetRecoilState(orderNameAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -56,6 +59,8 @@ export const Footer: React.FC<FooterProps> = ({
         await axios.post(domain + 'order', messageData, { headers })
         await mutate(domain + "order")
         await setOrderSubmitName("")
+        await setOrderName("")
+        await setOrderId(defaultOrderTemplateId)
     }
     return (
         <footer className="footer">
