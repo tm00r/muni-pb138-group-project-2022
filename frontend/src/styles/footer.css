@@ -1,7 +1,21 @@
 .footer {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   padding: 2rem;
+  padding-bottom: 1rem;
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer-button__main {
+  margin: auto;
+}
+
+.footer-button__side {
+  margin: 1rem auto 0 auto;
 }
 
