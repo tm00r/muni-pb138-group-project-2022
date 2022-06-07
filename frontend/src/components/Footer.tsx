@@ -10,13 +10,13 @@ import {allItemsListAtom, allStepsListAtom} from "../state/atom";
 import uuid4 from "uuid4";
 
 interface FooterProps {
-    main_page: boolean;
+    type: "newOrder" | "newTemplate" | "order";
     main_button: string;
 }
 
 export const Footer: React.FC<FooterProps> = ({
                                                   main_button,
-                                                  main_page,
+                                                  type,
                                               }: FooterProps) => {
 
     const allItems = useRecoilValue(allItemsListAtom)
@@ -54,8 +54,8 @@ export const Footer: React.FC<FooterProps> = ({
     }
     return (
         <footer className="footer">
-            {main_page === true && (
-                <nav className="footer-item footer__main">
+            <nav className="footer-item footer__main">
+                <nav className="footer-button__main">
                     <Button
                         size="wide"
                         color="dark"
@@ -63,12 +63,16 @@ export const Footer: React.FC<FooterProps> = ({
                         eventProp={() => saveOrderAPI(false)}
                     />
                 </nav>
-            )}
-
-            {!main_page && (
-                <nav className="footer-item footer__additional">
-                </nav>
-            )}
+                {type === "newOrder" && (
+                    <nav className="footer-button__side">
+                        <Button
+                            size="wide"
+                            color="gray"
+                            label="Save as template"
+                        />
+                    </nav>
+                )}
+            </nav>
         </footer>
     );
 };

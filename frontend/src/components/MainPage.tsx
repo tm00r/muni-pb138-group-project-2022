@@ -4,7 +4,13 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 import "./../styles/mainPage.css";
 
-export const MainPage = () => {
+interface MainPageProps {
+  type: "newOrder" | "newTemplate" | "order";
+}
+
+export const MainPage: React.FC<MainPageProps> = (props: MainPageProps) => {
+ const {type} = props;
+
   return (
     <div>
       <header className="main-page__header">
@@ -15,7 +21,7 @@ export const MainPage = () => {
         <div className="main-page__list"><List editable={false}/></div>
       </main>
       <footer className="main-page__footer">
-        <Footer main_page={true} main_button="Add template" />
+        <Footer type={type} main_button="Add template" />
       </footer>
     </div>
   );

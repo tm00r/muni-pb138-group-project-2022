@@ -34,7 +34,7 @@ export const MainWinowPage: React.FC = () => {
                     <List listType="Orders" isEditable={false} endPoint="order" />
                 </aside>
             </main>
-            <Footer main_page={true} main_button="Add order" />
+            <Footer type="newOrder" main_button="Add order" />
         </>
     );
 
