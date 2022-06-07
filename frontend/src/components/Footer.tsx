@@ -53,7 +53,6 @@ export const Footer: React.FC<FooterProps> = ({
             orderBy: ""
         });
 
-        console.log(messageData)
         await axios.post(domain + 'order', messageData, {headers})
         await mutate(domain + "order")
         await setOrderSubmitName("")

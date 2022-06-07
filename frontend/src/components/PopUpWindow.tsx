@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Button } from "./Button";
 import { Modal } from "react-bootstrap";
 import "../styles/popUpWindow.css";
-import {useSetRecoilState} from "recoil";
-import {orderIdAtom} from "../state/atom";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {allItemsListAtom, allStepsListAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
+import axios from "axios";
+import {domain} from "../types/swrDomain";
+import {mutate} from "swr";
 
 interface PopUpWindowProps {
   type: "order" | "template";
@@ -16,13 +19,65 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
 ) => {
   const { type, show, setShow } = props;
   const handleClose = () => setShow(false);
-  const setOrderId = useSetRecoilState(orderIdAtom)
+
+  const allItems = useRecoilValue(allItemsListAtom)
+  const allSteps = useRecoilValue(allStepsListAtom)
+  const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
+  const orderName = useRecoilValue(orderNameAtom)
+  const orderId = useRecoilValue(orderIdAtom)
+
+  const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
+
+  const saveOrderAPI = async (isTemplate: Boolean) => {
+    const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
+      name: x.name,
+      count: x.count
+    }))
+    const allStepsSubmit: SubmitStep[] = allSteps.map(x => ({
+      name: x.name,
+      deadline: new Date(x.deadline),
+      orderSequenceNumber: x.orderSequenceNumber,
+      description: x.description,
+      isFinished: false
+    }))
+
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const messageData: SubmitOrder = ({
+      name: orderSubmitName ? orderSubmitName : orderName,
+      steps: allStepsSubmit,
+      items: allItemsSubmit,
+      isFinished: false,
+      isTemplate: isTemplate,
+      createdAt: new Date(),
+      orderBy: ""
+    });
+
+    await axios.post(domain + 'order', messageData, {headers})
+    await mutate(domain + "order")
+    await setOrderSubmitName("")
+    await handleClose()
+  }
+
+  const changeOrderId = useSetRecoilState(orderIdAtom)
+  const handleDelete = async () => {
+    if ( type == "order" || type === "template" ) {
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      await axios.delete(domain + `order/${orderId}`, { headers });
+    }
+    await mutate(domain + 'order')
+    await changeOrderId(x => "")
+    await handleClose()
+  }
 
   return (
-    <>
-      <Modal className="popup-window" show={show} onHide={handleClose}>
-        <Modal.Header className="popup__heading">
-          <Modal.Title className="popup__heading--text">
+      <>
+        <Modal className="popup-window" show={show} onHide={handleClose}>
+          <Modal.Header className="popup__heading">
+            <Modal.Title className="popup__heading--text">
             Do you want to save this {type}?
           </Modal.Title>
           <button
@@ -43,7 +98,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
               size="wide"
               color="gray"
               label="Add to orders"
-              eventProp={handleClose}
+              eventProp={() => saveOrderAPI(false)}
             />
           )}
           {type === "order" && (
@@ -51,7 +106,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
               size="wide"
               color="gray"
               label="Save as a template"
-              eventProp={handleClose}
+              eventProp={() => saveOrderAPI(true)}
             />
           )}
           {type === "template" && (
@@ -59,14 +114,14 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
               size="wide"
               color="gray"
               label="Save changes"
-              eventProp={handleClose}
+              eventProp={() => saveOrderAPI(true)}
             />
           )}
           <Button
             size="primary"
             color="orange"
             label="Delete"
-            eventProp={() => setOrderId("")}
+            eventProp={() => handleDelete()}
           />
         </Modal.Footer>
       </Modal>
