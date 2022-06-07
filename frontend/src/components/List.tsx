@@ -47,7 +47,6 @@ export const List: React.FC<ListProps> = (props) => {
     if (!orderData) return (<p>Loading...</p>)
 
     const isOrderTemplate = orderData.data.isTemplate
-    console.log(orderData.data.isTemplate)
 
     if (listType === "Items") {
         setAllItemsList(allItems => [...listContent.data, ...list])
