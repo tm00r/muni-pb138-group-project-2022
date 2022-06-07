@@ -63,8 +63,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
-                    <Reducer initialCount={propItems.count} />
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
+                    <Reducer initialCount={propItems.count} />
                     <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id} />
                 </li>
             )

@@ -41,7 +41,7 @@
     border-radius: var(--border-radius-right);
 }
 
-.orders > ul > li  > * {
+.orders > ul > li  > .list-item__text {
     justify-content: flex-end;
 }
 

@@ -64,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({
                     <Button
                         size="wide"
                         color="gray"
-                        label="Save as template"
+                        label="Save template"
                         eventProp={() => saveOrderAPI(true)}
                     />
                 )}
