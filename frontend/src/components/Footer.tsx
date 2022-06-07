@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import {mutate} from "swr";
-import {useRecoilValue, useSetRecoilState} from "recoil";
+import { mutate } from "swr";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
-import {domain} from "../types/swrDomain";
-import {allItemsListAtom, allStepsListAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
+import { domain } from "../types/swrDomain";
+import { allItemsListAtom, allStepsListAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
 
-import {Button} from "./Button";
+import { Button } from "./Button";
 
 import "../styles/footer.css";
 
@@ -16,9 +16,9 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
-                                                  main_button,
-                                                  type,
-                                              }: FooterProps) => {
+    main_button,
+    type,
+}: FooterProps) => {
 
     const allItems = useRecoilValue(allItemsListAtom)
     const allSteps = useRecoilValue(allStepsListAtom)
@@ -53,32 +53,30 @@ export const Footer: React.FC<FooterProps> = ({
             orderBy: ""
         });
 
-        await axios.post(domain + 'order', messageData, {headers})
+        await axios.post(domain + 'order', messageData, { headers })
         await mutate(domain + "order")
         await setOrderSubmitName("")
     }
     return (
         <footer className="footer">
-            <nav className="footer-item footer__main">
-                <nav className="footer-button__main">
+            <div className="footer__button">
+                {type === "newOrder" && (
                     <Button
                         size="wide"
-                        color="dark"
-                        label={main_button}
-                        eventProp={() => saveOrderAPI(false)}
+                        color="gray"
+                        label="Save as template"
+                        eventProp={() => saveOrderAPI(true)}
                     />
-                </nav>
-                {type === "newOrder" && (
-                    <nav className="footer-button__side">
-                        <Button
-                            size="wide"
-                            color="gray"
-                            label="Save as template"
-                            eventProp={() => saveOrderAPI(true)}
-                        />
-                    </nav>
                 )}
-            </nav>
+            </div>
+            <div className="footer__button">
+                <Button
+                    size="wide"
+                    color="dark"
+                    label={main_button}
+                    eventProp={() => saveOrderAPI(false)}
+                />
+            </div>
         </footer>
     );
 };

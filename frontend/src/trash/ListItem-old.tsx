@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
-import { Reducer } from './Reducer';
+import { Reducer } from '../components/Reducer';
 import { Form } from 'react-bootstrap';
 
 import '../styles/listitem.css';
@@ -19,7 +19,7 @@ export const ListItemOld: React.FC <ListItemProps> = (props) => {
 
   const [checked, setChecked] = useState(false)
   const handleClick = () => {setChecked(!checked)}
-  
+
   useLayoutEffect(() => {
     if (count !== undefined && checked === true) {
       setCount(() => count + 1);

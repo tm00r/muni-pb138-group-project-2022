@@ -9,15 +9,14 @@
   box-shadow: var(--shadow-background);
   background-color: var(--color-white);
   cursor: pointer;
-  padding-right: 1rem;
-  overflow-x: hidden;
-  padding-left: 1rem;
 }
 
-.list--main > .list-item {
+.items__list > .list-item {
   width: 100%;
-  max-width: 42rem;
-  max-height: 3rem;
+}
+
+.list-item > button {
+  margin: 0 1rem 0 0.25rem;
 }
 
 .list-item__text {
@@ -25,6 +24,7 @@
   padding: 1.25rem 0;
   padding-left: 3rem;
   text-decoration: none;
+  overflow-x: hidden;
   flex-grow: 1;
 
   /* Place it to <body> tag, remove from here */

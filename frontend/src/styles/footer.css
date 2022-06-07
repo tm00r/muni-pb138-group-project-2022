@@ -1,21 +1,11 @@
 .footer {
   display: flex;
   flex-direction: row;
-  padding: 2rem;
+  justify-content: space-between;
+  width: 100%;
   padding-bottom: 1rem;
 }
 
-.footer-item {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.footer__button {
+  padding: 0 2.5rem;
 }
-
-.footer-button__main {
-  margin: auto;
-}
-
-.footer-button__side {
-  margin: 1rem auto 0 auto;
-}
-

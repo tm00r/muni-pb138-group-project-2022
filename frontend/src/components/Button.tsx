@@ -6,7 +6,7 @@ import '../styles/variables.css';
 interface ButtonProps {
   color: 'gray' | 'dark' | 'orange' | 'green';
   size: 'primary' | 'small' | 'wide' | 'middle';
-  label: string;
+  label: JSX.Element | string ;
   eventProp?: any;
 }
 

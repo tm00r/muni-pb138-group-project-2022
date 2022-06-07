@@ -1,14 +1,13 @@
 .list {
     display: flex;
-    gap: var(--gap-main);
     flex-direction: column;
+    gap: var(--gap-main);
     padding: 2rem;
-    max-height: 75vh;
     border-radius: var(--border-radius-main);
     background-color: var(--color-silver);
     box-shadow: var(--shadow-left-field);
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow:hidden;
+    overflow-y:scroll;
     scroll-behavior: smooth;
     scroll-margin-top: 1rem;
 }
@@ -17,30 +16,29 @@
     background-color: #ff9900;
 }
 
-.steps__list {
-    overflow: auto;
+.items__list, .steps__list {
+    overflow: hidden;
+    overflow-y: scroll;
     height: 100%;
-    max-height: 15vh;
+    height: 100%;
+    max-width: 45vw;
+    max-height: 20vh;
 }
 
-.templates > ul {
+.orders__list, .templates__list {
+    height: 100%;
+    max-height: 42rem;
+}
+
+.templates > ul, .templates > ul > li {
     padding-left: 0;
     border-radius: var(--border-radius-left);
 }
 
-.orders > ul {
+.orders > ul, .orders > ul > li  {
     direction: rtl;
     padding-right: 0;
     border-radius: var(--border-radius-right);
-}
-
-.templates > ul > li {
-    border-radius: var(--border-radius-left)
-  }
-
-.orders > ul > li {
-    direction: rtl;
-    border-radius: var(--border-radius-right)
 }
 
 .orders > ul > li  > * {

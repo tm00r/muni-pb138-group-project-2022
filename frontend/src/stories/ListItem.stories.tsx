@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ListItemOld } from '../components/ListItem-old';
+import { ListItemOld } from '../trash/ListItem-old';
 
 export default {
   title: 'Design System/Atoms/List Item',
