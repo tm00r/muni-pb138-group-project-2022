@@ -53,14 +53,13 @@
 }
 
 .step__done {
-  width: 2.5rem;
-  height: 2.5rem;
   border: none;
   border-radius: 1.5rem;
-  background-color: hotpink;
+  background-color: transparent;
   margin: 0;
 }
 
-.step__done:disabled {
-  background-color: var(--color-green);
+.step__done--button {
+  width: 2rem;
+  height: 2rem;
 }
