@@ -33,3 +33,33 @@
   font-weight: var(--font-weight);
   color: var(--color-dark-100);
 }
+
+.form-check-input {
+  width: 2rem;
+  height:2rem;
+}
+
+.btn {
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 1.5rem;
+}
+
+.btn:hover {
+  background-color: gray;
+}
+
+.step__done {
+  border: none;
+  border-radius: 1.5rem;
+  background-color: transparent;
+  margin: 0;
+}
+
+.step__done--button {
+  width: 2rem;
+  height: 2rem;
+}
