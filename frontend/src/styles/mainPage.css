@@ -1,4 +1,4 @@
-.main-page__body {
+/* .main-page__body {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -17,7 +17,7 @@
 .list--main {
   overflow: auto;
   height: 100%;
-}
+} */
 
 .main-page_body {
   display: grid;

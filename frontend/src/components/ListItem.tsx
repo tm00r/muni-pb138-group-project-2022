@@ -50,7 +50,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             }
             return (
                 <li className={'list-item'}>
-                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small'></Button>
                     <span className='list-item__text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
                     <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id} />
                 </li>
@@ -61,7 +61,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
                     <Reducer initialCount={propItems.count} />
-                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id} />
                 </li>
             )
@@ -75,7 +75,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                         <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
                             type="checkbox" />
                     </form>
-                    <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
+                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id} />
                 </li>
             )
@@ -87,7 +87,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text' onClick={() => onOrderCLick(propTemplates.id)}>{propTemplates.name}</span>
-                    <Button eventProp={handleShow} label={${<i className="fa fa-trash"></i>}} color="orange" size='small'></Button>
+                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="template" show={show} setShow={setShow} id={propTemplates.id} />
                 </li>
             )
