@@ -11,11 +11,7 @@ import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../sta
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
-import { DeletePopUp } from './DeletePopUp';
-import { domain } from "../types/swrDomain";
-import { mutate } from "swr";
-import { useSetRecoilState } from "recoil";
-import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+
 
 interface ListItemProps {
     listProps: GeneralListItemType;

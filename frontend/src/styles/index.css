@@ -14,10 +14,9 @@ ul {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   height: 100vh;
-  width: 100%;
-  max-width: 50vw;
+
 }
 
 /* ===== Scrollbar CSS ===== */
