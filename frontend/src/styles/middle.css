@@ -26,7 +26,12 @@
 .heading__title {
   margin: 0;
   font-size: var(--font-size-32);
+  font-weight: var(--font-weight);
   text-align: center;
+  border: unset;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  max-width: 20rem;
 }
 
 .main__tab {

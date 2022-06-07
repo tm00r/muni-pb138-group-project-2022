@@ -1,18 +1,19 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react';
+import React from 'react';
 import useSWR from "swr";
 import axios from "axios";
-import { ListItemOld } from './ListItem-old';
+import { useSetRecoilState, useRecoilValue } from "recoil";
+
+import { domain } from "../types/swrDomain";
+import { orderIdAtom, allItemsListAtom, allStepsListAtom } from "../state/atom";
+
 import { ListItem } from './ListItem';
 
 import '../styles/list.css';
 import '../styles/variables.css';
-import {domain} from "../types/swrDomain";
-import {useSetRecoilState} from "recoil";
-import {allItemsListAtom, allStepsListAtom} from "../state/atom";
-import {allStepsListSelector} from "../state/selectors";
+
 
 export interface ListProps {
-    listType: "Templates" |"Items" | "Steps" | "Orders";
+    listType: "Templates" | "Items" | "Steps" | "Orders";
     isEditable: boolean;
     endPoint: string;
     list: ItemsType[] | StepsType[]
@@ -20,46 +21,52 @@ export interface ListProps {
 
 
 export const List: React.FC<ListProps> = (props) => {
+
+    const { listType, endPoint, list } = props;
+
+    const orderId = useRecoilValue(orderIdAtom)
+
     const setAllItemsList = useSetRecoilState(allItemsListAtom)
     const setAllStepsList = useSetRecoilState(allStepsListAtom)
-    const { listType, endPoint, list}  = props;
 
-    const URL = `${domain}${endPoint}`;
+    const URL = `${domain}${endPoint.includes("te") ? endPoint + "/" + orderId : endPoint}`;
+
     const fetcher = async (url: string) => await (
         axios
             .get(url)
             .then((response) => response.data)
             .catch((error) => console.log(error))
     )
-    const { data: data, error } = useSWR(URL, fetcher);
+    const { data: listContent, error } = useSWR(URL, fetcher);
 
-    if (error) return(<p>E</p>)
-    if (!data) return(<p>Loading...</p>)
+    if (error) return (<p>E</p>)
+    if (!listContent) return (<p>Loading...</p>)
 
-    if (listType === "Items"){
-        setAllItemsList(allItems => [...data.data, ...list])
+
+    if (listType === "Items" && list.length != 0) {
+        setAllItemsList(allItems => [...listContent.data, ...list])
     }
-    else if (listType === "Steps"){
-        setAllStepsList(allSteps => [...data.data, ...list])
+    else if (listType === "Steps"  && list.length != 0) {
+        setAllStepsList(allSteps => [...listContent.data, ...list])
 
     }
 
     return (
         <ul className={[listType ? `${listType.toLowerCase()}__list` : 'template__list', 'list '].join(' ')}>
             {
-                data.data.map((arg) => (
+                listContent.data.map((arg) => (
 
                     <ListItem key={arg.id}
-                              listType={listType}
-                              listProps={arg}
+                        listType={listType}
+                        listProps={arg}
                     />
                 ))
             }
             {list &&
                 list.map((arg) => (
                     <ListItem key={arg.id}
-                              listType={listType}
-                              listProps={arg}
+                        listType={listType}
+                        listProps={arg}
                     />
                 ))
             }

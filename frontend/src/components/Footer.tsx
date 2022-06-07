@@ -1,13 +1,14 @@
-import React, {useEffect} from "react";
-import {Button} from "./Button";
-import "../styles/footer.css";
-import {Link} from "react-router-dom";
+import React from "react";
 import axios from "axios";
-import {domain} from "../types/swrDomain";
 import {mutate} from "swr";
-import {useRecoilState, useRecoilValue} from "recoil";
-import {allItemsListAtom, allStepsListAtom} from "../state/atom";
-import uuid4 from "uuid4";
+import {useRecoilValue} from "recoil";
+
+import {domain} from "../types/swrDomain";
+import {allItemsListAtom, allStepsListAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
+
+import {Button} from "./Button";
+
+import "../styles/footer.css";
 
 interface FooterProps {
     type: "newOrder" | "newTemplate" | "order";
@@ -21,6 +22,7 @@ export const Footer: React.FC<FooterProps> = ({
 
     const allItems = useRecoilValue(allItemsListAtom)
     const allSteps = useRecoilValue(allStepsListAtom)
+    const orderName = useRecoilValue(orderSubmitNameAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -39,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({
             'Content-Type': 'application/json',
         };
         const messageData: SubmitOrder = ({
-            name: uuid4(),
+            name: orderName,
             steps: allStepsSubmit,
             items: allItemsSubmit,
             isFinished: false,

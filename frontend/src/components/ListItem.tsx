@@ -1,14 +1,14 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
-import {Reducer} from './Reducer';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
+import { Reducer } from './Reducer';
 
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
-import {domain} from "../types/swrDomain";
-import {mutate} from "swr";
-import {useSetRecoilState} from "recoil";
-import {itemsListAtom, orderIdAtom, stepsListAtom} from "../state/atom";
 import { DeletePopUp } from './DeletePopUp';
+import { domain } from "../types/swrDomain";
+import { mutate } from "swr";
+import { useSetRecoilState } from "recoil";
+import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom, orderIsFinishedAtom } from "../state/atom";
 
 interface ListItemProps {
     listProps: GeneralListItemType;
@@ -18,16 +18,19 @@ interface ListItemProps {
 // @ts-ignore
 export const ListItem: React.FC<ListItemProps> = (props) => {
     const setOrderId = useSetRecoilState(orderIdAtom)
+    const setOrderName = useSetRecoilState(orderNameAtom)
     const setStepsList = useSetRecoilState(stepsListAtom)
     const setItemsList = useSetRecoilState(itemsListAtom)
     const onOrderCLick = async (id: String) => {
+        setOrderName(listProps.name)
         setOrderId(listProps.id)
         setStepsList([])
         setItemsList([])
         await mutate(domain + "order/items/" + id)
+        await mutate(domain + "order/steps/" + id)
     }
 
-    const {listProps, listType} = props;
+    const { listProps, listType } = props;
 
     const [checked, setChecked] = useState(false)
     const handleClick = () => {
@@ -66,9 +69,9 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
                     <form>
-                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly/>
+                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
                         <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
-                               type="checkbox"/>
+                            type="checkbox" />
                     </form>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
                     <DeletePopUp type="step" show={show} setShow={setShow} />
