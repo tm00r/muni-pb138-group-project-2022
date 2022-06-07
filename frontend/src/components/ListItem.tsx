@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { domain } from "../types/swrDomain";
 import { mutate } from "swr";
-import { useSetRecoilState } from "recoil";
+import {useRecoilValue, useSetRecoilState} from "recoil";
 
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
 
 import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+import axios from "axios";
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
@@ -24,6 +25,9 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const setOrderName = useSetRecoilState(orderNameAtom)
     const setStepsList = useSetRecoilState(stepsListAtom)
     const setItemsList = useSetRecoilState(itemsListAtom)
+
+    const orderId = useRecoilValue(orderIdAtom)
+
     const onOrderCLick = async (id: String) => {
         setOrderName(listProps.name)
         setOrderId(listProps.id)
@@ -31,6 +35,11 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
         setItemsList([])
         await mutate(domain + "order/items/" + id)
         await mutate(domain + "order/steps/" + id)
+    }
+    const onStepDone = async (id: string) => {
+        await axios.put(domain + "order/steps/" + id, {})
+        await mutate(domain + "order")
+        await mutate(domain + "order/steps/" + orderId)
     }
 
     const { listProps, listType } = props;
@@ -42,8 +51,6 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
-
-    const [isStepDone, setStepDone] = useState(false);
 
     switch (listType) {
         case 'Orders':
@@ -75,11 +82,11 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     <span className='list-item__text'>{propSteps.name}</span>
                     <form>
                         <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
-                        <button className="step__done" disabled={isStepDone} onClick={ () => setStepDone(true)} >
-                            {isStepDone &&
+                        <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={ () => onStepDone(propSteps.id)} >
+                            {propSteps.isFinished &&
                                 <img className="step__done--button" src="src/images/check.png" />
                             }
-                            {!isStepDone &&
+                            {!propSteps.isFinished &&
                                 <img className="step__done--button" src="src/images/verified.png" />
                             }
                         </button>

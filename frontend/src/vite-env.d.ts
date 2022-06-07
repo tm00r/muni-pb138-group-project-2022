@@ -44,6 +44,6 @@ type StepsType = {
   description: string;
   orderSequenceNumber: number;
   deadline: string;
-  isFinished?: boolean;
+  isFinished: boolean;
   isEditable: boolean;
 };
