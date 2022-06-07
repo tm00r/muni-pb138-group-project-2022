@@ -9,6 +9,7 @@ api.use(express.json());
 api.use(cors());
 
 api.get("/order", order.get)
+api.get("/order/:id", order.getSingle)
 api.post("/order", order.store)
 api.delete("/order/:id", order.remove)
 

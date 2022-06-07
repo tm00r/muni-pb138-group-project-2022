@@ -1,6 +1,29 @@
 import prisma from '../client';
 import {Request, Response} from 'express';
 
+export const getSingle = async (req: Request, res: Response) => {
+    let order;
+    const orderId = req.params.id
+    console.log("Getting information about order: " + orderId)
+    try {
+        console.log("Getting order")
+        order = await prisma.order.findUnique({
+            where: {
+                id: orderId
+            }
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send("Error")
+        return
+    }
+    console.log("Get order request: successful")
+    return res.send({
+        status: 'success',
+        data: order,
+    });
+
+}
 /**
  * Return list of all orders
  */

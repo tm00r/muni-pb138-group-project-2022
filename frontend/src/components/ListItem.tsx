@@ -17,6 +17,7 @@ import '../styles/variables.css';
 interface ListItemProps {
     listProps: GeneralListItemType;
     listType: "Items" | "Steps" | "Orders" | "Templates";
+    isTemplate: boolean;
 }
 
 // @ts-ignore
@@ -80,6 +81,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
+                    {!props.isTemplate &&
                     <form>
                         <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
                         <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={ () => onStepDone(propSteps.id)} >
@@ -91,6 +93,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                             }
                         </button>
                     </form>
+                    }
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id} />
                 </li>
