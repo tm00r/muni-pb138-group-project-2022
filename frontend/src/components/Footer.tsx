@@ -75,6 +75,7 @@ export const Footer: React.FC<FooterProps> = ({
                             size="wide"
                             color="gray"
                             label="Save as template"
+                            eventProp={() => saveOrderAPI(true)}
                         />
                     </nav>
                 )}
