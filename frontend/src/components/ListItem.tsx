@@ -8,7 +8,7 @@ import { DeletePopUp } from './DeletePopUp';
 import { domain } from "../types/swrDomain";
 import { mutate } from "swr";
 import { useSetRecoilState } from "recoil";
-import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom, orderIsFinishedAtom } from "../state/atom";
+import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
 
 interface ListItemProps {
     listProps: GeneralListItemType;
@@ -40,6 +40,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
 
+    const [isStepDone, setStepDone] = useState(false);
+
     switch (listType) {
         case 'Orders':
             const propOrders = listProps as OrdersType;
@@ -70,8 +72,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     <span className='list-item__text'>{propSteps.name}</span>
                     <form>
                         <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
-                        <input className="checkbox" onClick={handleClick} defaultChecked={propSteps.isFinished}
-                            type="checkbox" />
+                        <button className="step__done" disabled={isStepDone} onClick={ () => setStepDone(true)} />
                     </form>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id}/>
