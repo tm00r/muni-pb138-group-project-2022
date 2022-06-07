@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {mutate} from "swr";
-import {useRecoilValue} from "recoil";
+import {useRecoilValue, useSetRecoilState} from "recoil";
 
 import {domain} from "../types/swrDomain";
 import {allItemsListAtom, allStepsListAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
@@ -22,7 +22,10 @@ export const Footer: React.FC<FooterProps> = ({
 
     const allItems = useRecoilValue(allItemsListAtom)
     const allSteps = useRecoilValue(allStepsListAtom)
-    const orderName = useRecoilValue(orderSubmitNameAtom)
+    const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
+    const orderName = useRecoilValue(orderNameAtom)
+
+    const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -41,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({
             'Content-Type': 'application/json',
         };
         const messageData: SubmitOrder = ({
-            name: orderName,
+            name: orderSubmitName ? orderSubmitName : orderName,
             steps: allStepsSubmit,
             items: allItemsSubmit,
             isFinished: false,
@@ -53,6 +56,7 @@ export const Footer: React.FC<FooterProps> = ({
         console.log(messageData)
         await axios.post(domain + 'order', messageData, {headers})
         await mutate(domain + "order")
+        await setOrderSubmitName("")
     }
     return (
         <footer className="footer">

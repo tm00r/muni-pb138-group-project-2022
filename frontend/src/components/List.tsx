@@ -43,12 +43,11 @@ export const List: React.FC<ListProps> = (props) => {
     if (!listContent) return (<p>Loading...</p>)
 
 
-    if (listType === "Items" && list.length != 0) {
+    if (listType === "Items") {
         setAllItemsList(allItems => [...listContent.data, ...list])
     }
-    else if (listType === "Steps"  && list.length != 0) {
+    else if (listType === "Steps") {
         setAllStepsList(allSteps => [...listContent.data, ...list])
-
     }
 
     return (

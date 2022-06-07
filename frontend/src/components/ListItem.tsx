@@ -50,7 +50,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'} onClick={() => onOrderCLick(propOrders.id)}>
                     <span className='list-item__text'>{propOrders.name}</span>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
-                    <DeletePopUp type="order" show={show} setShow={setShow} />
+                    <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id}/>
                 </li>
             )
         case 'Items':
@@ -60,7 +60,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     <span className='list-item__text'>{propItems.name}</span>
                     <Reducer initialCount={propItems.count}/>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
-                    <DeletePopUp type="item" show={show} setShow={setShow} />
+                    <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id} />
                 </li>
             )
         case 'Steps':
@@ -74,7 +74,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                             type="checkbox" />
                     </form>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
-                    <DeletePopUp type="step" show={show} setShow={setShow} />
+                    <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id}/>
                 </li>
             )
         case 'Templates':
@@ -86,7 +86,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'} onClick={() => onOrderCLick(propTemplates.id)}>
                     <span className='list-item__text'>{propTemplates.name}</span>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
-                    <DeletePopUp type="template" show={show} setShow={setShow} />
+                    <DeletePopUp type="template" show={show} setShow={setShow} id={propTemplates.id}/>
                 </li>
             )
     }
