@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { domain } from "../types/swrDomain";
 import { mutate } from "swr";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
 
-import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+import { isTemplateAtom, itemIdAtom, itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+import axios from "axios";
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
@@ -21,11 +22,19 @@ interface ListItemProps {
 // @ts-ignore
 export const ListItem: React.FC<ListItemProps> = (props) => {
     const setOrderId = useSetRecoilState(orderIdAtom)
+    const setIsTemplate = useSetRecoilState(isTemplateAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
     const setStepsList = useSetRecoilState(stepsListAtom)
     const setItemsList = useSetRecoilState(itemsListAtom)
+
+    const setItemId = useSetRecoilState(itemIdAtom);
+
+    const orderId = useRecoilValue(orderIdAtom)
+
     const onOrderCLick = async (id: String) => {
+        const order = listProps as OrdersType
         setOrderName(listProps.name)
+        setIsTemplate(order.isTemplate)
         setOrderId(listProps.id)
         setStepsList([])
         setItemsList([])
@@ -60,6 +69,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             )
         case 'Items':
             const propItems = listProps as ItemsType;
+            setItemId(propItems.id)
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>

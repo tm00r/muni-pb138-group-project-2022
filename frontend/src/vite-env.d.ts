@@ -10,6 +10,22 @@ type OrdersType = {
   isTemplate: boolean;
 };
 
+type ItemsType = {
+  id: string;
+  name: string;
+  count: number;
+};
+
+type StepsType = {
+  id: string;
+  name: string;
+  description: string;
+  orderSequenceNumber: number;
+  deadline: string;
+  isFinished: boolean;
+  isEditable: boolean;
+};
+
 type SubmitOrder = {
   orderBy: string,
   name: string,
@@ -31,19 +47,3 @@ type SubmitItem= {
   name: string,
   count: number
 }
-
-type ItemsType = {
-  id: string;
-  name: string;
-  count: number;
-};
-
-type StepsType = {
-  id: string;
-  name: string;
-  description: string;
-  orderSequenceNumber: number;
-  deadline: string;
-  isFinished?: boolean;
-  isEditable: boolean;
-};

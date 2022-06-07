@@ -4,26 +4,26 @@ import { mutate } from "swr";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { domain } from "../types/swrDomain";
-import { allItemsListAtom, allStepsListAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
+import { allItemsListAtom, allStepsListAtom, isTemplateAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
 
 import { Button } from "./Button";
 
 import "../styles/footer.css";
 
 interface FooterProps {
-    type: "newOrder" | "newTemplate" | "order";
     main_button: string;
 }
 
 export const Footer: React.FC<FooterProps> = ({
     main_button,
-    type,
+    // type,
 }: FooterProps) => {
 
     const allItems = useRecoilValue(allItemsListAtom)
     const allSteps = useRecoilValue(allStepsListAtom)
     const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
     const orderName = useRecoilValue(orderNameAtom)
+    const isTemp = useRecoilValue(isTemplateAtom)
 
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
 
@@ -60,23 +60,23 @@ export const Footer: React.FC<FooterProps> = ({
     return (
         <footer className="footer">
             <div className="footer__button">
-                {type === "newOrder" && (
-                    <Button
-                        size="wide"
-                        color="gray"
-                        label="Save template"
-                        eventProp={() => saveOrderAPI(true)}
-                    />
-                )}
-            </div>
-            <div className="footer__button">
                 <Button
                     size="wide"
-                    color="dark"
-                    label={main_button}
-                    eventProp={() => saveOrderAPI(false)}
+                    color="gray"
+                    label="Save template"
+                    eventProp={() => saveOrderAPI(true)}
                 />
             </div>
+            {isTemp &&
+                <div className="footer__button">
+                    <Button
+                        size="wide"
+                        color="dark"
+                        label={main_button}
+                        eventProp={() => saveOrderAPI(false)}
+                    />
+                </div>
+            }
         </footer>
     );
 };

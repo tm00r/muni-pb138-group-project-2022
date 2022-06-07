@@ -1,5 +1,5 @@
 import React from "react";
-import { Main } from "../components/Middle";
+import { Middle } from "../components/Middle";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { List } from "../components/List";
@@ -29,12 +29,12 @@ export const MainWinowPage: React.FC = () => {
                 <aside className="main-page__aside templates">
                     <List listType="Templates" isEditable={false} endPoint="order" list={[]} />
                 </aside>
-                <Main datetimeText="Date Time" type="order" />
+                <Middle datetimeText="Date Time" type="order" />
                 <aside className="main-page__aside orders">
                     <List listType="Orders" isEditable={false} endPoint="order" list={[]} />
                 </aside>
             </main>
-            <Footer type="newOrder" main_button="Add order" />
+            <Footer main_button="Add order" />
         </>
     );
 
