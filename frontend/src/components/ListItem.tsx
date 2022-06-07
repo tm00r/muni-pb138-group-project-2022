@@ -72,7 +72,14 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     <span className='list-item__text'>{propSteps.name}</span>
                     <form>
                         <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
-                        <button className="step__done" disabled={isStepDone} onClick={ () => setStepDone(true)} />
+                        <button className="step__done" disabled={isStepDone} onClick={ () => setStepDone(true)} >
+                            {isStepDone &&
+                                <img className="step__done--button" src="src/images/check.png" />
+                            }
+                            {!isStepDone &&
+                                <img className="step__done--button" src="src/images/verified.png" />
+                            }
+                        </button>
                     </form>
                     <button className="btn" onClick={handleShow}><i className="fa fa-trash"></i></button>
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id}/>
