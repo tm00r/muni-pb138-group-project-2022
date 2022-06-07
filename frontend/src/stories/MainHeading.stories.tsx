@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { Heading } from "../components/MainHeading";
+import { Heading } from "../components/MiddleHeading";
 
 export default {
     title: "Design System/Molecules/Form Heading",

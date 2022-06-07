@@ -6,6 +6,16 @@ export const orderIdAtom = atom<String>({
   default: ""
 })
 
+export const orderNameAtom = atom<string>({
+  key: "orderName",
+  default: ""
+})
+
+export const orderSubmitNameAtom = atom<string>({
+  key: "orderSubmitName",
+  default: ""
+})
+
 export const itemsListAtom = atom<ItemsType[]>({
   key: "itemsList",
   default: []

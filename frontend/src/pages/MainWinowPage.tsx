@@ -27,11 +27,11 @@ export const MainWinowPage: React.FC = () => {
             <Header templates={true} title={headerMiddleTitle} orders={true} />
             <main className="main-page_body">
                 <aside className="main-page__aside templates">
-                    <List listType="Templates" isEditable={false} endPoint="order" />
+                    <List listType="Templates" isEditable={false} endPoint="order" list={[]} />
                 </aside>
-                <Main headingTitle="Heading Title" datetimeText="Date Time" type="order" contentId="b491e09d-5354-466c-980b-b8385f106cd8" />
+                <Main datetimeText="Date Time" type="order" />
                 <aside className="main-page__aside orders">
-                    <List listType="Orders" isEditable={false} endPoint="order" />
+                    <List listType="Orders" isEditable={false} endPoint="order" list={[]} />
                 </aside>
             </main>
             <Footer main_page={true} main_button="Add order" />
