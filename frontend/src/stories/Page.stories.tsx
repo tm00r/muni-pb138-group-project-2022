@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import { Layout } from "../pages/Layout";
+import { Layout } from "../trash/Layout";
 
 export default {
   title: "Pages/Layout",

@@ -4,7 +4,7 @@ import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import "./../styles/layout.css";
 import { List } from "../components/List";
-import { MainWinowPage } from "./MainWinowPage";
+import { MainWinowPage } from "../pages/MainWinowPage";
 
 
 export interface LayoutProps {
