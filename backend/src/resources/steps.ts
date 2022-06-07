@@ -6,6 +6,7 @@ import {Request, Response} from 'express';
  */
 export const get = async (req: Request, res: Response) => {
     const orderId = req.params.id;
+    console.log("Getting all steps for order: " + orderId)
     let steps;
     try {
         steps = await prisma.step.findMany({
@@ -18,6 +19,7 @@ export const get = async (req: Request, res: Response) => {
         res.status(500).send("Error")
         return
     }
+    console.log("Getting all steps for order: " + orderId + " successfully")
     return res.send({
         status: 'success',
         data: steps,
@@ -29,6 +31,7 @@ export const get = async (req: Request, res: Response) => {
  */
 export const update = async (req: Request, res: Response) => {
     const stepId = req.params.id;
+    console.log("Setting step with id " + stepId + " to finished")
     let step;
     let orderIsFinished = false
     try {
@@ -46,6 +49,7 @@ export const update = async (req: Request, res: Response) => {
         res.status(500).send("Error")
         return
     }
+    console.log("Setting step with id " + stepId + " to finished successfully")
     return res.send({
         status: 'success',
         data: step,
@@ -54,14 +58,16 @@ export const update = async (req: Request, res: Response) => {
 }
 
 const evaluateOrderCompletion = async (orderId: string) => {
+    console.log("Getting all steps for order: " + orderId)
     const steps = await prisma.step.findMany({
         where: {
             orderId: orderId
         }
     })
+    console.log("Evaluating state of all steps for order: " + orderId)
     const areAllStepsFinished = steps.every(step => step.isFinished === true)
     if (areAllStepsFinished === true) {
-        console.log("Steps finished for order " + orderId)
+        console.log("All steps finished for order " + orderId)
         const order = await prisma.order.update({
             where: {
                 id: orderId
@@ -70,7 +76,7 @@ const evaluateOrderCompletion = async (orderId: string) => {
                 isFinished: true
             }
         })
-        console.log("Order finished. Order id: " + order.id)
+        console.log("Order is finished. Order id: " + order.id)
     }
     return areAllStepsFinished;
 }
