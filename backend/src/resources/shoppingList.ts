@@ -6,6 +6,7 @@ import {Request, Response} from 'express';
  */
 export const get = async (req: Request, res: Response) => {
     const orderId = req.params.id;
+    console.log("Getting all items for order: " + orderId)
     let items;
     try {
         items = await prisma.shoppingItem.findMany({
