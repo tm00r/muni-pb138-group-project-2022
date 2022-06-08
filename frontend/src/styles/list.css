@@ -6,7 +6,7 @@
     border-radius: var(--border-radius-main);
     background-color: var(--color-silver);
     box-shadow: var(--shadow-left-field);
-    overflow:hidden;
+    overflow: hidden;
     overflow-y:scroll;
     scroll-behavior: smooth;
     scroll-margin-top: 1rem;

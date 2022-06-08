@@ -11,6 +11,15 @@
   cursor: pointer;
 }
 
+.list-item .button {
+  visibility: hidden;
+}
+
+.list-item:hover .button{
+  visibility: visible;
+}
+
+
 .list-item--finished {
   background-color: palegreen;
 }
