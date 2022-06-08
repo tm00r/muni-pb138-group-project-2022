@@ -78,7 +78,8 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                 type="text"
                 {...register("name", {
                   required: "Please fill out item name",
-                  maxLength: 30
+                  maxLength: 30,
+                  pattern: /[^0-9_]/
                 })}
               />
 
@@ -102,15 +103,13 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                     max="999"
                     {...register("count", {
                       required: "Please fill out count",
-                      pattern: {
-                        value: /[0-9][0-9][0-9]]/,
-                        message: "Please enter a valid number from 1 to 999",
-                      },
+                      min: 1,
+                      max: 999
                     })}
                   />
                   {errors.count && (
                     <span className="error-message">
-                      {"Please enter a number"}
+                      {"Please, at least 1 and no more than 999"}
                     </span>
                   )}
                 </>
