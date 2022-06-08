@@ -13,7 +13,6 @@ import {defaultOrderTemplateId} from "../trash/defaultOrderTemplate";
 
 
 export const Footer: React.FC = () => {
-
     const allItems = useRecoilValue(allItemsListAtom)
     const allSteps = useRecoilValue(allStepsListAtom)
     const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
