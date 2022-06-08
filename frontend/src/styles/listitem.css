@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.finished {
+  background-color: palegreen;
+}
+
 .items__list > .list-item {
   width: 100%;
 }
