@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
 
     const headerName = () => {
         if (orderId) {
-            if (orderId == defaultOrderTemplateId()) {
+            if (orderId == defaultOrderTemplateId) {
                 return "New Template"
             } else if (isTemplate) {
                 return "New Order"

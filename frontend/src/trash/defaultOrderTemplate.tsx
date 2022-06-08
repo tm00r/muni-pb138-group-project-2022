@@ -1,1 +1,1 @@
-export const defaultOrderTemplateId = () => "21fb0a5c-ea85-420a-bbc1-ad44294ac885"
+export const defaultOrderTemplateId : String = "21fb0a5c-ea85-420a-bbc1-ad44294ac885"
