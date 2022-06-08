@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-.finished {
+.list-item--finished {
   background-color: palegreen;
 }
 

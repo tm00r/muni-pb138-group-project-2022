@@ -65,7 +65,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 return
             }
             return (
-                <li className={ propOrders.isFinished ?  'list-item finished' : 'list-item'}>
+                <li className={ `list-item ${propOrders.isFinished ?  'list-item--finished' : ''}`}>
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small'></Button>
                     <span className='list-item__text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
                     <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id} />
