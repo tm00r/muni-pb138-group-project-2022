@@ -68,6 +68,8 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
         await axios.post(domain + 'order', messageData, {headers})
         await mutate(domain + "order")
         await setOrderSubmitName("")
+        await setOrderName("")
+        await setOrderId("")
         await handleClose()
     }
 

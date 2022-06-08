@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
-import { orderNameAtom, orderSubmitNameAtom } from "../state/atom";
+import {isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
 
 import { Button } from "./Button";
 import { PopUpWindow } from "./PopUpWindow";
@@ -27,7 +27,17 @@ export const Heading: React.FC<HeadingProps> = (props) => {
   }, [orderRecoilName])
 
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const isTemplate = useRecoilValue(isTemplateAtom)
+  const setOrderId = useSetRecoilState(orderIdAtom)
+
+  const handleShow = () => {
+    if (isTemplate){
+      setShow(true);
+    }
+    else {
+      setOrderId("")
+    }
+  }
 
   return (
     <>
