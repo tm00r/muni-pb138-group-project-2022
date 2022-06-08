@@ -5,12 +5,13 @@ import {Request, Response} from 'express';
  * Return shoppingList items for shoppingList id
  */
 export const get = async (req: Request, res: Response) => {
-    const shoppingListId = req.params.id;
-    let shoppingItems;
+    const orderId = req.params.id;
+    console.log("Getting all items for order: " + orderId)
+    let items;
     try {
-        shoppingItems = await prisma.shoppingItem.findMany({
+        items = await prisma.shoppingItem.findMany({
             where: {
-                shoppingListId: shoppingListId
+                orderId: orderId
             }
         });
     } catch (e) {
@@ -20,6 +21,6 @@ export const get = async (req: Request, res: Response) => {
     }
     return res.send({
         status: 'success',
-        data: shoppingItems,
+        data: items,
     });
 }

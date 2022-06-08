@@ -9,11 +9,14 @@ api.use(express.json());
 api.use(cors());
 
 api.get("/order", order.get)
+api.get("/order/:id", order.getSingle)
 api.post("/order", order.store)
+api.delete("/order/:id", order.remove)
 
-api.get("/shoppingList/:id", shoppingList.get)
+api.get("/order/items/:id", shoppingList.get)
 
-api.get("/steps/:id", steps.get)
+api.get("/order/steps/:id", steps.get)
+api.put("/order/steps/:id", steps.update)
 
 
 api.listen(port, () => console.log(`OrderHub app listening on port ${port}`));

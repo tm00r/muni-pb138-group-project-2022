@@ -4,10 +4,22 @@ services:
     container_name: adminer
     restart: always
     ports:
-      - 127.0.0.1:8080:8080
+      - "127.0.0.1:8080:8080"
     image: adminer:4.8.1-standalone
     networks:
       - adminer-postgress
+
+  frontend:
+    container_name: frontend
+    restart: always
+    build: frontend
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - react-express
+    ports:
+      - "0.0.0.0:8000:8000"
 
   backend:
     container_name: backend
@@ -22,7 +34,7 @@ services:
       - express-postgress
       - react-express
     ports:
-      - 127.0.0.1:4000:4000
+      - "127.0.0.1:4000:4000"
 
   database:
     container_name: database
@@ -38,7 +50,7 @@ services:
       - express-postgress
       - adminer-postgress
     ports:
-      - 5432:5432
+      - "5432:5432"
     secrets:
       - db_password
 volumes:

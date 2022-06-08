@@ -1,13 +1,11 @@
 .footer {
   display: flex;
-  flex-direction: column;
-  position: absolute;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  bottom: 0;
-  margin: 1rem 1rem;
-  padding: 0;
+  padding-bottom: 1rem;
 }
 
-.footer-item {
-  margin: auto;
+.footer__button {
+  padding: 0 2.5rem;
 }

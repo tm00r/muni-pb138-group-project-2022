@@ -1,0 +1,68 @@
+import React, { useEffect, useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+
+import {isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
+
+import { Button } from "./Button";
+import { PopUpWindow } from "./PopUpWindow";
+
+import "../styles/middle.css";
+
+interface HeadingProps {
+  datetimeText: string;
+  type: "order" | "template" | "finishedOrder";
+}
+
+export const Heading: React.FC<HeadingProps> = (props) => {
+  const { datetimeText, type } = props;
+
+  const orderRecoilName = useRecoilValue(orderNameAtom);
+  const setSubmitOrderName = useSetRecoilState(orderSubmitNameAtom)
+
+  const headinRef = React.useRef(null);
+
+  useEffect(() => {
+    const input = headinRef.current;
+    input.value = input.defaultValue;
+  }, [orderRecoilName])
+
+  const [show, setShow] = useState(false);
+  const isTemplate = useRecoilValue(isTemplateAtom)
+  const setOrderId = useSetRecoilState(orderIdAtom)
+
+  const handleShow = () => {
+    if (isTemplate){
+      setShow(true);
+    }
+    else {
+      setOrderId("")
+    }
+  }
+
+  return (
+    <>
+      <div className="heading">
+        <div className="heading__time">
+          <span className="heading__time-text">{datetimeText}</span>
+        </div>
+        <input
+          className="heading__title"
+          type="text"
+          placeholder="New order name"
+          defaultValue={orderRecoilName as string}
+          ref = {headinRef}
+          onChange = {(e) => setSubmitOrderName(e.target.value)}
+        />
+        <Button
+          size="primary"
+          color="orange"
+          label="Cancel"
+          eventProp={handleShow}
+        />
+        {type !== "finishedOrder" &&
+          <PopUpWindow type={type} show={show} setShow={setShow} />
+        }
+      </div>
+    </>
+  );
+};

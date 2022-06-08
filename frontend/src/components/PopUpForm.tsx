@@ -3,51 +3,61 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "./Button";
 import { Modal } from "react-bootstrap";
 import "../styles/popUpWindow.css";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { itemsListAtom, stepsListAtom } from "../state/atom";
+import uuid4 from "uuid4";
 
 interface PopUpFormProps {
-  type: "item" | "step";
+  type: "Items" | "Steps";
+  show: boolean;
+  setShow: any;
 }
 
 export interface NewStepItemProps {
   name: string;
-  count?: number;
-  deadline?: string;
+  count: number;
+  deadline: string;
 }
 
 export const PopUpForm: React.FC<PopUpFormProps> = ({
   type,
+  show,
+  setShow,
 }: PopUpFormProps) => {
-  const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
-    reset({ name: '', count: 1, deadline: '' });
-  }
-  const handleShow = () => setShow(true);
+    reset({ name: "", count: 1, deadline: "" });
+  };
+
+  const setStepsList = useSetRecoilState(stepsListAtom)
+  const setItemsList = useSetRecoilState(itemsListAtom)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm<NewStepItemProps>();
 
   const onSubmit: SubmitHandler<NewStepItemProps> = (data) => {
-    console.log(data);
+    const defaultDeadline = new Date()
+
+    if (type === "Items") {
+      setItemsList(itemsList => [...itemsList, { id: uuid4(), name: data.name, count: parseInt(data.count.toString()) }])
+    }
+    else if (type === "Steps") {
+      setStepsList(stepList => [...stepList, { id: uuid4(), name: data.name, description: "", isEditable: true, orderSequenceNumber: 0, isFinished: false, deadline: data.deadline }])
+    }
     handleClose();
   };
 
   return (
     <>
-      <Button
-        size="wide"
-        color="gray"
-        label="Launch demo modal form"
-        eventProp={handleShow}
-      />{" "}
-      {/* call somewhere upper */}
       <Modal className="popup-window" show={show} onHide={handleClose}>
         <Modal.Header className="popup__heading">
-          <Modal.Title className="popup-form__heading--text">New {type}</Modal.Title>
+          <Modal.Title className="popup-form__heading--text">
+            New {type}
+          </Modal.Title>
           <button
             type="button"
             className="btn-close"
@@ -77,7 +87,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                 </span>
               )}
 
-              {type === "item" && (
+              {type === "Items" && (
                 <>
                   <label className="label__count" htmlFor="count">
                     Count:
@@ -104,7 +114,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                 </>
               )}
 
-              {type === "step" && (
+              {type === "Steps" && (
                 <>
                   <label className="label__deadline" htmlFor="deadline">
                     Deadline:
@@ -143,6 +153,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
           />
         </Modal.Footer>
       </Modal>
+      {show && <div className="popup-backdrop" />}
     </>
   );
 };

@@ -14,20 +14,14 @@ model ShoppingItem {
   id            String  @id @default(uuid())
   name          String
   count         Int
-  shoppingListId String
-  shoppingList   ShoppingList @relation(fields: [shoppingListId], references: [id])
-}
-
-model ShoppingList {
-  id        String  @id @default(uuid())
-  products  ShoppingItem[]
-  orderId   String
-  order     Order?   @relation(fields: [orderId], references: [id])
+  orderId       String
+  order         Order   @relation(fields: [orderId], references: [id])
 }
 
 model Step {
   id                    String  @id @default(uuid())
   orderSequenceNumber   Int
+  name                  String
   description           String
   deadline              DateTime
   isFinished            Boolean
@@ -38,7 +32,11 @@ model Step {
 model Order {
   id            String  @id @default(uuid())
   orderBy       String
-  shoppingList   ShoppingList?
+  name          String
   Steps         Step[]
+  Items         ShoppingItem[]
+  isFinished    Boolean
+  isTemplate    Boolean
   createdAt     DateTime
+  deletedAt     DateTime?
 }

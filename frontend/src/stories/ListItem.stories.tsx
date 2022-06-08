@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ListItem } from '../components/ListItem';
+import { ListItemOld } from '../trash/ListItem-old';
 
 export default {
   title: 'Design System/Atoms/List Item',
-  component: ListItem,
-} as ComponentMeta<typeof ListItem>;
+  component: ListItemOld,
+} as ComponentMeta<typeof ListItemOld>;
 
 
-const Template: ComponentStory<typeof ListItem> = (args) => < ListItem {...args} />;
+const Template: ComponentStory<typeof ListItemOld> = (args) => < ListItemOld {...args} />;
 
 export const WithoutReducer = Template.bind({});
 WithoutReducer.args = {

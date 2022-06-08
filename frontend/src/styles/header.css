@@ -6,6 +6,8 @@
   margin: 0 2.5rem;
   padding: 0;
   gap: var(--gap-main);
+
+  /* Place it to <body> tag, remove from here */
   font-family: var(--font-family);
   font-weight: var(--font-weight);
 }
@@ -26,6 +28,16 @@
 
 .main__title {
   font-size: var(--font-size-40);
+  text-align: center;
+}
+
+.template__title {
+  width: 18rem;
+}
+
+.order__title {
+  width: 18rem;
+  text-align: end;
 }
 
 .template--invisible {

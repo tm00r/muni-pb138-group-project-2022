@@ -1,0 +1,16 @@
+.layout__body {
+  display: grid;
+  grid-template-columns: auto 1.6fr auto;
+  gap: 0px 2rem;
+  grid-template-areas:
+    ". . .";
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.layout__aside {
+  display: flex;
+  flex-grow: 1;
+  align-items: stretch;
+}
