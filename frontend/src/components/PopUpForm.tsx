@@ -103,8 +103,8 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                     {...register("count", {
                       required: "Please fill out count",
                       pattern: {
-                        value: /\d+/,
-                        message: "Please enter a number",
+                        value: /[0-9][0-9][0-9]]/,
+                        message: "Please enter a valid number from 1 to 999",
                       },
                     })}
                   />
