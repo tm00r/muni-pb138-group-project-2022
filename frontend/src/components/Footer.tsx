@@ -66,7 +66,6 @@ export const Footer: React.FC = () => {
             await setOrderId(defaultOrderTemplateId)
             await mutate(domain + "order")
         }
-        setGlobalState("New Order")
     }
 
     return (

@@ -5,11 +5,11 @@ import {PopUpForm} from "./PopUpForm";
 
 import "../styles/variables.css";
 import "../styles/middle.css";
+import { useRecoilValue } from "recoil";
+import { orderIdAtom } from "../state/atom";
 
 export interface MainTabProps {
     contentType: "Items" | "Steps";
-    // contentId: string;
-    isOrder: boolean;  // means order can be edited no more
     done?: boolean;
     setDone?: any;
     list: StepsType[] | ItemsType[]
@@ -18,7 +18,6 @@ export interface MainTabProps {
 export const MainTab: React.FC<MainTabProps> = (props) => {
     const {
         contentType,
-        isOrder,
         // done, setDone ,
         list
     } = props;
@@ -27,6 +26,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
+    const orderId = useRecoilValue(orderIdAtom)
 
     return (
         <div className="main__tab">
@@ -40,7 +40,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
                 list={list}
                 //step={step} done={done} setDone={setDone}
             />
-            {isOrder &&
+            {orderId &&
                 <div className="tab__button">
                     <Button
                         size="primary"

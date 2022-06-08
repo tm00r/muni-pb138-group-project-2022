@@ -29,7 +29,6 @@ export const Main: React.FC<FormProps> = (props) => {
     if (orderError) return (<p>E</p>)
     if (!orderData) return (<p>Loading...</p>)
 
-    const isOrder = orderData.data.isTemplate
 
     return (
         <main className="main">
@@ -39,8 +38,8 @@ export const Main: React.FC<FormProps> = (props) => {
                         datetimeText={datetimeText}
                         type={type}
                     />
-                    <MainTab contentType="Items" isOrder={isOrder} list={itemsList} />
-                    <MainTab contentType="Steps" isOrder={isOrder} done={done} list={stepsList} setDone={setDone}/>
+                    <MainTab contentType="Items" list={itemsList} />
+                    <MainTab contentType="Steps" done={done} list={stepsList} setDone={setDone}/>
                 </>
             }
         </main>
