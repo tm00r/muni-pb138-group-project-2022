@@ -21,6 +21,7 @@
 
 .heading__time {
   width: 6rem;
+  visibility: hidden;
 }
 
 .heading__title {

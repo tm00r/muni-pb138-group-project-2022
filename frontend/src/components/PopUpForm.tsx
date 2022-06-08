@@ -123,7 +123,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                   <input
                     className="input-text deadline-input"
                     type="date"
-                    /*min={new Date().toISOString()}*/
+                    min={new Date().toISOString().split("T")[0]}
                     {...register("deadline", {
                       required: "Please fill out deadline",
                     })}
