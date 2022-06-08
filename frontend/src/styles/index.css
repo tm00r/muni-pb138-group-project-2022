@@ -11,12 +11,26 @@ ul {
   margin: 0;
 }
 
+input {
+  all: unset;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .container {
   display: flex;
   flex-direction: column;
 
   height: 100vh;
-
 }
 
 /* ===== Scrollbar CSS ===== */
@@ -31,7 +45,6 @@ ul {
   width: 0.25rem;
   background-clip: padding-box;
   background-color: #ff9900 #f2f2f2;
-
 }
 
 *::-webkit-scrollbar-thumb {

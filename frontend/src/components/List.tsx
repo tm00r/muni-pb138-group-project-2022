@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
 import { domain } from "../types/swrDomain";
-import { orderIdAtom, allItemsListAtom, allStepsListAtom } from "../state/atom";
+import { orderIdAtom, allItemsListAtom, allStepsListAtom, reducerValue } from "../state/atom";
 
 import { ListItem } from './ListItem';
 
@@ -25,6 +25,7 @@ export const List: React.FC<ListProps> = (props) => {
     const { listType, endPoint, list } = props;
 
     const orderId = useRecoilValue(orderIdAtom)
+    const itemCount = useRecoilValue(reducerValue)
 
     const setAllItemsList = useSetRecoilState(allItemsListAtom)
     const setAllStepsList = useSetRecoilState(allStepsListAtom)
@@ -41,6 +42,7 @@ export const List: React.FC<ListProps> = (props) => {
     if (!orderData) return (<p>Loading...</p>)
 
     if (listType === "Items") {
+        console.log(parseInt(itemCount))
         setAllItemsList(allItems => [...listContent.data, ...list])
     }
     else if (listType === "Steps") {

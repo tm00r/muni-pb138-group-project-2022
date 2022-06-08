@@ -1,10 +1,12 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { isTemplateAtom } from '../state/atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { isTemplateAtom, reducerValue } from '../state/atom';
+import { useForm } from "react-hook-form";
+
+import { Button } from './Button';
 
 import '../styles/reducer.css';
 import '../styles/variables.css';
-import { Button } from './Button';
 
 interface ReducerProps {
     initialCount: number;
@@ -20,15 +22,18 @@ interface ActionType {
 
 
 const reducer = (state: ReducerState, action: ActionType) => {
-    if (state.count === 1 && action.type === 'decrement') {
-        return state;
-    };
     switch (action.type) {
         case 'increment':
+            if (state.count === 999) {
+                return state;
+            }
             return {
                 count: state.count + 1
             };
         case 'decrement':
+            if (state.count === 1) {
+                return state;
+            };
             return {
                 count: state.count - 1
             };
@@ -40,10 +45,17 @@ const reducer = (state: ReducerState, action: ActionType) => {
 export const Reducer: React.FC<ReducerProps> = (props) => {
 
     const { initialCount } = props;
-    const isTemplate = useRecoilValue(isTemplateAtom)
 
+    const isTemplate = useRecoilValue(isTemplateAtom)
+    const setValueFromReducer = useSetRecoilState(reducerValue);
+
+    const { register } = useForm();
 
     const [state, setCount] = React.useReducer(reducer, { count: initialCount });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValueFromReducer(e.target.value)
+    }
 
     return (
         <div className="list-item__mode--reducer">
@@ -56,7 +68,20 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
                         eventProp={() => setCount({ type: 'increment' })}
                     />
                 }
-                <span className='reducer__text'>{state.count}</span>
+                <form key={state.count}>
+                    <input
+                        type="number"
+                        className="reducer__text"
+                        min="1" max="999"
+                        {...register("reducer", {
+                            min: 1,
+                            max: 999
+                        })}
+                        onChange={e => handleChange(e)}
+                        value={state.count}
+
+                    />
+                </form>
                 {isTemplate &&
                     <Button
                         size="small"

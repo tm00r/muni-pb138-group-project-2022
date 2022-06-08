@@ -20,7 +20,7 @@ import axios from "axios";
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
-import {PopUpWindow} from "./PopUpWindow";
+import { PopUpWindow } from "./PopUpWindow";
 
 
 interface ListItemProps {
@@ -48,21 +48,21 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const isTemplate = useRecoilValue(isTemplateAtom)
 
     const onOrderCLick = async (id: String) => {
-        if((orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0) && !isTemplate) {
+        if ((orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0) && !isTemplate) {
             console.log(orderSubmitName)
             console.log(stepsList)
             console.log(itemsList)
             setShowCancel(true)
         }
         else {
-        const order = listProps as OrdersType
-        setOrderName(listProps.name)
-        setIsTemplate(order.isTemplate)
-        setOrderId(listProps.id)
-        setStepsList([])
-        setItemsList([])
-        await mutate(domain + "order/items/" + id)
-        await mutate(domain + "order/steps/" + id)
+            const order = listProps as OrdersType
+            setOrderName(listProps.name)
+            setIsTemplate(order.isTemplate)
+            setOrderId(listProps.id)
+            setStepsList([])
+            setItemsList([])
+            await mutate(domain + "order/items/" + id)
+            await mutate(domain + "order/steps/" + id)
         }
     }
     const onStepDone = async (id: string) => {
@@ -91,7 +91,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 return
             }
             return (
-                <li className={ `list-item ${propOrders.isFinished ?  'list-item--finished' : ''}`}>
+                <li className={`list-item ${propOrders.isFinished ? 'list-item--finished' : ''}`}>
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small'></Button>
                     <span className='list-item__text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
                     <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id} />
@@ -114,7 +114,11 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
                     <form className="list-item__form">
-                        <input className="list-item__deadline" type="text" value={new Date(propSteps.deadline).toDateString()} readOnly={!isTemplate} />
+                        <input
+                            className="list-item__deadline"
+                            type="text"
+                            value={new Date(propSteps.deadline).toDateString()}
+                            onChange={e => e.target.value}/>
                         {!isTemplate &&
                             <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id)} >
                                 {propSteps.isFinished &&

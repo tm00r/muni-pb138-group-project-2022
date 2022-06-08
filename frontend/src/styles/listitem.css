@@ -11,11 +11,11 @@
   cursor: pointer;
 }
 
-.list-item .button {
+.list-item .button--orange {
   visibility: hidden;
 }
 
-.list-item:hover .button{
+.list-item:hover .button--orange{
   visibility: visible;
 }
 
