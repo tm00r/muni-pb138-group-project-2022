@@ -1,5 +1,6 @@
-.list-item__reducer {
+.reducer {
     display: flex;
+    direction: rtl;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
@@ -13,4 +14,9 @@
     font-size: var(--font-size-24);
     font-weight: var(--font-weight);
     color: var(--color-dark-100);
+}
+
+.reducer__text {
+    padding: 1rem;
+
 }

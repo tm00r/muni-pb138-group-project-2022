@@ -11,6 +11,11 @@ export const orderNameAtom = atom<string>({
   default: ""
 })
 
+export const isTemplateAtom = atom<Boolean>({
+  key: "isTemplate",
+  default: false
+})
+
 export const orderSubmitNameAtom = atom<string>({
   key: "orderSubmitName",
   default: ""
@@ -35,3 +40,20 @@ export const allStepsListAtom = atom<StepsType[]>({
   key: "allStepsList",
   default: []
 })
+
+export const submitReducerValueAtom = atom<number>({
+  key: "ReducerValue",
+  default: 0
+})
+
+export const itemIdAtom = atom<String>({
+  key: "itemIdAtom",
+  default: ""
+})
+
+export const globalStateAtom = atom<GlobaLStateType>({
+  key: "globalState",
+  default: "New Order"
+})
+
+

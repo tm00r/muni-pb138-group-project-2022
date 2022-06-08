@@ -10,6 +10,22 @@ type OrdersType = {
   isTemplate: boolean;
 };
 
+type ItemsType = {
+  id: string;
+  name: string;
+  count: number;
+};
+
+type StepsType = {
+  id: string;
+  name: string;
+  description: string;
+  orderSequenceNumber: number;
+  deadline: string;
+  isFinished: boolean;
+  isEditable: boolean;
+};
+
 type SubmitOrder = {
   orderBy: string,
   name: string,
@@ -32,18 +48,4 @@ type SubmitItem= {
   count: number
 }
 
-type ItemsType = {
-  id: string;
-  name: string;
-  count: number;
-};
-
-type StepsType = {
-  id: string;
-  name: string;
-  description: string;
-  orderSequenceNumber: number;
-  deadline: string;
-  isFinished: boolean;
-  isEditable: boolean;
-};
+type GlobaLStateType = "New Order" | "New Template" | "Order"

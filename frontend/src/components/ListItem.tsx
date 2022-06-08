@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { domain } from "../types/swrDomain";
 import { mutate } from "swr";
-import {useRecoilValue, useSetRecoilState} from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
 
-import { itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+import { isTemplateAtom, itemIdAtom, itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
 import axios from "axios";
 
 import '../styles/listitem.css';
@@ -17,20 +17,25 @@ import '../styles/variables.css';
 interface ListItemProps {
     listProps: GeneralListItemType;
     listType: "Items" | "Steps" | "Orders" | "Templates";
-    isTemplate: boolean;
+
 }
 
 // @ts-ignore
 export const ListItem: React.FC<ListItemProps> = (props) => {
     const setOrderId = useSetRecoilState(orderIdAtom)
+    const setIsTemplate = useSetRecoilState(isTemplateAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
     const setStepsList = useSetRecoilState(stepsListAtom)
     const setItemsList = useSetRecoilState(itemsListAtom)
 
+    const setItemId = useSetRecoilState(itemIdAtom);
     const orderId = useRecoilValue(orderIdAtom)
+    const isTemplate = useRecoilValue(isTemplateAtom)
 
     const onOrderCLick = async (id: String) => {
+        const order = listProps as OrdersType
         setOrderName(listProps.name)
+        setIsTemplate(order.isTemplate)
         setOrderId(listProps.id)
         setStepsList([])
         setItemsList([])
@@ -68,11 +73,11 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             )
         case 'Items':
             const propItems = listProps as ItemsType;
+            setItemId(propItems.id)
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
                     <Reducer initialCount={propItems.count} />
-                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id} />
                 </li>
             )
@@ -81,20 +86,20 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
-                    {!props.isTemplate &&
                     <form>
-                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
-                        <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={ () => onStepDone(propSteps.id)} >
-                            {propSteps.isFinished &&
-                                <img className="step__done--button" src="src/images/check.png" />
-                            }
-                            {!propSteps.isFinished &&
-                                <img className="step__done--button" src="src/images/verified.png" />
-                            }
-                        </button>
+                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly={!isTemplate} />
+                        {!isTemplate &&
+                            <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id)} >
+                                {propSteps.isFinished &&
+                                    <img className="step__done--button" src="src/images/check.png" />
+                                }
+                                {!propSteps.isFinished &&
+                                    <img className="step__done--button" src="src/images/verified.png" />
+                                }
+                            </button>
+                        }
                     </form>
-                    }
-                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
+
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id} />
                 </li>
             )

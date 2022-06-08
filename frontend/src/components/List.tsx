@@ -25,7 +25,6 @@ export const List: React.FC<ListProps> = (props) => {
 
     const orderId = useRecoilValue(orderIdAtom)
 
-
     const setAllItemsList = useSetRecoilState(allItemsListAtom)
     const setAllStepsList = useSetRecoilState(allStepsListAtom)
 
@@ -46,8 +45,6 @@ export const List: React.FC<ListProps> = (props) => {
     if (orderError) return (<p>E</p>)
     if (!orderData) return (<p>Loading...</p>)
 
-    const isOrderTemplate = orderData.data.isTemplate
-
     if (listType === "Items") {
         setAllItemsList(allItems => [...listContent.data, ...list])
     }
@@ -63,7 +60,6 @@ export const List: React.FC<ListProps> = (props) => {
                     <ListItem key={arg.id}
                         listType={listType}
                         listProps={arg}
-                        isTemplate={isOrderTemplate}
                     />
                 ))
             }
@@ -72,7 +68,6 @@ export const List: React.FC<ListProps> = (props) => {
                     <ListItem key={arg.id}
                         listType={listType}
                         listProps={arg}
-                        isTemplate={isOrderTemplate}
                     />
                 ))
             }

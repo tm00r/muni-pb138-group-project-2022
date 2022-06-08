@@ -1,4 +1,6 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { isTemplateAtom } from "../state/atom";
 import "../styles/header.css";
 
 interface HeaderProps {
@@ -13,23 +15,22 @@ export const Header: React.FC<HeaderProps> = ({
   orders,
 }: HeaderProps) => {
 
-  const templateMode = !templates ? "template--invisible" : "";
-  const ordersMode = !orders ? "order--invisible" : "";
+  const isTemplate = useRecoilValue(isTemplateAtom)
 
   return (
     <header>
       <ul className="header">
-        <li className={`header__item template ${templateMode}`}>
+        <li className={`header__item template`}>
           <h2 className="template__title">
             Templates
           </h2>
         </li>
         <li className="header__item main">
           <h1 className="main__title">
-            {title}
+            {isTemplate ? "New Order" : "Order"}
           </h1>
         </li>
-        <li className={`header__item order ${ordersMode}`}>
+        <li className={`header__item order`}>
           <h2 className="order__title">
             Orders
           </h2>

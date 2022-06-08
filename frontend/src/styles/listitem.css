@@ -34,6 +34,12 @@
   color: var(--color-dark-100);
 }
 
+.list-item__mode--reducer {
+  display: flex;
+  padding: 0.75em 0;
+  justify-content: flex-end;
+}
+
 .form-check-input {
   width: 2rem;
   height:2rem;
