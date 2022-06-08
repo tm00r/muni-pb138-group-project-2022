@@ -9,7 +9,7 @@ import "../styles/middle.css";
 export interface MainTabProps {
     contentType: "Items" | "Steps";
     // contentId: string;
-    finishedOrder: boolean;  // means order can be edited no more
+    isOrder: boolean;  // means order can be edited no more
     done?: boolean;
     setDone?: any;
     list: StepsType[] | ItemsType[]
@@ -18,7 +18,7 @@ export interface MainTabProps {
 export const MainTab: React.FC<MainTabProps> = (props) => {
     const {
         contentType,
-        finishedOrder,
+        isOrder,
         // done, setDone ,
         list
     } = props;
@@ -40,7 +40,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
                 list={list}
                 //step={step} done={done} setDone={setDone}
             />
-            {!finishedOrder &&
+            {isOrder &&
                 <div className="tab__button">
                     <Button
                         size="primary"

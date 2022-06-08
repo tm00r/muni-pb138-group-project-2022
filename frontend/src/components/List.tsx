@@ -10,6 +10,7 @@ import { ListItem } from './ListItem';
 
 import '../styles/list.css';
 import '../styles/variables.css';
+import {fetcher} from "../state/fetcher";
 
 
 export interface ListProps {
@@ -30,12 +31,6 @@ export const List: React.FC<ListProps> = (props) => {
 
     const URL = `${domain}${endPoint.includes("te") ? endPoint + "/" + orderId : endPoint}`;
 
-    const fetcher = async (url: string) => await (
-        axios
-            .get(url)
-            .then((response) => response.data)
-            .catch((error) => console.log(error))
-    )
     const { data: listContent, error } = useSWR(URL, fetcher);
     const { data: orderData, error: orderError } = useSWR(domain + "order/" + orderId, fetcher);
 

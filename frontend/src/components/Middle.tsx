@@ -5,6 +5,9 @@ import {Heading} from "./MiddleHeading";
 import {MainTab} from "./MainTab";
 import {useRecoilValue} from "recoil";
 import {itemsListAtom, orderIdAtom, stepsListAtom} from "../state/atom";
+import useSWR from "swr";
+import {domain} from "../types/swrDomain";
+import {fetcher} from "../state/fetcher";
 
 interface FormProps {
     datetimeText: string;
@@ -21,7 +24,12 @@ export const Main: React.FC<FormProps> = (props) => {
     const itemsList = useRecoilValue(itemsListAtom)
     const stepsList = useRecoilValue(stepsListAtom)
 
-    const finished = type === "finishedOrder" ? true : false
+    const { data: orderData, error: orderError } = useSWR(domain + "order/" + orderId, fetcher);
+
+    if (orderError) return (<p>E</p>)
+    if (!orderData) return (<p>Loading...</p>)
+
+    const isOrder = orderData.data.isTemplate
 
     return (
         <main className="main">
@@ -31,8 +39,8 @@ export const Main: React.FC<FormProps> = (props) => {
                         datetimeText={datetimeText}
                         type={type}
                     />
-                    <MainTab contentType="Items"  finishedOrder={finished} list={itemsList} />
-                    <MainTab contentType="Steps"  finishedOrder={finished} done={done} list={stepsList} setDone={setDone}/>
+                    <MainTab contentType="Items" isOrder={isOrder} list={itemsList} />
+                    <MainTab contentType="Steps" isOrder={isOrder} done={done} list={stepsList} setDone={setDone}/>
                 </>
             }
         </main>
