@@ -7,11 +7,20 @@ import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
 
-import { isTemplateAtom, itemIdAtom, itemsListAtom, orderIdAtom, orderNameAtom, stepsListAtom } from "../state/atom";
+import {
+    isTemplateAtom,
+    itemIdAtom,
+    itemsListAtom,
+    orderIdAtom,
+    orderNameAtom,
+    orderSubmitNameAtom,
+    stepsListAtom
+} from "../state/atom";
 import axios from "axios";
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
+import {PopUpWindow} from "./PopUpWindow";
 
 
 interface ListItemProps {
@@ -22,6 +31,12 @@ interface ListItemProps {
 
 // @ts-ignore
 export const ListItem: React.FC<ListItemProps> = (props) => {
+    const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
+    const stepsList = useRecoilValue(stepsListAtom)
+    const itemsList = useRecoilValue(itemsListAtom)
+
+
+
     const setOrderId = useSetRecoilState(orderIdAtom)
     const setIsTemplate = useSetRecoilState(isTemplateAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
@@ -33,6 +48,13 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const isTemplate = useRecoilValue(isTemplateAtom)
 
     const onOrderCLick = async (id: String) => {
+        if(orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0) {
+            console.log(orderSubmitName)
+            console.log(stepsList)
+            console.log(itemsList)
+            setShowCancel(true)
+        }
+        else {
         const order = listProps as OrdersType
         setOrderName(listProps.name)
         setIsTemplate(order.isTemplate)
@@ -41,6 +63,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
         setItemsList([])
         await mutate(domain + "order/items/" + id)
         await mutate(domain + "order/steps/" + id)
+        }
     }
     const onStepDone = async (id: string) => {
         await axios.put(domain + "order/steps/" + id, {})
@@ -56,7 +79,10 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     }
 
     const [show, setShow] = useState(false);
+    const [showCancel, setShowCancel] = useState(false);
+
     const handleShow = () => setShow(true);
+    const handleShowCancel = () => setShowCancel(true);
 
     switch (listType) {
         case 'Orders':
@@ -69,6 +95,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small'></Button>
                     <span className='list-item__text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
                     <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id} />
+                    <PopUpWindow type="order" show={showCancel} setShow={setShowCancel} />
                 </li>
             )
         case 'Items':
@@ -113,6 +140,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     <span className='list-item__text' onClick={() => onOrderCLick(propTemplates.id)}>{propTemplates.name}</span>
                     <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="template" show={show} setShow={setShow} id={propTemplates.id} />
+                    <PopUpWindow type="order" show={showCancel} setShow={setShowCancel} />
                 </li>
             )
     }

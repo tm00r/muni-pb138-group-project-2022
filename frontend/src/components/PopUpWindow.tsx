@@ -135,7 +135,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
                             size="wide"
                             color="gray"
                             label="Save changes"
-                            eventProp={() => saveOrderAPI(true)}
+                            eventProp={() => saveOrderAPI(false)}
                         />
                     )}
                     <Button

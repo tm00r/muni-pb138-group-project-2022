@@ -3,10 +3,11 @@ import {Button} from "./Button";
 import {Modal} from "react-bootstrap";
 import "../styles/popUpWindow.css";
 import {useSetRecoilState} from "recoil";
-import {orderIdAtom} from "../state/atom";
+import {itemsListAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom, stepsListAtom} from "../state/atom";
 import {domain} from "../types/swrDomain";
 import axios from "axios";
 import {mutate} from "swr";
+import {flushAllOrderAtom} from "../state/flushAllOrderAtoms";
 
 interface DeletePopUpProps {
     type: "order" | "template" | "step" | "item";
@@ -18,7 +19,11 @@ interface DeletePopUpProps {
 export const DeletePopUp: React.FC<DeletePopUpProps> = (
     props: DeletePopUpProps
 ) => {
-    const changeOrderId = useSetRecoilState(orderIdAtom)
+    const setOrderName = useSetRecoilState(orderNameAtom)
+    const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
+    const setItemsList = useSetRecoilState(itemsListAtom)
+    const setStepsList = useSetRecoilState(stepsListAtom)
+    const setOrderId = useSetRecoilState(orderIdAtom)
     const {type, show, setShow, id} = props;
     const handleClose = () => setShow(false);
     const handleDelete = async () => {
@@ -29,7 +34,13 @@ export const DeletePopUp: React.FC<DeletePopUpProps> = (
             await axios.delete(domain + `order/${id}`, { headers });
         }
         await mutate(domain + 'order')
-        await changeOrderId(x => "")
+
+        setOrderName("")
+        setOrderSubmitName("")
+        setItemsList([])
+        setStepsList([])
+        setOrderId("")
+
         await handleClose()
     }
 
