@@ -7,13 +7,16 @@ import {
     allItemsListAtom,
     allStepsListAtom,
     isTemplateAtom,
+    itemsListAtom,
     orderIdAtom,
     orderNameAtom,
-    orderSubmitNameAtom
+    orderSubmitNameAtom,
+    stepsListAtom
 } from "../state/atom";
 import axios from "axios";
 import {domain} from "../types/swrDomain";
 import {mutate} from "swr";
+import { defaultOrderTemplateId } from "../trash/defaultOrderTemplate";
 
 interface PopUpWindowProps {
     type: "order" | "template";
@@ -38,6 +41,9 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
     const setIsTemplate = useSetRecoilState(isTemplateAtom)
+    const setItemsList = useSetRecoilState(itemsListAtom)
+    const setStepsList = useSetRecoilState(stepsListAtom)
+
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -77,6 +83,8 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
         await setOrderId('')
         await setOrderSubmitName("")
         await setOrderName("")
+        await setItemsList([])
+        await setStepsList([])
         await handleClose()
     }
 
@@ -130,12 +138,12 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
                             />
                         </>)
                     }
-                    {isTemplate && (
+                    {(orderId == defaultOrderTemplateId) || isTemplate && (
                         <Button
                             size="wide"
                             color="gray"
                             label="Save changes"
-                            eventProp={() => saveOrderAPI(false)}
+                            eventProp={() => saveOrderAPI(true)}
                         />
                     )}
                     <Button
