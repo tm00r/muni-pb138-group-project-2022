@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { isTemplateAtom } from '../state/atom';
 
 import '../styles/reducer.css';
 import '../styles/variables.css';
@@ -17,8 +19,8 @@ interface ActionType {
 }
 
 
-const reducer = (state: ReducerState, action: ActionType)  => {
-    if ( state.count === 1 && action.type === 'decrement') {
+const reducer = (state: ReducerState, action: ActionType) => {
+    if (state.count === 1 && action.type === 'decrement') {
         return state;
     };
     switch (action.type) {
@@ -38,24 +40,32 @@ const reducer = (state: ReducerState, action: ActionType)  => {
 export const Reducer: React.FC<ReducerProps> = (props) => {
 
     const { initialCount } = props;
+    const isTemplate = useRecoilValue(isTemplateAtom)
 
-    const [state, setCount] = React.useReducer(reducer,  {count: initialCount});
+
+    const [state, setCount] = React.useReducer(reducer, { count: initialCount });
 
     return (
-        <div className="list-item__reducer">
-            <Button
-                size="small"
-                color="gray"
-                label="-"
-                eventProp={() => setCount({ type: 'decrement' })}
-            />
-            <span className=''>{state.count}</span>
-            <Button
-                size="small"
-                color="gray"
-                label="+"
-                eventProp={() => setCount({ type: 'increment' })}
-            />
+        <div className="list-item__mode--reducer">
+            <div className="reducer">
+                {isTemplate &&
+                    <Button
+                        size="small"
+                        color="gray"
+                        label="+"
+                        eventProp={() => setCount({ type: 'increment' })}
+                    />
+                }
+                <span className='reducer__text'>{state.count}</span>
+                {isTemplate &&
+                    <Button
+                        size="small"
+                        color="gray"
+                        label="-"
+                        eventProp={() => setCount({ type: 'decrement' })}
+                    />
+                }
+            </div>
         </div>
     );
 };

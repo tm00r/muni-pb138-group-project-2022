@@ -4,31 +4,26 @@ import { mutate } from "swr";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { domain } from "../types/swrDomain";
-import { allItemsListAtom, allStepsListAtom, isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
+import { allItemsListAtom, allStepsListAtom, globalStateAtom, isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
 
 import { Button } from "./Button";
 
 import "../styles/footer.css";
 import {defaultOrderTemplateId} from "../trash/defaultOrderTemplate";
 
-interface FooterProps {
-    main_button: string;
-}
 
-export const Footer: React.FC<FooterProps> = ({
-    main_button,
-    // type,
-}: FooterProps) => {
+export const Footer: React.FC = () => {
 
     const allItems = useRecoilValue(allItemsListAtom)
     const allSteps = useRecoilValue(allStepsListAtom)
     const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
     const orderName = useRecoilValue(orderNameAtom)
-    const isTemp = useRecoilValue(isTemplateAtom)
+    const isTemplate = useRecoilValue(isTemplateAtom)
     const setOrderId = useSetRecoilState(orderIdAtom)
 
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
+    const setGlobalState = useSetRecoilState(globalStateAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -62,23 +57,29 @@ export const Footer: React.FC<FooterProps> = ({
         await setOrderName("")
         await setOrderId(defaultOrderTemplateId)
     }
+
+    const handleButtonClick = (APIarg: boolean) => {
+        saveOrderAPI(APIarg)
+        setGlobalState("New Order")
+    }
+
     return (
         <footer className="footer">
             <div className="footer__button">
                 <Button
                     size="wide"
                     color="gray"
-                    label="Save template"
-                    eventProp={() => saveOrderAPI(true)}
+                    label={!isTemplate ? "Create new template" : "Save template"}
+                    eventProp={() => handleButtonClick(true)}
                 />
             </div>
-            {isTemp &&
+            {isTemplate &&
                 <div className="footer__button">
                     <Button
                         size="wide"
                         color="dark"
-                        label={main_button}
-                        eventProp={() => saveOrderAPI(false)}
+                        label="Add to orders"
+                        eventProp={() => handleButtonClick(false)}
                     />
                 </div>
             }

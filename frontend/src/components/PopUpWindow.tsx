@@ -3,7 +3,7 @@ import { Button } from "./Button";
 import { Modal } from "react-bootstrap";
 import "../styles/popUpWindow.css";
 import {useRecoilValue, useSetRecoilState} from "recoil";
-import {allItemsListAtom, allStepsListAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
+import {allItemsListAtom, allStepsListAtom, isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom} from "../state/atom";
 import axios from "axios";
 import {domain} from "../types/swrDomain";
 import {mutate} from "swr";
@@ -27,6 +27,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
   const orderId = useRecoilValue(orderIdAtom)
 
   const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
+  const setIsTemplate = useSetRecoilState(isTemplateAtom)
 
   const saveOrderAPI = async (isTemplate: Boolean) => {
     const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -68,6 +69,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
       };
       await axios.delete(domain + `order/${orderId}`, { headers });
     }
+    setIsTemplate(false)
     await mutate(domain + 'order')
     await changeOrderId(x => "")
     await handleClose()

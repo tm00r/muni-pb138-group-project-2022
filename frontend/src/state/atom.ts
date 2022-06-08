@@ -42,13 +42,18 @@ export const allStepsListAtom = atom<StepsType[]>({
 })
 
 export const submitReducerValueAtom = atom<number>({
-  key: "allStepsList",
+  key: "ReducerValue",
   default: 0
 })
 
 export const itemIdAtom = atom<String>({
-  key: "allStepsList",
+  key: "itemIdAtom",
   default: ""
+})
+
+export const globalStateAtom = atom<GlobaLStateType>({
+  key: "globalState",
+  default: "New Order"
 })
 
 

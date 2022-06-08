@@ -47,3 +47,5 @@ type SubmitItem= {
   name: string,
   count: number
 }
+
+type GlobaLStateType = "New Order" | "New Template" | "Order"

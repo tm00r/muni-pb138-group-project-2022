@@ -17,7 +17,7 @@ import '../styles/variables.css';
 interface ListItemProps {
     listProps: GeneralListItemType;
     listType: "Items" | "Steps" | "Orders" | "Templates";
-    isTemplate: boolean;
+
 }
 
 // @ts-ignore
@@ -29,8 +29,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const setItemsList = useSetRecoilState(itemsListAtom)
 
     const setItemId = useSetRecoilState(itemIdAtom);
-
     const orderId = useRecoilValue(orderIdAtom)
+    const isTemplate = useRecoilValue(isTemplateAtom)
 
     const onOrderCLick = async (id: String) => {
         const order = listProps as OrdersType
@@ -77,7 +77,6 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
-                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <Reducer initialCount={propItems.count} />
                     <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id} />
                 </li>
@@ -87,20 +86,20 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
-                    {!props.isTemplate &&
                     <form>
-                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly />
-                        <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={ () => onStepDone(propSteps.id)} >
-                            {propSteps.isFinished &&
-                                <img className="step__done--button" src="src/images/check.png" />
-                            }
-                            {!propSteps.isFinished &&
-                                <img className="step__done--button" src="src/images/verified.png" />
-                            }
-                        </button>
+                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly={!isTemplate} />
+                        {!isTemplate &&
+                            <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id)} >
+                                {propSteps.isFinished &&
+                                    <img className="step__done--button" src="src/images/check.png" />
+                                }
+                                {!propSteps.isFinished &&
+                                    <img className="step__done--button" src="src/images/verified.png" />
+                                }
+                            </button>
+                        }
                     </form>
-                    }
-                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
+
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id} />
                 </li>
             )
