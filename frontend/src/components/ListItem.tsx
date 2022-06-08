@@ -86,8 +86,8 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propSteps.name}</span>
-                    <form>
-                        <input type="text" value={new Date(propSteps.deadline).toDateString()} readOnly={!isTemplate} />
+                    <form className="list-item__form">
+                        <input className="list-item__deadline" type="text" value={new Date(propSteps.deadline).toDateString()} readOnly={!isTemplate} />
                         {!isTemplate &&
                             <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id)} >
                                 {propSteps.isFinished &&

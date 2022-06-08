@@ -67,9 +67,24 @@
   border-radius: 1.5rem;
   background-color: transparent;
   margin: 0;
+  margin-right: 1rem;
 }
 
 .step__done--button {
   width: 2rem;
   height: 2rem;
+}
+
+.list-item__form {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-item__deadline {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  padding: 0;
+  text-align: center;
+  align-items: baseline;
+  border: none;
 }
