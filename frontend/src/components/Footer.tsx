@@ -19,6 +19,7 @@ export const Footer: React.FC = () => {
     const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
     const orderName = useRecoilValue(orderNameAtom)
     const isTemplate = useRecoilValue(isTemplateAtom)
+    const orderId = useRecoilValue(orderIdAtom)
     const setOrderId = useSetRecoilState(orderIdAtom)
 
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
@@ -55,11 +56,17 @@ export const Footer: React.FC = () => {
         await mutate(domain + "order")
         await setOrderSubmitName("")
         await setOrderName("")
-        await setOrderId(defaultOrderTemplateId)
+        await setOrderId("")
     }
 
-    const handleButtonClick = (APIarg: boolean) => {
-        saveOrderAPI(APIarg)
+    const handleButtonClick = async (isTemplate: boolean) => {
+        if (orderId) {
+            await saveOrderAPI(isTemplate)
+        }
+        else {
+            await setOrderId(defaultOrderTemplateId)
+            await mutate(domain + "order")
+        }
         setGlobalState("New Order")
     }
 
@@ -69,7 +76,7 @@ export const Footer: React.FC = () => {
                 <Button
                     size="wide"
                     color="gray"
-                    label={!isTemplate ? "Create new template" : "Save template"}
+                    label={!orderId ? "Create new template" : "Save template"}
                     eventProp={() => handleButtonClick(true)}
                 />
             </div>
