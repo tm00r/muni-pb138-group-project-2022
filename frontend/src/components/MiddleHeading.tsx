@@ -48,6 +48,7 @@ export const Heading: React.FC<HeadingProps> = (props) => {
         <input
           className="heading__title"
           type="text"
+          maxLength={25}
           placeholder="New order name"
           defaultValue={orderRecoilName as string}
           ref = {headinRef}

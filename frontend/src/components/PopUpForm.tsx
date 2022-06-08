@@ -78,6 +78,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                 type="text"
                 {...register("name", {
                   required: "Please fill out item name",
+                  maxLength: 30
                 })}
               />
 
@@ -98,6 +99,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                     type="number"
                     step="1"
                     min="1"
+                    max="999"
                     {...register("count", {
                       required: "Please fill out count",
                       pattern: {
