@@ -79,7 +79,7 @@ export const Footer: React.FC = () => {
                     eventProp={() => handleButtonClick(true)}
                 />
             </div>
-            {isTemplate &&
+            {isTemplate && orderId &&
                 <div className="footer__button">
                     <Button
                         size="wide"
