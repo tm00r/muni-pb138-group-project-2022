@@ -25,6 +25,7 @@ export const Footer: React.FC = () => {
     const setOrderName = useSetRecoilState(orderNameAtom)
     const setItemsList = useSetRecoilState(itemsListAtom)
     const setStepsList = useSetRecoilState(stepsListAtom)
+    const setIsTemplate = useSetRecoilState(isTemplateAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -59,6 +60,7 @@ export const Footer: React.FC = () => {
         await setItemsList([])
         await setStepsList([])
         await setOrderId("")
+        await setIsTemplate(true)
     }
 
     const handleButtonClick = async (isTemplate: boolean) => {

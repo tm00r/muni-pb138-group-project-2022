@@ -36,8 +36,8 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
     const orderName = useRecoilValue(orderNameAtom)
     const orderId = useRecoilValue(orderIdAtom)
     const isTemplate = useRecoilValue(isTemplateAtom)
-    const setOrderId = useSetRecoilState(orderIdAtom)
 
+    const setOrderId = useSetRecoilState(orderIdAtom)
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
     const setIsTemplate = useSetRecoilState(isTemplateAtom)
@@ -73,18 +73,22 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
 
         await axios.post(domain + 'order', messageData, {headers})
         await mutate(domain + "order")
-        await setOrderSubmitName("")
-        await setOrderName("")
-        await setOrderId("")
-        await handleClose()
-    }
-
-    const cancelTemplate = async () =>{
         await setOrderId('')
         await setOrderSubmitName("")
         await setOrderName("")
         await setItemsList([])
         await setStepsList([])
+        await setIsTemplate(true)
+        await handleClose()
+    }
+
+    const cancelOrder = async () =>{
+        await setOrderId('')
+        await setOrderSubmitName("")
+        await setOrderName("")
+        await setItemsList([])
+        await setStepsList([])
+        await setIsTemplate(true)
         await handleClose()
     }
 
@@ -96,9 +100,13 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
             };
             await axios.delete(domain + `order/${orderId}`, {headers});
         }
-        setIsTemplate(false)
+        await setOrderId('')
+        await setOrderSubmitName("")
+        await setOrderName("")
+        await setItemsList([])
+        await setStepsList([])
+        await setIsTemplate(true)
         await mutate(domain + 'order')
-        await changeOrderId(x => "")
         await handleClose()
     }
 
@@ -107,7 +115,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
             <Modal className="popup-window" show={show} onHide={handleClose}>
                 <Modal.Header className="popup__heading">
                     <Modal.Title className="popup__heading--text">
-                        Do you want to save this {type}?
+                        Do you want to save this template?
                     </Modal.Title>
                     <button
                         type="button"
@@ -122,23 +130,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
                     Your changes will be lost
                 </Modal.Body>
                 <Modal.Footer className="pupup__buttons">
-                    {!isTemplate &&(
-                        <>
-                            <Button
-                                size="wide"
-                                color="gray"
-                                label="Add to orders"
-                                eventProp={() => saveOrderAPI(false)}
-                            />
-                            <Button
-                                size="wide"
-                                color="gray"
-                                label="Save as a template"
-                                eventProp={() => saveOrderAPI(true)}
-                            />
-                        </>)
-                    }
-                    {(orderId == defaultOrderTemplateId) || isTemplate && (
+                    {((orderId == defaultOrderTemplateId) || isTemplate) && (
                         <Button
                             size="wide"
                             color="gray"
@@ -150,7 +142,7 @@ export const PopUpWindow: React.FC<PopUpWindowProps> = (
                         size="primary"
                         color="orange"
                         label="Cancel"
-                        eventProp={() => cancelTemplate()}
+                        eventProp={() => cancelOrder()}
                     />
                 </Modal.Footer>
             </Modal>

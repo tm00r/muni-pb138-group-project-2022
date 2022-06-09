@@ -48,7 +48,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const isTemplate = useRecoilValue(isTemplateAtom)
 
     const onOrderCLick = async (id: String) => {
-        if((orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0) && !isTemplate) {
+        if((orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0)) {
             console.log(orderSubmitName)
             console.log(stepsList)
             console.log(itemsList)

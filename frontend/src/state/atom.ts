@@ -13,7 +13,7 @@ export const orderNameAtom = atom<string>({
 
 export const isTemplateAtom = atom<Boolean>({
   key: "isTemplate",
-  default: false
+  default: true
 })
 
 export const orderSubmitNameAtom = atom<string>({
