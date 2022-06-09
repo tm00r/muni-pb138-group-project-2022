@@ -55,7 +55,7 @@ export const List: React.FC<ListProps> = (props) => {
                     <ListItem key={arg.id}
                         listType={listType}
                         listProps={arg}
-                        isOrderFinished={orderData.data.isFinished}
+                        isOrderFinished={orderData.data ? orderData.data.isFinished : false}
                     />
                 ))
             }
@@ -64,7 +64,7 @@ export const List: React.FC<ListProps> = (props) => {
                     <ListItem key={arg.id}
                         listType={listType}
                         listProps={arg}
-                        isOrderFinished={orderData.data.isFinished}
+                        isOrderFinished={orderData.data ? orderData.data.isFinished : false}
                     />
                 ))
             }
