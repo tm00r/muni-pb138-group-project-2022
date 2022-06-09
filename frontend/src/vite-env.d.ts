@@ -24,6 +24,7 @@ type StepsType = {
   deadline: string;
   isFinished: boolean;
   isEditable: boolean;
+  orderId: string;
 };
 
 type SubmitOrder = {

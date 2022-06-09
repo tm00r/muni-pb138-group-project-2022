@@ -24,6 +24,10 @@
   background-color: palegreen;
 }
 
+.list-item--late {
+  background-color: #FF5858;
+}
+
 .items__list > .list-item {
   width: 100%;
 }
@@ -97,4 +101,6 @@
   align-items: baseline;
   border: none;
   margin-right: 1rem;
+  border-radius: var(--border-radius-main);
+  width: 10rem;
 }
