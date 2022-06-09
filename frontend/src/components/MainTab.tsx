@@ -6,7 +6,7 @@ import {PopUpForm} from "./PopUpForm";
 import "../styles/variables.css";
 import "../styles/middle.css";
 import { useRecoilValue } from "recoil";
-import { orderIdAtom } from "../state/atom";
+import {isTemplateAtom, orderIdAtom} from "../state/atom";
 
 export interface MainTabProps {
     contentType: "Items" | "Steps";
@@ -27,6 +27,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const orderId = useRecoilValue(orderIdAtom)
+    const isTemplate = useRecoilValue(isTemplateAtom)
 
     return (
         <div className="main__tab">
@@ -40,7 +41,7 @@ export const MainTab: React.FC<MainTabProps> = (props) => {
                 list={list}
                 //step={step} done={done} setDone={setDone}
             />
-            {orderId &&
+            {(orderId && isTemplate) &&
                 <div className="tab__button">
                     <Button
                         size="primary"
