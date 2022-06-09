@@ -13,4 +13,5 @@ RUN npx prisma generate
 #Expose port and start application
 EXPOSE 4000
 
-CMD ["npx", "prisma", "migrate", "dev", ";", "npm", "start"]
+CMD ["npx", "prisma", "migrate", "dev"]
+CMD ["npm", "start"]
