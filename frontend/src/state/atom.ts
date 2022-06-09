@@ -23,7 +23,8 @@ export const orderSubmitNameAtom = atom<string>({
 
 export const itemsListAtom = atom<ItemsType[]>({
   key: "itemsList",
-  default: []
+  default: [],
+  dangerouslyAllowMutability: true,
 })
 
 export const stepsListAtom = atom<StepsType[]>({

@@ -28,7 +28,6 @@ interface ListItemProps {
     listProps: GeneralListItemType;
     listType: "Items" | "Steps" | "Orders" | "Templates";
     isOrderFinished: boolean
-
 }
 
 // @ts-ignore
