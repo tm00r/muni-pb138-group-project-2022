@@ -43,15 +43,18 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
     const { initialCount } = props;
     const isTemplate = useRecoilValue(isTemplateAtom)
 
-
     const [state, setCount] = React.useReducer(reducer, { count: initialCount });
     const setAllItemsList = useSetRecoilState(allItemsListAtom)
-    setAllItemsList(items => items.map(item => {
-        if (item.id == props.itemId) {
-            item.count = state.count
-        }
-        return item
-    }))
+
+    const handleReducerChange = (increaseValue: boolean) => {
+        increaseValue ? setCount({type: 'increment'}) : setCount({type: 'decrement'})
+        setAllItemsList(items => items.map(item => {
+            if (item.id == props.itemId) {
+                item.count = state.count + (increaseValue ? 1 : -1)
+            }
+            return item
+        }))
+    }
 
     return (
         <div className="list-item__mode--reducer">
@@ -61,7 +64,7 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
                         size="small"
                         color="gray"
                         label="+"
-                        eventProp={() => setCount({ type: 'increment' })}
+                        eventProp={() => handleReducerChange(true)}
                     />
                 }
                 <span className='reducer__text'>{state.count}</span>
@@ -70,7 +73,7 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
                         size="small"
                         color="gray"
                         label="-"
-                        eventProp={() => setCount({ type: 'decrement' })}
+                        eventProp={() => handleReducerChange(false)}
                     />
                 }
             </div>

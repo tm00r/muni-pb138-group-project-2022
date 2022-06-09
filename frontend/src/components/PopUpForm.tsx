@@ -46,7 +46,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
       setItemsList(itemsList => [...itemsList, { id: uuid4(), name: data.name, count: parseInt(data.count.toString()) }])
     }
     else if (type === "Steps") {
-      setStepsList(stepList => [...stepList, { id: uuid4(), name: data.name, description: "", isEditable: true, orderSequenceNumber: 0, isFinished: false, deadline: data.deadline }])
+      setStepsList(stepList => [...stepList, { id: uuid4(), name: data.name, description: "", isEditable: true, orderSequenceNumber: 0, isFinished: false, deadline: data.deadline, orderId: "" }])
     }
     handleClose();
   };
