@@ -56,7 +56,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
       <Modal className="popup-window" show={show} onHide={handleClose}>
         <Modal.Header className="popup__heading">
           <Modal.Title className="popup-form__heading--text">
-            New {type}
+            {`New ${type.slice(0, -1)}`}
           </Modal.Title>
           <button
             type="button"
@@ -81,6 +81,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                   maxLength: 30,
                   pattern: /[^0-9_]/
                 })}
+                placeholder={`Enter ${type.slice(0, -1)} name`}
               />
 
               {errors.name && (
@@ -101,6 +102,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                     step="1"
                     min="1"
                     max="999"
+                    placeholder="Enter count"
                     {...register("count", {
                       required: "Please fill out count",
                       min: 1,

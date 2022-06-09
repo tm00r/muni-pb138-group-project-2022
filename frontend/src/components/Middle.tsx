@@ -31,7 +31,7 @@ export const Main: React.FC<FormProps> = (props) => {
 
 
     return (
-        <main className="main">
+        <section className="main">
             {orderId &&
                 <>
                     <Heading
@@ -42,6 +42,6 @@ export const Main: React.FC<FormProps> = (props) => {
                     <MainTab contentType="Steps" done={done} list={stepsList} setDone={setDone}/>
                 </>
             }
-        </main>
+        </section>
     );
 };
