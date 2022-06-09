@@ -8,6 +8,7 @@ import {Reducer} from './Reducer';
 import {DeletePopUp} from './DeletePopUp';
 
 import {
+    allItemsListAtom,
     isTemplateAtom,
     itemIdAtom,
     itemsListAtom,
@@ -101,7 +102,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={'list-item'}>
                     <span className='list-item__text'>{propItems.name}</span>
-                    <Reducer initialCount={propItems.count}/>
+                    <Reducer initialCount={propItems.count} itemId={propItems.id}/>
                     <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id}/>
                 </li>
             )

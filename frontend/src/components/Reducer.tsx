@@ -1,6 +1,6 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { isTemplateAtom } from '../state/atom';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {allItemsListAtom, isTemplateAtom} from '../state/atom';
 
 import '../styles/reducer.css';
 import '../styles/variables.css';
@@ -8,6 +8,7 @@ import { Button } from './Button';
 
 interface ReducerProps {
     initialCount: number;
+    itemId: string;
 }
 
 interface ReducerState {
@@ -44,6 +45,13 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
 
 
     const [state, setCount] = React.useReducer(reducer, { count: initialCount });
+    const setAllItemsList = useSetRecoilState(allItemsListAtom)
+    setAllItemsList(items => items.map(item => {
+        if (item.id == props.itemId) {
+            item.count = state.count
+        }
+        return item
+    }))
 
     return (
         <div className="list-item__mode--reducer">
