@@ -33,7 +33,8 @@ export const stepsListAtom = atom<StepsType[]>({
 
 export const allItemsListAtom = atom<ItemsType[]>({
   key: "allItemsList",
-  default: []
+  default: [],
+  dangerouslyAllowMutability: true,
 })
 
 export const allStepsListAtom = atom<StepsType[]>({
