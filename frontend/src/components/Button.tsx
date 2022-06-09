@@ -4,6 +4,7 @@ import '../styles/button.css';
 import '../styles/variables.css';
 
 interface ButtonProps {
+  classMode?: string;
   color: 'gray' | 'dark' | 'orange' | 'green';
   size: 'primary' | 'small' | 'wide' | 'middle';
   label: JSX.Element | string ;
@@ -12,9 +13,9 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = (props) => {
 
-  const { color, size, label, eventProp } = props;
+  const { classMode, color, size, label, eventProp } = props;
 
-  const mode = `button--${color} button--${size || 'primary'}`;
+  const mode = `${classMode ? `button--${classMode}` : ""} button--${size || 'primary'} button--${color}`;
 
   const handleMouseDown = (e: any) => {
     e.target.style.boxShadow = `var(--shadow-${color})`;

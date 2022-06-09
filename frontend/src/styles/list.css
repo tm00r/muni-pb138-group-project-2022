@@ -20,6 +20,7 @@
 .templates, .orders {
     display: flex;
     height: 100%;
+    width: calc(100% - 1vw);
 }
 
 .templates > ul, .templates > ul > li {
@@ -33,16 +34,12 @@
     border-radius: var(--border-radius-right);
 }
 
-.orders > ul > li  > .list-item__text {
+.orders > ul > li  > .list__item--text {
     justify-content: flex-end;
 }
 
-.orders__list, .templates__list {
-}
-
 .items__list, .steps__list {
+    max-height: 15vh;
     overflow: hidden;
     overflow-y: scroll;
-    max-width: 45vw;
-    max-height: 20vh;
 }
