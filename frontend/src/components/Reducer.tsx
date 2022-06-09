@@ -50,7 +50,10 @@ export const Reducer: React.FC<ReducerProps> = (props) => {
         increaseValue ? setCount({type: 'increment'}) : setCount({type: 'decrement'})
         setAllItemsList(items => items.map(item => {
             if (item.id == props.itemId) {
-                item.count = state.count + (increaseValue ? 1 : -1)
+                const newValue = state.count + (increaseValue ? 1 : -1)
+                if (newValue >= 1){
+                    item.count = newValue
+                }
             }
             return item
         }))
