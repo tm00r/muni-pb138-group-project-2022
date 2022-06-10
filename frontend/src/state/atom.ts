@@ -13,7 +13,7 @@ export const orderNameAtom = atom<string>({
 
 export const isTemplateAtom = atom<Boolean>({
   key: "isTemplate",
-  default: false
+  default: true
 })
 
 export const orderSubmitNameAtom = atom<string>({
@@ -23,7 +23,8 @@ export const orderSubmitNameAtom = atom<string>({
 
 export const itemsListAtom = atom<ItemsType[]>({
   key: "itemsList",
-  default: []
+  default: [],
+  dangerouslyAllowMutability: true,
 })
 
 export const stepsListAtom = atom<StepsType[]>({
@@ -33,17 +34,13 @@ export const stepsListAtom = atom<StepsType[]>({
 
 export const allItemsListAtom = atom<ItemsType[]>({
   key: "allItemsList",
-  default: []
+  default: [],
+  dangerouslyAllowMutability: true,
 })
 
 export const allStepsListAtom = atom<StepsType[]>({
   key: "allStepsList",
   default: []
-})
-
-export const submitReducerValueAtom = atom<number>({
-  key: "ReducerValue",
-  default: 0
 })
 
 export const itemIdAtom = atom<String>({

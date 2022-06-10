@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
 
     const headerName = () => {
         if (orderId) {
-            if (orderId == defaultOrderTemplateId()) {
+            if (orderId == defaultOrderTemplateId) {
                 return "New Template"
             } else if (isTemplate) {
                 return "New Order"
@@ -30,23 +30,23 @@ export const Header: React.FC<HeaderProps> = ({
                 return "Order"
             }
         }
-        return "Order Hub"
+        return (<>Order<mark>Hub</mark></>)
     }
 
     return (
-        <header>
-            <ul className="header">
-                <li className={`header__item template`}>
+        <header className="header">
+            <ul className="header-list">
+                <li className={`header-list__item template`}>
                     <h2 className="template__title">
                         Templates
                     </h2>
                 </li>
-                <li className="header__item main">
+                <li className="header-list__item middle">
                     <h1 className="main__title">
                         {headerName()}
                     </h1>
                 </li>
-                <li className={`header__item order`}>
+                <li className={`header-list__item order`}>
                     <h2 className="order__title">
                         Orders
                     </h2>

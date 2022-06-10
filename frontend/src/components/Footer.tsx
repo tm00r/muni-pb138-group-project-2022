@@ -4,7 +4,7 @@ import { mutate } from "swr";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { domain } from "../types/swrDomain";
-import { allItemsListAtom, allStepsListAtom, globalStateAtom, isTemplateAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom } from "../state/atom";
+import { allItemsListAtom, allStepsListAtom, globalStateAtom, isTemplateAtom, itemsListAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom, stepsListAtom } from "../state/atom";
 
 import { Button } from "./Button";
 
@@ -23,7 +23,9 @@ export const Footer: React.FC = () => {
 
     const setOrderSubmitName = useSetRecoilState(orderSubmitNameAtom)
     const setOrderName = useSetRecoilState(orderNameAtom)
-    const setGlobalState = useSetRecoilState(globalStateAtom)
+    const setItemsList = useSetRecoilState(itemsListAtom)
+    const setStepsList = useSetRecoilState(stepsListAtom)
+    const setIsTemplate = useSetRecoilState(isTemplateAtom)
 
     const saveOrderAPI = async (isTemplate: Boolean) => {
         const allItemsSubmit: SubmitItem[] = allItems.map(x => ({
@@ -53,9 +55,12 @@ export const Footer: React.FC = () => {
 
         await axios.post(domain + 'order', messageData, { headers })
         await mutate(domain + "order")
-        await setOrderSubmitName("")
         await setOrderName("")
+        await setOrderSubmitName("")
+        await setItemsList([])
+        await setStepsList([])
         await setOrderId("")
+        await setIsTemplate(true)
     }
 
     const handleButtonClick = async (isTemplate: boolean) => {
@@ -66,7 +71,6 @@ export const Footer: React.FC = () => {
             await setOrderId(defaultOrderTemplateId)
             await mutate(domain + "order")
         }
-        setGlobalState("New Order")
     }
 
     return (
@@ -79,7 +83,7 @@ export const Footer: React.FC = () => {
                     eventProp={() => handleButtonClick(true)}
                 />
             </div>
-            {isTemplate && orderId &&
+            {orderId && isTemplate && orderId != defaultOrderTemplateId &&
                 <div className="footer__button">
                     <Button
                         size="wide"

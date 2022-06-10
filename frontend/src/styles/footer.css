@@ -3,9 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding-bottom: 1rem;
 }
 
 .footer__button {
-  padding: 0 2.5rem;
+  padding: 1.5rem;
 }

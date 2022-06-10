@@ -3,7 +3,14 @@ import {Button} from "./Button";
 import {Modal} from "react-bootstrap";
 import "../styles/popUpWindow.css";
 import {useSetRecoilState} from "recoil";
-import {itemsListAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom, stepsListAtom} from "../state/atom";
+import {
+    isTemplateAtom,
+    itemsListAtom,
+    orderIdAtom,
+    orderNameAtom,
+    orderSubmitNameAtom,
+    stepsListAtom
+} from "../state/atom";
 import {domain} from "../types/swrDomain";
 import axios from "axios";
 import {mutate} from "swr";
@@ -24,6 +31,8 @@ export const DeletePopUp: React.FC<DeletePopUpProps> = (
     const setItemsList = useSetRecoilState(itemsListAtom)
     const setStepsList = useSetRecoilState(stepsListAtom)
     const setOrderId = useSetRecoilState(orderIdAtom)
+    const setIsTemplate = useSetRecoilState(isTemplateAtom)
+
     const {type, show, setShow, id} = props;
     const handleClose = () => setShow(false);
     const handleDelete = async () => {
@@ -40,6 +49,7 @@ export const DeletePopUp: React.FC<DeletePopUpProps> = (
         setItemsList([])
         setStepsList([])
         setOrderId("")
+        setIsTemplate(true)
 
         await handleClose()
     }

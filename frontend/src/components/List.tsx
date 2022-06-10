@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
 import { domain } from "../types/swrDomain";
-import { orderIdAtom, allItemsListAtom, allStepsListAtom } from "../state/atom";
+import {orderIdAtom, allItemsListAtom, allStepsListAtom, stepsListAtom, itemsListAtom} from "../state/atom";
 
 import { ListItem } from './ListItem';
 
@@ -29,6 +29,9 @@ export const List: React.FC<ListProps> = (props) => {
     const setAllItemsList = useSetRecoilState(allItemsListAtom)
     const setAllStepsList = useSetRecoilState(allStepsListAtom)
 
+    const stepsList = useRecoilValue(stepsListAtom)
+    const itemsList = useRecoilValue(itemsListAtom)
+
     const URL = `${domain}${endPoint.includes("te") ? endPoint + "/" + orderId : endPoint}`;
 
     const { data: listContent, error } = useSWR(URL, fetcher);
@@ -41,10 +44,10 @@ export const List: React.FC<ListProps> = (props) => {
     if (!orderData) return (<p>Loading...</p>)
 
     if (listType === "Items") {
-        setAllItemsList(allItems => [...listContent.data, ...list])
+        setAllItemsList(allItems => [...listContent.data, ...itemsList])
     }
     else if (listType === "Steps") {
-        setAllStepsList(allSteps => [...listContent.data, ...list])
+        setAllStepsList(allSteps => [...listContent.data, ...stepsList])
     }
 
     return (
@@ -55,6 +58,7 @@ export const List: React.FC<ListProps> = (props) => {
                     <ListItem key={arg.id}
                         listType={listType}
                         listProps={arg}
+                        isOrderFinished={orderData.data ? orderData.data.isFinished : false}
                     />
                 ))
             }
@@ -63,6 +67,7 @@ export const List: React.FC<ListProps> = (props) => {
                     <ListItem key={arg.id}
                         listType={listType}
                         listProps={arg}
+                        isOrderFinished={orderData.data ? orderData.data.isFinished : false}
                     />
                 ))
             }
