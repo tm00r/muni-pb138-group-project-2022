@@ -46,7 +46,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
       setItemsList(itemsList => [...itemsList, { id: uuid4(), name: data.name, count: parseInt(data.count.toString()) }])
     }
     else if (type === "Steps") {
-      setStepsList(stepList => [...stepList, { id: uuid4(), name: data.name, description: "", isEditable: true, orderSequenceNumber: 0, isFinished: false, deadline: data.deadline }])
+      setStepsList(stepList => [...stepList, { id: uuid4(), name: data.name, description: "", isEditable: true, orderSequenceNumber: 0, isFinished: false, deadline: data.deadline, orderId: "" }])
     }
     handleClose();
   };
@@ -55,12 +55,12 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
     <>
       <Modal className="popup-window" show={show} onHide={handleClose}>
         <Modal.Header className="popup__heading">
-          <Modal.Title className="popup-form__heading--text">
-            New {type}
+          <Modal.Title className="popup__heading--text">
+            {`New ${type.slice(0, -1)}`}
           </Modal.Title>
           <button
             type="button"
-            className="btn-close"
+            className=""
             aria-label="Close"
             onClick={handleClose}
           >
@@ -76,9 +76,14 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
               <input
                 className="input-text name-input"
                 type="text"
+                min="1"
+                max="25"
                 {...register("name", {
                   required: "Please fill out item name",
+                  maxLength: 25,
+                  pattern: /[^0-9_]/
                 })}
+                placeholder={`Enter ${type.slice(0, -1)} name`}
               />
 
               {errors.name && (
@@ -98,17 +103,17 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                     type="number"
                     step="1"
                     min="1"
+                    max="999"
+                    placeholder="Enter count"
                     {...register("count", {
                       required: "Please fill out count",
-                      pattern: {
-                        value: /\d+/,
-                        message: "Please enter a number",
-                      },
+                      min: 1,
+                      max: 999
                     })}
                   />
                   {errors.count && (
                     <span className="error-message">
-                      {"Please enter a number"}
+                      {"Please, at least 1 and no more than 999"}
                     </span>
                   )}
                 </>
@@ -123,7 +128,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                   <input
                     className="input-text deadline-input"
                     type="date"
-                    /*min={new Date().toISOString()}*/
+                    // min={new Date().toISOString().split("T")[0]}
                     {...register("deadline", {
                       required: "Please fill out deadline",
                     })}

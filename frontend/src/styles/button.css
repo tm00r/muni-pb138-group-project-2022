@@ -41,6 +41,12 @@
   background-color: var(--color-orange);
 }
 
+.button--not-done {
+  width: 2rem;
+  height: 2rem;
+  visibility: hidden;
+}
+
 .button--green {
   color: var(--color-white);
   background-color: var(--color-green);
@@ -59,3 +65,4 @@
 .button--middle {
   width: 10rem;
 }
+

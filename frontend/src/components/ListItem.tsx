@@ -6,8 +6,10 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
+import { PopUpWindow } from "./PopUpWindow";
 
 import {
+    allItemsListAtom,
     isTemplateAtom,
     itemIdAtom,
     itemsListAtom,
@@ -20,13 +22,13 @@ import axios from "axios";
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
-import {PopUpWindow} from "./PopUpWindow";
+
 
 
 interface ListItemProps {
     listProps: GeneralListItemType;
     listType: "Items" | "Steps" | "Orders" | "Templates";
-
+    isOrderFinished: boolean
 }
 
 // @ts-ignore
@@ -34,7 +36,6 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const orderSubmitName = useRecoilValue(orderSubmitNameAtom)
     const stepsList = useRecoilValue(stepsListAtom)
     const itemsList = useRecoilValue(itemsListAtom)
-
 
 
     const setOrderId = useSetRecoilState(orderIdAtom)
@@ -48,26 +49,23 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
     const isTemplate = useRecoilValue(isTemplateAtom)
 
     const onOrderCLick = async (id: String) => {
-        if(orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0) {
-            console.log(orderSubmitName)
-            console.log(stepsList)
-            console.log(itemsList)
+        if ((orderSubmitName != "" || stepsList.length != 0 || itemsList.length != 0)) {
             setShowCancel(true)
-        }
-        else {
-        const order = listProps as OrdersType
-        setOrderName(listProps.name)
-        setIsTemplate(order.isTemplate)
-        setOrderId(listProps.id)
-        setStepsList([])
-        setItemsList([])
-        await mutate(domain + "order/items/" + id)
-        await mutate(domain + "order/steps/" + id)
+        } else {
+            const order = listProps as OrdersType
+            setOrderName(listProps.name)
+            setIsTemplate(order.isTemplate)
+            setOrderId(listProps.id)
+            setStepsList([])
+            setItemsList([])
+            await mutate(domain + "order/items/" + id)
+            await mutate(domain + "order/steps/" + id)
         }
     }
-    const onStepDone = async (id: string) => {
-        await axios.put(domain + "order/steps/" + id, {})
+    const onStepDone = async (stepId: string, orderId: string) => {
+        await axios.put(domain + "order/steps/" + stepId, {})
         await mutate(domain + "order")
+        await mutate(domain + "order/" + orderId)
         await mutate(domain + "order/steps/" + orderId)
     }
 
@@ -91,9 +89,12 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 return
             }
             return (
-                <li className={ `list-item ${propOrders.isFinished ?  'list-item--finished' : ''}`}>
-                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small'></Button>
-                    <span className='list-item__text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
+                <li className={`list__item`}>
+                    <div className="list__button-container">
+                        <Button classMode={`${propOrders.isFinished ? 'done' : 'not-done'} box`} label={<i className="fa fa-check"></i>} color="green" size='small' disabled={true} />
+                        <Button classMode="delete box stack-top" eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
+                    </div>
+                    <span className='list__item--text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
                     <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id} />
                     <PopUpWindow type="order" show={showCancel} setShow={setShowCancel} />
                 </li>
@@ -102,30 +103,34 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             const propItems = listProps as ItemsType;
             setItemId(propItems.id)
             return (
-                <li className={'list-item'}>
-                    <span className='list-item__text'>{propItems.name}</span>
-                    <Reducer initialCount={propItems.count} />
+                <li className={'list__item'}>
+                    <span className='list__item--text'>{propItems.name}</span>
+                    <Reducer initialCount={propItems.count} itemId={propItems.id} />
                     <DeletePopUp type="item" show={show} setShow={setShow} id={propItems.id} />
                 </li>
             )
         case 'Steps':
             const propSteps = listProps as StepsType;
+            const listItemClassName = () => {
+                if (!isTemplate && !props.isOrderFinished && (new Date(propSteps.deadline) < new Date())) {
+                    return 'list__item--late'
+                }
+                return ''
+            }
             return (
-                <li className={'list-item'}>
-                    <span className='list-item__text'>{propSteps.name}</span>
-                    <form className="list-item__form">
-                        <input className="list-item__deadline" type="text" value={new Date(propSteps.deadline).toDateString()} readOnly={!isTemplate} />
-                        {!isTemplate &&
-                            <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id)} >
-                                {propSteps.isFinished &&
-                                    <img className="step__done--button" src="src/images/check.png" />
-                                }
-                                {!propSteps.isFinished &&
-                                    <img className="step__done--button" src="src/images/verified.png" />
-                                }
-                            </button>
-                        }
-                    </form>
+                <li className={'list__item'}>
+                    <span className='list__item--text'>{propSteps.name}</span>
+                    <span className={"list__item--deadline " + listItemClassName()}>{new Date(propSteps.deadline).toDateString()} </span>
+                    {!isTemplate &&
+                        <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id, propSteps.orderId)} >
+                            {propSteps.isFinished &&
+                                <Button classMode="step__done--button" label='&#10003;' color="green" size='small' />
+                            }
+                            {!propSteps.isFinished &&
+                                <Button classMode="step__done--button" label='&#10003;' color="gray" size='small' />
+                            }
+                        </button>
+                    }
 
                     <DeletePopUp type="step" show={show} setShow={setShow} id={propSteps.id} />
                 </li>
@@ -136,9 +141,9 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 return
             }
             return (
-                <li className={'list-item'}>
-                    <span className='list-item__text' onClick={() => onOrderCLick(propTemplates.id)}>{propTemplates.name}</span>
-                    <Button eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
+                <li className={'list__item'}>
+                    <span className='list__item--text' onClick={() => onOrderCLick(propTemplates.id)}>{propTemplates.name}</span>
+                    <Button classMode="delete" eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     <DeletePopUp type="template" show={show} setShow={setShow} id={propTemplates.id} />
                     <PopUpWindow type="order" show={showCancel} setShow={setShowCancel} />
                 </li>
