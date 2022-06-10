@@ -1,13 +1,13 @@
 import React from "react";
 import "../styles/middle.css";
 
-import {Heading} from "./MiddleHeading";
-import {MainTab} from "./MainTab";
-import {useRecoilValue} from "recoil";
-import {itemsListAtom, orderIdAtom, stepsListAtom} from "../state/atom";
+import { Heading } from "./MiddleHeading";
+import { MainTab } from "./MainTab";
+import { useRecoilValue } from "recoil";
+import { itemsListAtom, orderIdAtom, stepsListAtom } from "../state/atom";
 import useSWR from "swr";
-import {domain} from "../types/swrDomain";
-import {fetcher} from "../state/fetcher";
+import { domain } from "../types/swrDomain";
+import { fetcher } from "../state/fetcher";
 
 interface FormProps {
     datetimeText: string;
@@ -18,7 +18,7 @@ interface FormProps {
 
 export const Main: React.FC<FormProps> = (props) => {
 
-    const { datetimeText, type, done , setDone} = props
+    const { datetimeText, type, done, setDone } = props
 
     const orderId = useRecoilValue(orderIdAtom)
     const itemsList = useRecoilValue(itemsListAtom)
@@ -31,17 +31,19 @@ export const Main: React.FC<FormProps> = (props) => {
 
 
     return (
-        <main className="main">
+        <section className="middle">
             {orderId &&
                 <>
                     <Heading
                         datetimeText={datetimeText}
                         type={type}
                     />
-                    <MainTab contentType="Items" list={itemsList} />
-                    <MainTab contentType="Steps" done={done} list={stepsList} setDone={setDone}/>
+                    <div className="middle__tabs">
+                        <MainTab contentType="Items" list={itemsList} />
+                        <MainTab contentType="Steps" done={done} list={stepsList} setDone={setDone} />
+                    </div>
                 </>
             }
-        </main>
+        </section>
     );
 };

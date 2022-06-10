@@ -70,14 +70,14 @@ export const Heading: React.FC<HeadingProps> = (props) => {
 
     return (
         <>
-            <div className="heading">
+            <div className="middle__heading heading">
                 <div className="heading__time">
                     <span className="heading__time-text">{datetimeText}</span>
                 </div>
                 <input
                     className="heading__title"
                     type="text"
-                    maxLength={25}
+                    maxLength={20}
                     placeholder="New order name"
                     defaultValue={orderRecoilName as string}
                     ref={headinRef}

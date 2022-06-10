@@ -55,12 +55,12 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
     <>
       <Modal className="popup-window" show={show} onHide={handleClose}>
         <Modal.Header className="popup__heading">
-          <Modal.Title className="popup-form__heading--text">
-            New {type}
+          <Modal.Title className="popup__heading--text">
+            {`New ${type.slice(0, -1)}`}
           </Modal.Title>
           <button
             type="button"
-            className="btn-close"
+            className=""
             aria-label="Close"
             onClick={handleClose}
           >
@@ -76,11 +76,14 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
               <input
                 className="input-text name-input"
                 type="text"
+                min="1"
+                max="25"
                 {...register("name", {
                   required: "Please fill out item name",
-                  maxLength: 30,
+                  maxLength: 25,
                   pattern: /[^0-9_]/
                 })}
+                placeholder={`Enter ${type.slice(0, -1)} name`}
               />
 
               {errors.name && (
@@ -101,6 +104,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                     step="1"
                     min="1"
                     max="999"
+                    placeholder="Enter count"
                     {...register("count", {
                       required: "Please fill out count",
                       min: 1,
@@ -124,7 +128,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
                   <input
                     className="input-text deadline-input"
                     type="date"
-                    min={new Date().toISOString().split("T")[0]}
+                    // min={new Date().toISOString().split("T")[0]}
                     {...register("deadline", {
                       required: "Please fill out deadline",
                     })}

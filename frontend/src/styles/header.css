@@ -1,6 +1,13 @@
 .header {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+.header-list{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
   margin: 0 2.5rem;
@@ -12,11 +19,11 @@
   font-weight: var(--font-weight);
 }
 
-.header__item {
+.header-list__item {
   list-style-type: none;
 }
 
-.header__item > * {
+.header-list__item > * {
   font-size: var(--font-size-32);
 }
 

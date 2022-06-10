@@ -1,27 +1,6 @@
-/* .main-page__body {
-  box-sizing: border-box;
+.main-page_body {
   display: flex;
   flex-direction: row;
-  height: 75vh;
-  justify-content: space-between;
-}
-
-.main-page__list {
-  display: flex;
-  flex-flow: column;
-  width: 50%;
-  height: 100%;
-  margin: 1rem;
-}
-
-.list--main {
-  overflow: auto;
-  height: 100%;
-} */
-
-.main-page_body {
-  display: grid;
-  grid-template-areas: ". . .";
   align-items: flex-start;
   gap: 2rem;
   height: 100%;

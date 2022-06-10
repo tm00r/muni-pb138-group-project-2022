@@ -1,5 +1,6 @@
 .list {
     display: flex;
+    height: 100%;
     flex-direction: column;
     gap: var(--gap-main);
     padding: 2rem;
@@ -16,18 +17,10 @@
     background-color: #ff9900;
 }
 
-.items__list, .steps__list {
-    overflow: hidden;
-    overflow-y: scroll;
+.templates, .orders {
+    display: flex;
     height: 100%;
-    height: 100%;
-    max-width: 45vw;
-    max-height: 20vh;
-}
-
-.orders__list, .templates__list {
-    height: 100%;
-    max-height: 42rem;
+    width: calc(100% - 1vw);
 }
 
 .templates > ul, .templates > ul > li {
@@ -41,7 +34,12 @@
     border-radius: var(--border-radius-right);
 }
 
-.orders > ul > li  > .list-item__text {
+.orders > ul > li  > .list__item--text {
     justify-content: flex-end;
 }
 
+.items__list, .steps__list {
+    max-height: 15vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}

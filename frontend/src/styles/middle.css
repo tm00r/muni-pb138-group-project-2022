@@ -1,8 +1,11 @@
-.main {
+.middle {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
 }
 
 .heading {
@@ -19,8 +22,16 @@
   color: var(--color-dark-100);
 }
 
+.middle__tabs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
 .heading__time {
-  width: 6rem;
   visibility: hidden;
 }
 
@@ -32,7 +43,11 @@
   border: unset;
   text-decoration: underline;
   text-underline-offset: 0.25rem;
-  max-width: 20rem;
+
+}
+
+.heading__title:focus {
+  border-radius: var(--border-radius-main);
 }
 
 .main__tab {
@@ -55,4 +70,7 @@
 .tab__button {
   display: flex;
   justify-content: flex-end;
+  height: 2.5rem;
 }
+
+
