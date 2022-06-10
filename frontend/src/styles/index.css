@@ -25,6 +25,13 @@ ul {
   margin: 0;
 }
 
+mark {
+  background-color: var(--color-orange);
+  border-radius: var(--border-radius-form);
+  padding: 0 .25rem;
+  margin: 0 .1rem;
+}
+
 .container {
   display: flex;
   flex-direction: column;

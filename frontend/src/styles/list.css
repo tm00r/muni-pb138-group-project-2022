@@ -11,6 +11,7 @@
     overflow-y:scroll;
     scroll-behavior: smooth;
     scroll-margin-top: 1rem;
+
 }
 
 .list:hover::-webkit-scrollbar-thumb {
@@ -39,7 +40,7 @@
 }
 
 .items__list, .steps__list {
-    max-height: 15vh;
+    max-height: 18.5vh;
     overflow: hidden;
     overflow-y: scroll;
 }

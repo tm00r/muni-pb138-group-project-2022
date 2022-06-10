@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
                 return "Order"
             }
         }
-        return "Order Hub"
+        return (<>Order<mark>Hub</mark></>)
     }
 
     return (
