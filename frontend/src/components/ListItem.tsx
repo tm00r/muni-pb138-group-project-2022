@@ -6,6 +6,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Button } from './Button';
 import { Reducer } from './Reducer';
 import { DeletePopUp } from './DeletePopUp';
+import { PopUpWindow } from "./PopUpWindow";
 
 import {
     allItemsListAtom,
@@ -21,7 +22,7 @@ import axios from "axios";
 
 import '../styles/listitem.css';
 import '../styles/variables.css';
-import { PopUpWindow } from "./PopUpWindow";
+
 
 
 interface ListItemProps {
@@ -88,8 +89,11 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                 return
             }
             return (
-                <li className={`list__item ${propOrders.isFinished ? 'list__item--finished' : ''}`}>
-                    <Button classMode="delete" eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small'></Button>
+                <li className={`list__item`}>
+                    <div className="list__button-container">
+                        <Button classMode={`${propOrders.isFinished ? 'done' : 'not-done'} box`} label={<i className="fa fa-check"></i>} color="green" size='small' disabled={true} />
+                        <Button classMode="delete box stack-top" eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
+                    </div>
                     <span className='list__item--text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>
                     <DeletePopUp type="order" show={show} setShow={setShow} id={propOrders.id} />
                     <PopUpWindow type="order" show={showCancel} setShow={setShowCancel} />
@@ -120,10 +124,10 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
                     {!isTemplate &&
                         <button className="step__done" disabled={propSteps.isFinished} type="button" onClick={() => onStepDone(propSteps.id, propSteps.orderId)} >
                             {propSteps.isFinished &&
-                                <img className="step__done--button" src="src/images/check.png" />
+                                <Button classMode="step__done--button" label='&#10003;' color="green" size='small' />
                             }
                             {!propSteps.isFinished &&
-                                <img className="step__done--button" src="src/images/verified.png" />
+                                <Button classMode="step__done--button" label='&#10003;' color="gray" size='small' />
                             }
                         </button>
                     }
