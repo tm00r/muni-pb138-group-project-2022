@@ -91,7 +91,7 @@ export const ListItem: React.FC<ListItemProps> = (props) => {
             return (
                 <li className={`list__item`}>
                     <div className="list__button-container">
-                        <Button classMode={`${propOrders.isFinished ? 'done' : 'not-done'} box`} label={<i className="fa fa-check"></i>} color="green" size='small' disabled={true} />
+                        <Button classMode={`${propOrders.isFinished ? 'done' : 'not-done'} box`} label='&#10003;' color="green" size='small' disabled={true} />
                         <Button classMode="delete box stack-top" eventProp={handleShow} label={<i className="fa fa-trash"></i>} color="orange" size='small' />
                     </div>
                     <span className='list__item--text' onClick={() => onOrderCLick(propOrders.id)}>{propOrders.name}</span>

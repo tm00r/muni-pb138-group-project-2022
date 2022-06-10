@@ -9,6 +9,7 @@
   box-shadow: var(--shadow-background);
   background-color: var(--color-white);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .list__item .button--delete {
@@ -44,6 +45,7 @@
   flex-wrap: wrap;
   position:relative;
   width: 3rem;
+  margin-right: 1rem;
 }
 
 .stack-top {

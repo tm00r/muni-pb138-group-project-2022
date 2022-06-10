@@ -13,6 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   width: 100%;
 
   /* Place it to <body> tag, remove from here */
@@ -32,6 +33,7 @@
 }
 
 .heading__time {
+  width: 6rem;
   visibility: hidden;
 }
 
@@ -43,7 +45,7 @@
   border: unset;
   text-decoration: underline;
   text-underline-offset: 0.25rem;
-
+  max-width: 23rem;
 }
 
 .heading__title:focus {

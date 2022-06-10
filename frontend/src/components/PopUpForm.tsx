@@ -60,7 +60,7 @@ export const PopUpForm: React.FC<PopUpFormProps> = ({
           </Modal.Title>
           <button
             type="button"
-            className=""
+            className="btn-close"
             aria-label="Close"
             onClick={handleClose}
           >

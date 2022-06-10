@@ -52,6 +52,11 @@
   background-color: var(--color-green);
 }
 
+.button--green:active {
+
+  font-size: 1.5rem;
+}
+
 .button--wide {
   width: 19rem;
 }

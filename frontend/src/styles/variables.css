@@ -49,6 +49,14 @@
     -6px -6px 12px #f0f0f0e6 inset,
     6px 6px 15px #8a8a8ae6 inset;
 
+  --shadow-green:
+    -4px -4px 15px #ffffff,
+    4px 4px 15px #b4c1d5,
+    -6px 6px 12px #8a8a8a00 inset,
+    6px -6px 12px #8a8a8a00 inset,
+    -6px -6px 12px #f0f0f000 inset,
+    6px 6px 15px #8a8a8a00 inset;
+
   --shadow-orange:
     -4px -4px 15px #ffffff,
     4px 4px 15px #b4c1d5,
