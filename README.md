@@ -82,24 +82,6 @@ For an order, the current status of the steps for its successful completion is k
 -   [Prettier](https://prettier.io/) - A tool to format code.
 -   [Eslint](https://eslint.org/) - A linter for JavaScript and JSX.
 
-## Service connection
-
-### Adminer
-For Adminer connection:
-1. Go to `127.0.0.1:8080`
-2. Select PostgresSQL as database
-3. Fill up `server: database`, `Username: admin`, `Password: your desired password`, `Database: OrderHub`
-4. Click `Login`.
-
-### OrderHub frontend service
-For OrderHub frontend application connection go to `127.0.0.1:8000`
-
-### OrderHub backend service
-OrderHub backend application runs on `127.0.0.1:4000`
-
-### OrderHub database service
-OrderHub database runs on `127.0.0.1:5432`
-
 
 ## Run application with Docker-Compose
 1. Before running `docker-compose` in the project directory create file `db_password.txt` inside folder `secrets` and add there your desired password to the database.
@@ -113,6 +95,24 @@ OrderHub database runs on `127.0.0.1:5432`
 5. To stop services run in the project directory `docker-compose -f stop`
 
 6. To down services run in the project directory `docker-compose -f down`
+
+## Service connections
+
+### OrderHub frontend service
+For OrderHub frontend application connection go to `127.0.0.1:8000`
+
+### Adminer
+For Adminer connection:
+1. Go to `127.0.0.1:8080`
+2. Select PostgresSQL as database
+3. Fill up `server: database`, `Username: admin`, `Password: your desired password`, `Database: OrderHub`
+4. Click `Login`.
+
+### OrderHub backend service
+OrderHub backend application runs on `127.0.0.1:4000`
+
+### OrderHub database
+OrderHub database runs on `127.0.0.1:5432`
 
 
 ## Available Scripts
