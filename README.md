@@ -56,7 +56,7 @@ For an order, the current status of the steps for its successful completion is k
 ### Frontend
 
 -   [HTML]- standard markup language for Web pages.
--   [CSS](https://www.typescriptlang.org/) - language for styling of HTML document.
+-   [CSS] - language for styling of HTML document.
 -   [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript.
 -   [Vite](https://vitejs.dev/) - Frontend build tooling for React application.
 -   [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
@@ -64,14 +64,14 @@ For an order, the current status of the steps for its successful completion is k
 
 ### API
 
--   [SWR] - React Hooks library for data fetching.
--   [Axios] - promise-based HTTP Client for node.js and the browser.
+-   [SWR](https://swr.vercel.app/ru) - React Hooks library for data fetching.
+-   [Axios](https://axios-http.com/) - promise-based HTTP Client for node.js and the browser.
 
 ### Backend
 
--   [Prisma] - Object–relational mapping toolkit for Node.js and TypeScript.
--   [Express] - minimal and flexible Node.js web application framework.
--   [Postgres] - A relational database.
+-   [Prisma](https://www.prisma.io/) - Object–relational mapping toolkit for Node.js and TypeScript.
+-   [Express](https://expressjs.com/) - minimal and flexible Node.js web application framework.
+-   [Postgres](https://www.postgresql.org/) - A relational database.
 
 ### Tooling
 
