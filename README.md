@@ -84,7 +84,9 @@ For an order, the current status of the steps for its successful completion is k
 
 
 ## Run application with Docker-Compose
-1. Before running `docker-compose` in the project directory create file `db_password.txt` inside folder `secrets` and add there your desired password to the database.
+1. Before running `docker-compose` make sure that `node_modules` are installed in both `backend` and `frontend` directories. (`npm i`)
+
+2. In the project directory inside folder `secrets` create file `db_password.txt` and add there your desired password to the database.
 
 2. In the backend directory create file `.env` from copy `.env.example`
 
