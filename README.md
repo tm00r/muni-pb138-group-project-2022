@@ -27,7 +27,7 @@ For an order, the current status of the steps for its successful completion is k
 ## Project structure
 
 ```
-- backend ()
+- backend
     └ prisma
         ├ migrations           - folder with Prisma generated migrations
         └ schema.prisma        - Prisma schema data models
@@ -36,7 +36,7 @@ For an order, the current status of the steps for its successful completion is k
         ├ client               - Prisma client declaration
         └ resources            - folder with backend prisma queries
 
-- frontend ()
+- frontend
     ├ .storybook (contains storybook tooling configs)
     └ src
         ├ assets             - folder containing every needed static image
