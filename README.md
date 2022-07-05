@@ -28,7 +28,7 @@ For an order, the current status of the steps for its successful completion is k
 
 ```
 - backend ()
-    ├ prisma
+    └ prisma
         ├ migrations           - folder with Prisma generated migrations
         └ schema.prisma        - Prisma schema data models
     └ src
@@ -39,14 +39,14 @@ For an order, the current status of the steps for its successful completion is k
 - frontend ()
     ├ .storybook (contains storybook tooling configs)
     └ src
-        |-- assets             - folder containing every needed static image
-        |-- components         - folder with React components
-        |-- pages              - folder with application layouts
-        |-- states             - folder with Recoil atoms, selectors and data fetcher
-        |-- static             - folder with empty template form and domain
-        |-- stories            - folder with storybook stories components
-        |-- styles             - folder with CSS styles
-        |-- types              - folder with global defined types
+        ├ assets             - folder containing every needed static image
+        ├ components         - folder with React components
+        ├ pages              - folder with application layouts
+        ├ states             - folder with Recoil atoms, selectors and data fetcher
+        ├ static             - folder with empty template form and domain
+        ├ stories            - folder with storybook stories components
+        ├ styles             - folder with CSS styles
+        └ types              - folder with global defined types
 ```
 
 ## Technologies
