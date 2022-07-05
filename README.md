@@ -53,8 +53,8 @@ For an order, the current status of the steps for its successful completion is k
 
 ### Frontend
 
--   [HTML]- standard markup language for Web pages.
--   [CSS] - language for styling of HTML document.
+-   HTML- standard markup language for Web pages.
+-   CSS - language for styling of HTML document.
 -   [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript.
 -   [Vite](https://vitejs.dev/) - Frontend build tooling for React application.
 -   [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
