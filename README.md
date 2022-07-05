@@ -1,4 +1,4 @@
-# MUNI PB138 Group Project - The ordering system
+# MUNI PB138 Group Project - The OrderHub (Ordering system)
 
 ## Project task
 Create system that allows you to create order templates for production.
@@ -7,9 +7,9 @@ For each order there are individual production steps that have a deadline.
 For an order, the current status of the steps for its successful completion is kept.
 
 ## Project Team
--   [Timur Gareev](https://gitlab.fi.muni.cz/x517295)               - UI design, frontend, APIs, application workflow
--   [Dominika Blehová](https://gitlab.fi.muni.cz/xblehova)          - frontend, APIs, application workflow
--   [Patrik Michal Vlček](https://gitlab.fi.muni.cz/xvlcek4)        - backend, APIs, dockerization, database.
+-   Timur Gareev               - UI design, frontend, APIs, application workflow
+-   Dominika Blehová           - frontend, APIs, application workflow
+-   Patrik Michal Vlček        - backend, APIs, dockerization, database.
 
 ## Features
 
