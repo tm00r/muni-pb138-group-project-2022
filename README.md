@@ -13,20 +13,18 @@ For an order, the current status of the steps for its successful completion is k
 
 ## Features
 
--   [ ] Displaying current templates and orders
--   [ ] Create, delete of templates and orders
--   [ ] Filling templates and orders with items in the required quantity
--   [ ] Filling templates and orders with steps and deadline assignment for it
--   [ ] Marking of the steps completion 
--   [ ] Сontrol of deadlines and marking expired deadlines  
--   [ ] Automatic marking of completed orders after all steps have been completed
--   [ ] Input validation for template filling and order editing form.
--   [ ] Form change control
--   [ ] Pop-ups for resetting or saving changes made to an order or a template
+-   [x] Displaying current templates and orders
+-   [x] Create, delete of templates and orders
+-   [x] Filling templates and orders with items in the required quantity
+-   [x] Filling templates and orders with steps and deadline assignment for it
+-   [x] Marking of the steps completion 
+-   [x] Сontrol of deadlines and marking expired deadlines  
+-   [x] Automatic marking of completed orders after all steps have been completed
+-   [x] Input validation for template filling and order editing form.
+-   [x] Form change control
+-   [x] Pop-ups for resetting or saving changes made to an order or a template
 
 ## Project structure
-
-### /
 
 ```
 - backend ()
