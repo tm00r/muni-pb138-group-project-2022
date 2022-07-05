@@ -6,7 +6,7 @@ import { MainTab } from "./MainTab";
 import { useRecoilValue } from "recoil";
 import { itemsListAtom, orderIdAtom, stepsListAtom } from "../state/atom";
 import useSWR from "swr";
-import { domain } from "../types/swrDomain";
+import { domain } from "../static/swrDomain";
 import { fetcher } from "../state/fetcher";
 
 interface FormProps {

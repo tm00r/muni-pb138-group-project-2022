@@ -14,9 +14,9 @@ import {
     stepsListAtom
 } from "../state/atom";
 import axios from "axios";
-import {domain} from "../types/swrDomain";
+import {domain} from "../static/swrDomain";
 import {mutate} from "swr";
-import { defaultOrderTemplateId } from "../trash/defaultOrderTemplate";
+import { defaultOrderTemplateId } from "../static/defaultOrderTemplate";
 
 interface PopUpWindowProps {
     type: "order" | "template";

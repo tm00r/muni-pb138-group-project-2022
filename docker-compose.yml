@@ -50,7 +50,7 @@ services:
       - express-postgress
       - adminer-postgress
     ports:
-      - "5432:5432"
+      - "0.0.0.0:5432:5432"
     secrets:
       - db_password
 volumes:

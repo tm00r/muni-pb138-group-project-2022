@@ -3,13 +3,13 @@ import axios from "axios";
 import { mutate } from "swr";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
-import { domain } from "../types/swrDomain";
+import { domain } from "../static/swrDomain";
 import { allItemsListAtom, allStepsListAtom, globalStateAtom, isTemplateAtom, itemsListAtom, orderIdAtom, orderNameAtom, orderSubmitNameAtom, stepsListAtom } from "../state/atom";
 
 import { Button } from "./Button";
 
 import "../styles/footer.css";
-import {defaultOrderTemplateId} from "../trash/defaultOrderTemplate";
+import {defaultOrderTemplateId} from "../static/defaultOrderTemplate";
 
 
 export const Footer: React.FC = () => {

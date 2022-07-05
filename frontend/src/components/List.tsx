@@ -3,7 +3,7 @@ import useSWR from "swr";
 import axios from "axios";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 
-import { domain } from "../types/swrDomain";
+import { domain } from "../static/swrDomain";
 import {orderIdAtom, allItemsListAtom, allStepsListAtom, stepsListAtom, itemsListAtom} from "../state/atom";
 
 import { ListItem } from './ListItem';

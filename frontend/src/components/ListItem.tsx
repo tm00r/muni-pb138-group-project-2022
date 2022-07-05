@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { domain } from "../types/swrDomain";
+import { domain } from "../static/swrDomain";
 import { mutate } from "swr";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 

@@ -11,10 +11,9 @@ import {
     orderSubmitNameAtom,
     stepsListAtom
 } from "../state/atom";
-import {domain} from "../types/swrDomain";
+import {domain} from "../static/swrDomain";
 import axios from "axios";
 import {mutate} from "swr";
-import {flushAllOrderAtom} from "../state/flushAllOrderAtoms";
 
 interface DeletePopUpProps {
     type: "order" | "template" | "step" | "item";

@@ -2,8 +2,7 @@ import React from "react";
 import {useRecoilValue} from "recoil";
 import {isTemplateAtom, orderIdAtom} from "../state/atom";
 import "../styles/header.css";
-import {defaultOrderTemplateId} from "../trash/defaultOrderTemplate";
-import sharedWorkerConstructor from "*?sharedworker";
+import {defaultOrderTemplateId} from "../static/defaultOrderTemplate";
 
 interface HeaderProps {
     templates: boolean;
