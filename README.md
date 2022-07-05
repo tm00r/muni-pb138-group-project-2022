@@ -1,51 +1,113 @@
-# Getting Started with Create React App
+# MUNI PB138 Group Project - The ordering system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project task
+Create system that allows you to create order templates for production. 
+It displays a shopping list for each order according to the template. 
+For each order there are individual production steps that have a deadline. 
+For an order, the current status of the steps for its successful completion is kept.
 
-Run `npm install` to install all the dependencies
+## Project Team
+-   Timur Gareev               - UI design, frontend, APIs, application workflow
+-   Dominika Blehová           - frontend, APIs, application workflow
+-   Patrik Michal Vlček        - backend, APIs, dockerization, database.
+
+## Features
+
+-   [ ] Displaying current templates and orders
+-   [ ] Create, delete of templates and orders
+-   [ ] Filling templates and orders with items in the required quantity
+-   [ ] Filling templates and orders with steps and deadline assignment for it
+-   [ ] Marking of the steps completion 
+-   [ ] Сontrol of deadlines and marking expired deadlines  
+-   [ ] Automatic marking of completed orders after all steps have been completed
+-   [ ] Input validation for template filling and order editing form.
+-   [ ] Form change control
+-   [ ] Pop-ups for resetting or saving changes made to an order or a template
+
+## Project structure
+
+### /
+
+```
+- backend ()
+    ├ prisma
+        ├ migrations           - folder with Prisma generated migrations
+        └ schema.prisma        - Prisma schema data models 
+    └ src
+        ├ index                - express backend api declarations
+        ├ client               - Prisma client declaration
+        └ resources            - folder with backend prisma queries                          
+
+- frontend ()
+    ├ .storybook (contains storybook tooling configs)
+    └ src
+        |-- assets             - folder containing every needed static image
+        |-- components         - folder with React components
+        |-- pages              - folder with application layouts 
+        |-- states             - folder with Recoil atoms, selectors and data fetcher
+        |-- static             - folder with empty template form and domain
+        |-- stories            - folder with storybook stories components
+        |-- styles             - folder with CSS styles
+        |-- types              - folder with global defined types
+```
+
+## Technologies
+
+### Frontend
+
+-   [HTML]- standard markup language for Web pages.
+-   [CSS](https://www.typescriptlang.org/) - language for styling of HTML document.
+-   [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript.
+-   [Vite](https://vitejs.dev/) - Frontend build tooling for React application.
+-   [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+-   [React Bootstrap](https://react-bootstrap.github.io/) - frontend framework rebuild in React (used only for Modal components). 
+
+### API
+
+-   [SWR] - React Hooks library for data fetching.
+-   [Axios] - promise-based HTTP Client for node.js and the browser.
+
+### Backend
+
+-   [Prisma] - Object–relational mapping toolkit for Node.js and TypeScript.
+-   [Express] - minimal and flexible Node.js web application framework.
+-   [Postgres] - A relational database.
+
+### Tooling
+
+-   [Docker](https://www.docker.com/) - software platform for building, running, managing and distributing applications.
+-   [Insomnia](https://insomnia.rest/) - desktop app for API design and testing.
+-   [Figma](https://www.figma.com/) - collaborative interface design tool.
+-   [Storybook](https://storybook.js.org/) - tool for building UI components and pages in isolation.
+-   [Git](https://git-scm.com/) - A distributed version control system.
+-   [Gitlab CI](https://about.gitlab.com/gitlab-ci/) - A continuous integration service for Git.
+-   [Prettier](https://prettier.io/) - A tool to format code.
+-   [Eslint](https://eslint.org/) - A linter for JavaScript and JSX.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the backend directory, you can run:
 
-### `npm start`
+### `npm install` 
+Run `npm install` to install all the dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `npm run start 
+Run `npm run start` to run express backend application
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+In the frontend directory, you can run:
 
-### `npm test`
+### `npm install` 
+Run `npm install` to install all the dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm run vite` 
+Run `npm run vite` to run vite frontend application
 
-### `npm run build`
+### `npm run storybook` 
+Run `npm run storybook` to run storybook toolkit 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm run build` 
+Run `npm run storybook` to build frontend application
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Start docker images
 Before running `docker-compose` create file `db_password.txt` inside folder `secrets` and add there your desired password to the database.
@@ -59,6 +121,10 @@ To stop services run `docker-compose -f docker-compose.yml stop`
 To down services run `docker-compose -f docker-compose.yml down`
 
 Connect to Adminer go to `127.0.0.1:8080` select PostgresSQL and fill up `server: database` `Username: admin` `Password: your desired password` `Database: OrderHub` and click `Login`
+
+To reset database to default state run `npx prisma migrate reset`
+
+To apply migrations to database run `npx prisma migrate dev`
 
 To generate database based on migrations run `npx prisma generate`
 
